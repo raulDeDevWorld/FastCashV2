@@ -27,12 +27,16 @@ import {
     DocumentTextIcon, MoonIcon, SunIcon, WindowIcon, CircleStackIcon, IdentificationIcon, DocumentCheckIcon, PresentationChartLineIcon, NumberedListIcon, AdjustmentsHorizontalIcon, ChartBarIcon, CalendarDaysIcon, UsersIcon
 } from '@heroicons/react/24/solid';
 import { menuArray } from '@/constants'
+import { useSearchParams } from 'next/navigation'
+
 export default function BottomNavigation({ rol }) {
     const { user, userDB, modal, setModal, subItemNav, setSubItemNav, setUserProfile, businessData, setUserData, setUserProduct, setRecetaDB, setUserCart, setUserDistributorPDB, filter, setFilter, nav, setNav } = useAppContext()
 
     const router = useRouter()
     const [focus, setFocus] = useState('')
-
+    const searchParams = useSearchParams()
+    const seccion = searchParams.get('seccion')
+    const item = searchParams.get('item')
     const redirectHandler = (ref) => {
         router.push(ref)
     }
@@ -52,46 +56,44 @@ export default function BottomNavigation({ rol }) {
             <img src="/logo.png" className='h-[70px] border-white border-[1px]' alt="" />
             <h1 className='16px font-medium text-center text-white py-[10px]'></h1>
             <h3 className='text-white text-center'>Bienvenido </h3>
-            <h3 className='text-white text-center'>Super Administrador</h3>
+            <h3 className='text-white text-center'>{rol}</h3>
         </li>
     }
-
+console.log(item)
 
     return <ul className="space-y-3 text-[16px] flex flex-col  items-center text-gray-600 font-medium">
         <Header />
         {
-            menuArray[rol].map((item, index) => {
-                const Icon = item.icon
+            menuArray[rol].map((element, index) => {
+                const Icon = element.icon
                 console.log(Icon)
                 return <>
-                    <button
+                  { Object.values(menuArray[rol]).length !== 1 && <button
                         type="button"
                         className="relative inline-flex justify-between w-[90%] rounded-md border border-gray-300 shadow-sm px-2 py-2 bg-gray-100 text-[12px]  font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        onClick={() => focus === item.title ? setFocus('') : setFocus(item.title)}
+                        onClick={() => focus === element.title ? setFocus('') : setFocus(element.title)}
                     >
                         <span className='flex items-center w-full space-x-1.5'>
-                            {item.icon}
+                            {element.icon}
                             <span className=''>
-                                {item.title}
-
+                                {element.title}
                             </span>
                         </span>
-
                         <Arrow_Select />
-                    </button>
+                    </button>}
 
                     <div
-                        className={`relative block w-[90%] right-0 mt-2  rounded-md transition-all shadow-lg bg-gray-100 ring-1 ring-black ring-opacity-5 focus:outline-none  overflow-hidden ${focus === item.title ? item.length : 'h-0 overflow-hidden'}`}>
+                        className={`relative block w-[90%] right-0 mt-2  rounded-md transition-all shadow-lg ${Object.values(menuArray[rol]).length === 1 ?'':  'bg-gray-100'} ring-1 ring-black ring-opacity-5 focus:outline-none  overflow-hidden ${Object.values(menuArray[rol]).length === 1 ? 'h-auto' :focus === element.title ? element.length :   'h-0 overflow-hidden'}`}>
                         <div
-                            className="py-1 ">
-                            {item.options.map((i, index) => {
+                            className={`py-1 ${Object.values(menuArray[rol]).length === 1 && 'space-y-5 rounded-md'}`}>
+                            {element.options.map((i, index) => {
                                 return <span
-                                    onClick={() => router.replace(`/Home?seccion=${item.hash}&item=${i.subtitle}`)}
-                                    className="block px-4 py-2 cursor-pointer text-[12px]  text-gray-700 hover:bg-gray-200"
+                                    onClick={() => router.replace(`/Home?seccion=${element.hash}&item=${i.subtitle}`)}
+                                    className={`block px-4 py-2 cursor-pointer text-[12px]  text-gray-700 hover:bg-gray-200 space-y-5 rounded-md ${item === i.subtitle && Object.values(menuArray[rol]).length !== 1  ? ' bg-gray-200': 'bg-gray-50'} `}
                                 >
-                                    <span className='flex items-center w-full space-x-1.5'>
+                                    <span className={`flex items-center w-full space-x-1.5 ${item === i.subtitle && ' [&>*:nth-child(n)]:stroke-blue-600  '}`}>
                                         {i.icon}
-                                        <span className=''>
+                                        <span className={`${item === i.subtitle && 'text-blue-600'}`}>
                                             {i.subtitle}
 
                                         </span>
@@ -100,8 +102,6 @@ export default function BottomNavigation({ rol }) {
                             })}
                         </div>
                     </div>
-
-
                 </>
             })
         }

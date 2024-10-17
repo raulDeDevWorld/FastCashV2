@@ -45,39 +45,39 @@ export default function Home() {
       switch (e.target[0].value) {
         case 'UserVe001':
           setUser({ rol: 'Usuario de Verificación' })
-          router.push(`/Validacion`)
+          router.push(`/Home?seccion=${menuArray['Usuario de Verificación'][0].hash}&item=${menuArray['Usuario de Verificación'][0].options[0].subtitle}`)
           break;
         case 'UserCo001':
           setUser({ rol: 'Usuario de Cobranza' })
-          router.push(`/Validacion`)
+          router.push(`/Home?seccion=${menuArray['Usuario de Cobranza'][0].hash}&item=${menuArray['Usuario de Cobranza'][0].options[0].subtitle}`)
           break;
         case 'UserAu001':
           setUser({ rol: 'Usuario de Auditoria' })
-          router.push(`/Validacion`)
+          router.push(`/Home?seccion=${menuArray['Usuario de Auditoria'][0].hash}&item=${menuArray['Usuario de Auditoria'][0].options[0].subtitle}`)
           break;
         case 'ManaVe001':
           setUser({ rol: 'Manager de Verificación' })
-          router.push(`/Validacion`)
+          router.push(`/Home?seccion=${menuArray['Manager de Verificación'][0].hash}&item=${menuArray['Manager de Verificación'][0].options[0].subtitle}`)
           break;
         case 'ManaCo001':
           setUser({ rol: 'Manager de Cobranza' })
-          router.push(`/Validacion`)
+          router.push(`/Home?seccion=${menuArray['Manager de Cobranza'][0].hash}&item=${menuArray['Manager de Cobranza'][0].options[0].subtitle}`)
           break;
         case 'ManaAu001':
           setUser({ rol: 'Manager de Auditoria' })
-          router.push(`/Validacion`)
+          router.push(`/Home?seccion=${menuArray['Manager de Auditoria'][0].hash}&item=${menuArray['Manager de Auditoria'][0].options[0].subtitle}`)
           break;
         case 'Admin001':
           setUser({ rol: 'Admin' })
-          router.push(`/Validacion`)
+          router.push(`/Home?seccion=${menuArray['Admin'][0].hash}&item=${menuArray['Admin'][0].options[0].subtitle}`)
           break;
           case 'RH001':
             setUser({ rol: 'Recursos Humanos' })
-            router.push(`/Validacion`)
+            router.push(`/Home?seccion=${menuArray['Recursos Humanos'][0].hash}&item=${menuArray['Recursos Humanos'][0].options[0].subtitle}`)
             break;
         case 'SuperAdmin001':
           setUser({ rol: 'Super Admin' })
-          router.push(`/Validacion`)
+          router.push(`/Home?seccion=${menuArray['Super Admin'][0].hash}&item=${menuArray['Super Admin'][0].options[0].subtitle}`)
           break;
         default:
           console.log(`Sorry, we are out of ${expr}.`);
@@ -147,27 +147,31 @@ export default function Home() {
 
         <h5 className="text-[20px] text-center text-gray-800" >Login</h5>
         <div >
-          <label htmlFor="email" className="block mb-2 text-[14px] text-left font-medium text-gray-800">User</label>
+          <label htmlFor="email" className="block mb-2 text-[14px] text-left font-medium text-gray-800">Nombre</label>
+          <Input type="text" name="user" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " placeholder="User123" />
+        </div>
+        <div >
+          <label htmlFor="email" className="block mb-2 text-[14px] text-left font-medium text-gray-800">Email</label>
           <Input type="text" name="user" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " placeholder="User123" />
         </div>
         <div>
           <label htmlFor="password" className="block mb-2 text-[14px] text-left  font-medium text-gray-800">Contraseña</label>
           <InputPass type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " />
         </div>
-        {/* <div >
+        <div >
           <label htmlFor="cod" className="block mb-2 text-[14px] text-left font-medium text-gray-800">Codigo de Validación</label>
-          <Input type="text" name="user" id="cod" className="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " placeholder="User123" />
+          <Input type="text" name="user" id="cod" className="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " placeholder="1234" />
         </div>
 
         <div className="flex items-start">
           <Link href='#' className="ml-auto  text-[14px] text-gray-400 underline cursor-pointer">Solicitar Codigo de validacion</Link>
-        </div> */}
-        <div className='w-full flex justify-center'>
+        </div>
+        {/* <div className='w-full flex justify-center'>
           <ReCAPTCHA
             sitekey="6LdcOwwqAAAAAPEqYv1NDkUpgJRRSaEna_ER9YTT"
             onChange={onChange}
           />
-        </div>
+        </div> */}
         <Button type="submit" theme="Primary">Iniciar Sesión</Button>
         {/* <div className="text-[14px] text-center font-medium text-gray-800 underline cursor-pointer">Solicitar Codigo de validacion<Link href="#" className="text-gray-400 underline"></Link ></div> */}
       </form>

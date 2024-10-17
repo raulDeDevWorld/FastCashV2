@@ -418,7 +418,54 @@ const refunds = [
 
 const menuArray = {
 
-  ['Usuario de Verificación']: [
+  // ['Usuario de Verificación']: [
+  //   {
+  //     icon: <CircleStackIcon className="h-6 w-6" />,
+  //     hash: 'coleccion',
+  //     title: "Colección de casos",
+  //     options: [
+  //       { subtitle: "Casos de Cobranza", icon: <NumberedListIcon className="h-5 w-5" /> },
+  //       { subtitle: "Distribución de casos", icon: <AdjustmentsHorizontalIcon className="h-5 w-5" /> },
+  //       { subtitle: "Incurrir en una estación de trabajo", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+  //       { subtitle: "Flujo de Clientes", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
+  //       { subtitle: "Gestión de cuentas de Colección", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
+  //       { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> }
+  //     ],
+  //     length: 'h-[245px]'
+  //   },
+  //   {
+  //     icon: <PresentationChartLineIcon className="h-6 w-6" />,
+  //     hash: 'auditoria',
+  //     title: "Auditoría y control de calidad",
+  //     options: [
+  //       { subtitle: "Registro Histórico", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
+  //       { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
+  //       { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
+  //       { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
+  //       { subtitle: "Detección de Fraudes", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
+  //       { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> }
+  //     ],
+  //     length: 'h-[230px] overflow-auto'
+  //   },
+  //   {
+  //     icon: <DocumentCheckIcon className="h-6 w-6" />,
+  //     hash: '#Verificacion',
+  //     title: "Verificación de Créditos",
+  //     options: [
+  //       { subtitle: "Recolección y Validación de Datos", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
+  //       { subtitle: "Lista final", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
+  //     ],
+  //     length: 'h-[100px]'
+  //   },
+  //   {
+  //     icon: <IdentificationIcon className="h-6 w-6" />,
+  //     hash: '#',
+  //     title: "Usuario de Cobranza",
+  //     options: [],
+  //     length: 'h-[0px]'
+  //   }
+  // ],
+  ['Super Admin']: [
     {
       icon: <CircleStackIcon className="h-6 w-6" />,
       hash: 'coleccion',
@@ -465,7 +512,7 @@ const menuArray = {
       length: 'h-[0px]'
     }
   ],
-  ['Super Admin']: [
+  ['Recursos Humanos']: [
     {
       icon: <CircleStackIcon className="h-6 w-6" />,
       hash: 'coleccion',
@@ -560,20 +607,7 @@ const menuArray = {
     }
   ],
   ['Manager de Auditoria']: [
-    {
-      icon: <CircleStackIcon className="h-6 w-6" />,
-      hash: 'coleccion',
-      title: "Colección de casos",
-      options: [
-        { subtitle: "Casos de Cobranza", icon: <NumberedListIcon className="h-5 w-5" /> },
-        { subtitle: "Distribución de casos", icon: <AdjustmentsHorizontalIcon className="h-5 w-5" /> },
-        { subtitle: "Incurrir en una estación de trabajo", icon: <OutlineUsersIcon className="h-5 w-5" /> },
-        { subtitle: "Flujo de Clientes", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
-        { subtitle: "Gestión de cuentas de Colección", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
-        { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> }
-      ],
-      length: 'h-[245px]'
-    },
+
     {
       icon: <PresentationChartLineIcon className="h-6 w-6" />,
       hash: 'auditoria',
@@ -583,138 +617,48 @@ const menuArray = {
         { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
         { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
         { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        { subtitle: "Detección de Fraudes", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
-        { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> }
+        { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Usuarios de Auditoria", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
+
       ],
       length: 'h-[230px] overflow-auto'
     },
-    {
-      icon: <DocumentCheckIcon className="h-6 w-6" />,
-      hash: '#Verificacion',
-      title: "Verificación de Créditos",
-      options: [
-        { subtitle: "Recolección y Validación de Datos", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
-        { subtitle: "Lista final", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
-      ],
-      length: 'h-[100px]'
-    },
-    {
-      icon: <IdentificationIcon className="h-6 w-6" />,
-      hash: '#',
-      title: "Usuario de Cobranza",
-      options: [],
-      length: 'h-[0px]'
-    }
+
   ],
   ['Manager de Cobranza']: [
+
     {
       icon: <CircleStackIcon className="h-6 w-6" />,
       hash: 'coleccion',
       title: "Colección de casos",
       options: [
         { subtitle: "Casos de Cobranza", icon: <NumberedListIcon className="h-5 w-5" /> },
-        { subtitle: "Distribución de casos", icon: <AdjustmentsHorizontalIcon className="h-5 w-5" /> },
-        { subtitle: "Incurrir en una estación de trabajo", icon: <OutlineUsersIcon className="h-5 w-5" /> },
-        { subtitle: "Flujo de Clientes", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
-        { subtitle: "Gestión de cuentas de Colección", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
-        { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> }
+        { subtitle: "Usuarios de Cobranza", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
+
       ],
-      length: 'h-[245px]'
-    },
-    {
-      icon: <PresentationChartLineIcon className="h-6 w-6" />,
-      hash: 'auditoria',
-      title: "Auditoría y control de calidad",
-      options: [
-        { subtitle: "Registro Histórico", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
-        { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
-        { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        { subtitle: "Detección de Fraudes", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
-        { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> }
-      ],
-      length: 'h-[230px] overflow-auto'
-    },
-    {
-      icon: <DocumentCheckIcon className="h-6 w-6" />,
-      hash: '#Verificacion',
-      title: "Verificación de Créditos",
-      options: [
-        { subtitle: "Recolección y Validación de Datos", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
-        { subtitle: "Lista final", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
-      ],
-      length: 'h-[100px]'
-    },
-    {
-      icon: <IdentificationIcon className="h-6 w-6" />,
-      hash: '#',
-      title: "Usuario de Cobranza",
-      options: [],
-      length: 'h-[0px]'
+      length: 'h-[50px]'
     }
+
   ],
   ['Manager de Verificación']: [
-    {
-      icon: <CircleStackIcon className="h-6 w-6" />,
-      hash: 'coleccion',
-      title: "Colección de casos",
-      options: [
-        { subtitle: "Casos de Cobranza", icon: <NumberedListIcon className="h-5 w-5" /> },
-        { subtitle: "Distribución de casos", icon: <AdjustmentsHorizontalIcon className="h-5 w-5" /> },
-        { subtitle: "Incurrir en una estación de trabajo", icon: <OutlineUsersIcon className="h-5 w-5" /> },
-        { subtitle: "Flujo de Clientes", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
-        { subtitle: "Gestión de cuentas de Colección", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
-        { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> }
-      ],
-      length: 'h-[245px]'
-    },
-    {
-      icon: <PresentationChartLineIcon className="h-6 w-6" />,
-      hash: 'auditoria',
-      title: "Auditoría y control de calidad",
-      options: [
-        { subtitle: "Registro Histórico", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
-        { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
-        { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        { subtitle: "Detección de Fraudes", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
-        { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> }
-      ],
-      length: 'h-[230px] overflow-auto'
-    },
+
+ 
     {
       icon: <DocumentCheckIcon className="h-6 w-6" />,
-      hash: '#Verificacion',
+      hash: 'Verificacion',
       title: "Verificación de Créditos",
       options: [
         { subtitle: "Recolección y Validación de Datos", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
-        { subtitle: "Lista final", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
+        { subtitle: "Lista final", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
+        { subtitle: "Usuarios de verificación", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
+
       ],
       length: 'h-[100px]'
     },
-    {
-      icon: <IdentificationIcon className="h-6 w-6" />,
-      hash: '#',
-      title: "Usuario de Cobranza",
-      options: [],
-      length: 'h-[0px]'
-    }
+
   ],
   ['Usuario de Auditoria']: [
-    {
-      icon: <CircleStackIcon className="h-6 w-6" />,
-      hash: 'coleccion',
-      title: "Colección de casos",
-      options: [
-        { subtitle: "Casos de Cobranza", icon: <NumberedListIcon className="h-5 w-5" /> },
-        { subtitle: "Distribución de casos", icon: <AdjustmentsHorizontalIcon className="h-5 w-5" /> },
-        { subtitle: "Incurrir en una estación de trabajo", icon: <OutlineUsersIcon className="h-5 w-5" /> },
-        { subtitle: "Flujo de Clientes", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
-        { subtitle: "Gestión de cuentas de Colección", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
-        { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> }
-      ],
-      length: 'h-[245px]'
-    },
+
     {
       icon: <PresentationChartLineIcon className="h-6 w-6" />,
       hash: 'auditoria',
@@ -724,28 +668,10 @@ const menuArray = {
         { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
         { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
         { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        { subtitle: "Detección de Fraudes", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
         { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> }
       ],
       length: 'h-[230px] overflow-auto'
     },
-    {
-      icon: <DocumentCheckIcon className="h-6 w-6" />,
-      hash: '#Verificacion',
-      title: "Verificación de Créditos",
-      options: [
-        { subtitle: "Recolección y Validación de Datos", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
-        { subtitle: "Lista final", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
-      ],
-      length: 'h-[100px]'
-    },
-    {
-      icon: <IdentificationIcon className="h-6 w-6" />,
-      hash: '#',
-      title: "Usuario de Cobranza",
-      options: [],
-      length: 'h-[0px]'
-    }
   ],
   ['Usuario de Cobranza']: [
     {
@@ -761,10 +687,9 @@ const menuArray = {
   ['Usuario de Verificación']: [
     {
       icon: <DocumentCheckIcon className="h-6 w-6" />,
-      hash: 'Verificacion',
+      hash: 'verificacion',
       title: "Verificación de Créditos",
       options: [
-        { subtitle: "Casos Pendientes", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
         { subtitle: "Recolección y Validación de Datos", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
         { subtitle: "Lista final", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
       ],

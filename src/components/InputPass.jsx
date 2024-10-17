@@ -23,7 +23,7 @@ export default function Button({ click, type, name, onChange, reference, placeho
             <input
                 type={showPassword ? 'text' : type}
                 name={name}
-                className=" bg-white border border-gray-300 text-gray-900 text-[14px] text-center  shadow-2xl rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                className=" bg-white border border-gray-300 text-gray-900 text-[14px] text-center  shadow-2xl rounded-[10px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2 outline-none"
                 // className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3
                 //    "Escribe aqui..."  "
                 onChange={onChange}
