@@ -329,7 +329,7 @@ export default function Home() {
                         <div className='relative flex justify-between w-[300px]'>
 
                             <label htmlFor="" className="mr-5 text-[10px]">
-                                Estado de reembolso:
+                                Estado de reembolso:   
                             </label>
                             <SelectSimple arr={['Aprobar', 'Reprobar']} name='Estado de reembolso' click={handlerSelectClick2} defaultValue={value} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
                         </div>
