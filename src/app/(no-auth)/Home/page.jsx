@@ -321,6 +321,16 @@ export default function Home() {
 
     ];
 
+    const encabezadoUsuarios = [
+        "Nombre de usuario",
+        "Seleccionar",
+        "Email",
+        "Usuario Asignado",
+        "DNI del Auditor",
+        "Telefono",
+        "Operaciones"
+
+    ];
     console.log(item)
 
     useEffect(() => {
@@ -355,6 +365,39 @@ export default function Home() {
 
 
                         <button type="button" class="w-[300px] text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal('Registro de cobro')}>Registro de cobro</button>
+
+                    </div>
+
+                </div>
+            }
+
+
+            {
+                modal === 'Registrar Usuario' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
+                    <div className='relative flex flex-col items-center justify-center bg-gray-100 w-[400px] h-[300px] p-5 space-y-5 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
+                        <button
+                            className="absolute top-5 right-5 flex items-center justify-center w-12 h-6 bg-red-500 text-white rounded-[5px] hover:bg-red-600 focus:outline-none"
+                            onClick={() => setModal('')}
+                        >
+                            X
+                        </button>
+
+                        <h4>Registro de Usuario</h4>
+                        <div className='relative flex justify-between w-[300px]'>
+                            <label htmlFor="" className="mr-5 text-[10px]">
+                                Estado de usuario:
+                            </label>
+                            <SelectSimple arr={['Activo', 'Inactivo']} name='Estado de reembolso' click={handlerSelectClick2} defaultValue={value} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                        </div>
+                        <div className='relative flex justify-between w-[300px]'>
+
+                            <label htmlFor="" className="mr-5 text-[10px]">
+                                Acotación:
+                            </label>
+                            <textarea name="" className='text-[10px] p-2 w-[200px] focus:outline-none bg-gray-100 border-[1px] border-gray-300 rounded-[5px]' id=""></textarea>                        </div>
+
+
+                        <button type="button" class="w-[300px] text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal('Registrar')}>Registrar</button>
 
                     </div>
 
@@ -423,7 +466,7 @@ export default function Home() {
 
                 </div>
             }
-                       {
+            {
                 modal === 'Registrar Auditor' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
                     <div className='relative flex flex-col items-center justify-center bg-gray-100 w-[400px] h-[300px] p-5 space-y-5 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
                         <button
@@ -1142,8 +1185,8 @@ export default function Home() {
                                     </label>
                                     <SelectSimple arr={filterCliente} name='Clientes nuevos y antiguos' click={handlerSelectClick} defaultValue={filter['Cliente nuevo']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
                                 </div>
-{                           user?.rol === 'Manager de Verificación'   &&  <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Distribuir</button>
-}
+                                {user?.rol === 'Manager de Verificación' && <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Distribuir</button>
+                                }
                             </div>
                             <div className='w-[300px] space-y-2'>
                                 <div className='flex justify-between'>
@@ -1295,9 +1338,107 @@ export default function Home() {
                     </div>
 
                 </div>
-
             }
+            {(item === 'Usuarios de verificación' || item === 'Usuarios de Cobranza' || item === 'Usuarios de Auditoria') &&
+                <div>
 
+
+                    <div className="w-full   relative  overflow-auto  scroll-smooth mb-2 lg:overflow-hidden">
+                        <div className='grid grid-cols-3 gap-x-5 gap-y-2 w-[1050px]'>
+                            <div className='w-[330px] space-y-2'>
+                                {/* <div className='flex justify-between'>
+                                    <label htmlFor="" className="mr-5 text-[10px]">
+                                        Codigo del producto:
+                                    </label>
+                                    <SelectSimple arr={filtro_1} name='nombreProducto' click={handlerSelectClick} defaultValue={filter['nombreProducto']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                </div> */}
+                                {/* <div className='flex justify-between'>
+                                    <label htmlFor="" className="mr-5 text-[10px]">
+                                        Cobrador:
+                                    </label>
+                                    <div className='grid grid-cols-2 gap-2'>
+                                        <SelectSimple arr={rangesArray} name='Cobrador 1' click={handlerSelectClick} defaultValue={filter['Cobrador 1']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                        <SelectSimple arr={cobrador} name='Cobrador 2' click={handlerSelectClick} defaultValue={filter['Cobrador 2']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                    </div>
+                                </div> */}
+                                {/* <div className='flex justify-between'>
+                                    <label htmlFor="" className="mr-5 text-[10px]">
+                                        Dias vencidos:
+                                    </label>
+                                    <div className='grid grid-cols-2 gap-2'>
+                                        <input className="h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px] bg-gray-50 " arr={['Opción 1', 'Opción 2']} name='Minimo dias vencido' onChange={onChangeHandler} placeholder='Minimo' defaultValue={filter['Nombre del cliente']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                        <input className="h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px] bg-gray-50 " arr={['Opción 1', 'Opción 2']} name='Maximo dias vencido' onChange={onChangeHandler} placeholder='Maximo' defaultValue={filter['Nombre del cliente']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                    </div>
+                                </div> */}
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className="mr-5 text-[10px]">
+                                        Buscar por Usuario:
+                                    </label>
+                                    <input className="h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px] bg-gray-50 " arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                </div>
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className="mr-5 text-[10px]">
+                                        Buscar por nombre:
+                                    </label>
+                                    <input className="h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px] bg-gray-50 " arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                </div>
+                                <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Crear Usuarios</button>
+
+                            </div>
+                            <div className='w-[300px] space-y-2'>
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className="mr-5 text-[10px]">
+                                        Número de teléfono:
+                                    </label>
+                                    <input className="h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px] bg-gray-50 " arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                </div>
+
+
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className="mr-5 text-[10px]">
+                                        Numero de páginas:
+                                    </label>
+                                    <input className="h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px] bg-gray-50 " arr={['Opción 1', 'Opción 2']} name='Numero de páginas' onChange={onChangeHandler} defaultValue={filter['Numero de páginas']} uuid='123' label='Numero de páginas' position='absolute left-0 top-[25px]' bg='white' required />
+                                </div>
+                                {/* 
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className="mr-5 text-[10px]">
+                                        Jumiah periode:
+                                    </label>
+                                    <SelectSimple arr={Jumlah} name='Jumiah periode' click={handlerSelectClick} defaultValue={filter['Jumiah periode']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                </div> */}
+                            </div>
+                            <div className='w-[300px] space-y-2'>
+
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className="mr-5 text-[10px]">
+                                        Estado de Usuario:
+                                    </label>
+                                    <SelectSimple arr={['Activo', 'Inactivo']} name='Estado de reembolso' click={handlerSelectClick} defaultValue={filter['Estado de reembolso']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                </div>
+                                {/* <div className='flex justify-between'>
+                                    <label htmlFor="" className="mr-5 text-[10px]">
+                                        Fecha de rembolso:
+                                    </label>
+                                    <div className='grid grid-cols-2 gap-2'>
+                                        <input type='date' className="h-[25px] max-w-[173px] w-full px-2 border border-[#cfcfcf] rounded-[5px] text-[10px]  " arr={['Opción 1', 'Opción 2']} name='Nombre del cliente' click={handlerSelectClick} defaultValue={filter['Nombre del cliente']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                        <input type='date' className="h-[25px] max-w-[173px] w-full px-2 border border-[#cfcfcf] rounded-[5px] text-[10px]  " arr={['Opción 1', 'Opción 2']} name='Nombre del cliente' click={handlerSelectClick} defaultValue={filter['Nombre del cliente']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                                    </div>
+
+                                </div> */}
+
+
+
+                                <div className='flex justify-between flex space-x-3'>
+                                    <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Consultar</button>
+                                    <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Restablecer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
             {/* -----------------------  Tablas  ---------------------------*/}
             {(user?.rol === 'Admin' || user.rol === 'Super Admin') && <div className="overflow-x-auto">
                 <div className="max-h-[calc(100vh-90px)] overflow-y-auto relative scroll-smooth" ref={refFirst}>
@@ -1951,7 +2092,7 @@ export default function Home() {
 
                                 {encabezadoResgistroDeUsuarios.map((encabezado, index) => (
                                     <th scope="col" key={index}
-                                        className={`  ${(encabezado === 'Operaciones' || encabezado === "Seleccionar") ? 'text-center': 'text-left'} w-[50px] px-3 py-3 text-white
+                                        className={`  ${(encabezado === 'Operaciones' || encabezado === "Seleccionar") ? 'text-center' : 'text-left'} w-[50px] px-3 py-3 text-white
                                             ${index < 10 ? (selectedLeft === index ? 'sticky left-0 z-20 bg-gray-800' : 'bg-gray-900') : (selectedRight === index ? 'sticky right-0 z-20 bg-gray-800' : 'bg-gray-900')}`}
                                         onClick={() => handlerSelected(index < 10 ? 'LEFT' : 'RIGHT', index)}>
                                         {encabezado === "Seleccionar" ? <input type="checkbox" /> : encabezado}
@@ -1983,7 +2124,7 @@ export default function Home() {
                                                 <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Visitar</button>
 
                                             </Link>
-                                           
+
                                             <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal('Registrar Auditor')}>Registrar</button>
 
                                         </div>
@@ -1994,6 +2135,48 @@ export default function Home() {
                     </table>}
 
 
+                    {(item === 'Usuarios de verificación' || item === 'Usuarios de Cobranza' || item === 'Usuarios de Auditoria') && <table className="min-w-full border-collapse border border-gray-300" >
+                        <thead className="bg-gray-900 text-[10px]  uppercase sticky top-[0px] z-20">
+
+                            <tr className='text-[white] min-w-[2500px]'>
+
+                                {encabezadoUsuarios.map((encabezado, index) => (
+                                    <th scope="col" key={index}
+                                        className={`  ${(encabezado === 'Operaciones' || encabezado === "Seleccionar") ? 'text-center' : 'text-left'} w-[50px] px-3 py-3 text-white
+                                            ${index < 10 ? (selectedLeft === index ? 'sticky left-0 z-20 bg-gray-800' : 'bg-gray-900') : (selectedRight === index ? 'sticky right-0 z-20 bg-gray-800' : 'bg-gray-900')}`}
+                                        onClick={() => handlerSelected(index < 10 ? 'LEFT' : 'RIGHT', index)}>
+                                        {encabezado === "Seleccionar" ? <input type="checkbox" /> : encabezado}
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {refunds.map((item, index) => (
+                                item.nombreCliente.toLowerCase().includes(filter['Nombre del cliente'].toLowerCase()) &&
+                                item.numeroMovil.includes(filter['Número de teléfono']) && item.nombreProducto.includes(filter.nombreProducto === 'Todo' ? '' : filter.nombreProducto) && item.estado.includes(filter['Estado de reembolso'] === 'Por favor elige' ? '' : filter['Estado de reembolso'].toLowerCase()) && item.diasAtraso * 1 <= filter['Maximo dias vencido'] && item.diasAtraso * 1 >= filter['Minimo dias vencido'] &&
+                                <tr key={index} className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-left ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 2 ? 'sticky left-0 z-10' : ''}`} ><Link href={`/Home/Datos?seccion=info`} className='text-blue-500 underline'>{item.nombreCliente}</Link></td>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-left ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 2 ? 'sticky left-0 z-10' : ''}`} ><Link href={`/Home/Datos?seccion=info`} className='text-blue-500 underline'>example@gmail.com</Link></td>
+                                    {/* <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 3 ? 'sticky left-0 z-10' : ''}`} >{item.idSubFactura}</td> */}
+                                    <td className={`px-3 py-2 ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? item.nombreUsuarioCobranza : item.nombreUsuarioCobranza}</td>
+                                    <td className={`px-3 py-2 ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? 'XXX-XXXX-XX' : 'XXX-XXXX-XX'}</td>
+                                    <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 6 ? 'sticky left-0 z-10' : ''}`} >
+                                        <span className='cursor-pointer text-blue-500 underline' onClick={() => copyToClipboard(item.numeroMovil)}>{item.numeroMovil}</span>
+                                        {copied === item.numeroMovil &&
+                                            <p className=" absolute t-2 text-green-500 flex bg-white shadow-sm rounded-[5px] py-1 px-2 shadow-[#979797]"> <ClipboardDocumentCheckIcon className='h-4 w-4 fill-green-400' />Texto copiado al portapapeles!</p>}
+                                    </td>
+                                    <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedRight === 19 ? 'sticky right-0 z-10' : ''}`}>
+                                        <div className='flex justify-between flex space-x-3'>
+                                            <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal('Registrar Usuario')}>Registrar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>}
 
 
                 </div>

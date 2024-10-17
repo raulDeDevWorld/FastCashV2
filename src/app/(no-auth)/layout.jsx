@@ -142,8 +142,10 @@ function Home({ children }) {
                             <div className='z-10'>
 
                                 <button className='flex items-center text-white h-[35px]  bg-gray-800 hover:bg-gradient-to-br focus:ring-2 focus:outline-none focus:ring-gray-500    transition-all  rounded-[5px] border    text-center  p-2 px-5'
-                                    onMouseEnter={() => !isOpen2 && setIsOpen(true)}
-                                    onMouseLeave={() => !isOpen2 && setIsOpen(false)}>
+                                    onClick={() => setIsOpen(!isOpen)}
+                                // onMouseEnter={() => !isOpen2 && setIsOpen(true)}
+                                // onMouseLeave={() => !isOpen2 && setIsOpen(false)}
+                                >
                                     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10 10C11.1046 10 12 9.10457 12 8C12 6.89543 11.1046 6 10 6C8.89543 6 8 6.89543 8 8C8 9.10457 8.89543 10 10 10Z" stroke="white" stroke-width="1.5" />
                                         <path d="M14 14C14 15.105 14 16 10 16C6 16 6 15.105 6 14C6 12.895 7.79 12 10 12C12.21 12 14 12.895 14 14Z" stroke="white" stroke-width="1.5" />
@@ -157,12 +159,13 @@ function Home({ children }) {
                                 <div
                                     className={`origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-all duration-300 ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                                         }`}
-                                    onMouseEnter={() => !isOpen2 && setIsOpen(true)}
-                                    onMouseLeave={() => !isOpen2 && setIsOpen(false)}
+                                // onMouseEnter={() => !isOpen2 && setIsOpen(true)}
+                                // onMouseLeave={() => !isOpen2 && setIsOpen(false)}
                                 >
                                     <div className="py-1"
-                                        onMouseEnter={() => !isOpen2 && setIsOpen(true)}
-                                        onMouseLeave={() => !isOpen2 && setIsOpen(false)}>
+                                    // onMouseEnter={() => !isOpen2 && setIsOpen(true)}
+                                    // onMouseLeave={() => !isOpen2 && setIsOpen(false)}
+                                    >
                                         <button href="#" onClick={() => idioma === 'Español' ? setIdioma('English') : setIdioma('Español')} className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             {idioma === 'Español' && <svg width="36" height="26" viewBox="0 0 36 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M4 0C2.93913 0 1.92172 0.421427 1.17157 1.17157C0.421427 1.92172 0 2.93913 0 4L0 22C0 23.0609 0.421427 24.0783 1.17157 24.8284C1.92172 25.5786 2.93913 26 4 26H11V0H4Z" fill="#006847" />
