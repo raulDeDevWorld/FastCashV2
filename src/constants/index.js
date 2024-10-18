@@ -496,7 +496,7 @@ const menuArray = {
     },
     {
       icon: <DocumentCheckIcon className="h-6 w-6" />,
-      hash: '#Verificacion',
+      hash: 'Verificacion',
       title: "Verificación de Créditos",
       options: [
         { subtitle: "Recolección y Validación de Datos", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
@@ -506,9 +506,14 @@ const menuArray = {
     },
     {
       icon: <IdentificationIcon className="h-6 w-6" />,
-      hash: '#',
-      title: "Usuario de Cobranza",
-      options: [],
+      hash: 'accesos',
+      title: "Gestión de accesos",
+      options: [
+        { subtitle: "Gestión de RH", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Gestión de administradores", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Gestión de managers", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Gestión de asesores", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
+      ],
       length: 'h-[0px]'
     }
   ],
@@ -554,8 +559,12 @@ const menuArray = {
     {
       icon: <IdentificationIcon className="h-6 w-6" />,
       hash: '#',
-      title: "Usuario de Cobranza",
-      options: [],
+      title: "Gestión de accesos",
+      options: [
+        { subtitle: "Gestión de administradores", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Gestión de managers", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Gestión de asesores", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
+      ],
       length: 'h-[0px]'
     }
   ],
@@ -590,7 +599,7 @@ const menuArray = {
     },
     {
       icon: <DocumentCheckIcon className="h-6 w-6" />,
-      hash: '#Verificacion',
+      hash: 'Verificacion',
       title: "Verificación de Créditos",
       options: [
         { subtitle: "Recolección y Validación de Datos", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
@@ -600,9 +609,12 @@ const menuArray = {
     },
     {
       icon: <IdentificationIcon className="h-6 w-6" />,
-      hash: '#',
-      title: "Usuario de Cobranza",
-      options: [],
+      hash: '',
+      title: "Gestión de accesos",
+      options: [
+        { subtitle: "Gestión de managers", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Gestión de asesores", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
+      ],
       length: 'h-[0px]'
     }
   ],
@@ -642,7 +654,7 @@ const menuArray = {
   ],
   ['Manager de Verificación']: [
 
- 
+
     {
       icon: <DocumentCheckIcon className="h-6 w-6" />,
       hash: 'Verificacion',

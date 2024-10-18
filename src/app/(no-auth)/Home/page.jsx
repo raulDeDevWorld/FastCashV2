@@ -57,6 +57,7 @@ export default function Home() {
         ['Número de teléfono']: ''
     })
     const [state, setState] = useState({})
+    const [editItem, setEditItem] = useState(undefined)
     const [remesasDB, setRemesasDB] = useState(undefined)
     const refFirst = useRef(null);
     const [profileIMG, setProfileIMG] = useState('')
@@ -136,11 +137,14 @@ export default function Home() {
     }
     //fecha actual
     const [value, setValue] = useState('Por favor elige')
+    const [value2, setValue2] = useState('Por favor elige')
 
     function handlerSelectClick2(name, i, uuid) {
         setValue(i)
     }
-
+    function handlerSelectClick3(name, i, uuid) {
+        setValue2(i)
+    }
     const [selectedCheckbox, setSelectedCheckbox] = useState(null);
 
     function handleCheckboxChange(index) {
@@ -206,11 +210,6 @@ export default function Home() {
     const [showPassword, setShowPassword] = useState(false)
     console.log(selectedLeft)
 
-
-
-
-
-
     const encabezadoCasosDeCobranza = [
         "WhatsApp",
         "Seleccionar",
@@ -268,9 +267,6 @@ export default function Home() {
         "Fecha de creación",
         "Operar"
     ];
-
-
-
     const encabezadoCasosDeVerificacion = [
         "WhatsApp",
         "Seleccionar",
@@ -293,8 +289,6 @@ export default function Home() {
         "Apodo de usuario de cobro",
         "Operar"
     ];
-
-
     const encabezadoListaFinal = [
         "Numero de Whatsapp *",
         "Seleccionar",
@@ -307,9 +301,6 @@ export default function Home() {
         "Comentario",
         "Fecha"
     ];
-
-
-
     const encabezadoResgistroDeUsuarios = [
         "Apodo de Usuario Cobrador",
         "Seleccionar",
@@ -320,18 +311,34 @@ export default function Home() {
         "Operaciones"
 
     ];
-
     const encabezadoUsuarios = [
-        "Nombre de usuario",
         "Seleccionar",
+        "Nombre completo",
+        "DNI",
+        "Telefono",
         "Email",
         "Usuario Asignado",
-        "DNI del Auditor",
-        "Telefono",
         "Operaciones"
 
     ];
-    console.log(item)
+
+    const encabezadoAccesos = [
+        "Seleccionar",
+        "Nombre completo",
+        "DNI",
+        "Telefono",
+        "Email",
+        "Usuario Asignado",
+        "Rol",
+        "Operaciones"
+    ]
+    const gestionDeRoles = {
+        ['Manager de Auditoria']: ['Asesor de Auditoria'],
+        ['Admin']: ['Manager de Auditoria', 'Manager de Cobranza', 'Manager de Verificación', 'Asesor de Auditoria', 'Asesor de Cobranza', 'Asesor de Verificación'],
+        ['Recursos Humanos']: ['Admin', 'Manager de Auditoria', 'Manager de Cobranza', 'Manager de Verificación', 'Asesor de Auditoria', 'Asesor de Cobranza', 'Asesor de Verificación'],
+        ['Super Admin']: ['RH', 'Admin', 'Manager de Auditoria', 'Manager de Cobranza', 'Manager de Verificación', 'Asesor de Auditoria', 'Asesor de Cobranza', 'Asesor de Verificación']
+    }
+    console.log(editItem)
 
     useEffect(() => {
         user === undefined && router.push('/')
@@ -388,6 +395,43 @@ export default function Home() {
                                 Estado de usuario:
                             </label>
                             <SelectSimple arr={['Activo', 'Inactivo']} name='Estado de reembolso' click={handlerSelectClick2} defaultValue={value} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                        </div>
+                        <div className='relative flex justify-between w-[300px]'>
+
+                            <label htmlFor="" className="mr-5 text-[10px]">
+                                Acotación:
+                            </label>
+                            <textarea name="" className='text-[10px] p-2 w-[200px] focus:outline-none bg-gray-100 border-[1px] border-gray-300 rounded-[5px]' id=""></textarea>                        </div>
+
+
+                        <button type="button" class="w-[300px] text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal('Registrar')}>Registrar</button>
+
+                    </div>
+
+                </div>
+            }
+            {
+                editItem && modal === 'Editar Usuario' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
+                    <div className='relative flex flex-col items-center justify-center bg-gray-100 w-[400px] h-[300px] p-5 space-y-5 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
+                        <button
+                            className="absolute top-5 right-5 flex items-center justify-center w-12 h-6 bg-red-500 text-white rounded-[5px] hover:bg-red-600 focus:outline-none"
+                            onClick={() => setModal('')}
+                        >
+                            X
+                        </button>
+
+                        <h4>Editar</h4>
+                        <div className='relative flex justify-between w-[300px]'>
+                            <label htmlFor="" className="mr-5 text-[10px]">
+                                Estado de usuario:
+                            </label>
+                            <SelectSimple arr={['Activo', 'Inactivo']} name='Estado de reembolso' click={handlerSelectClick2} defaultValue={value} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg='white' required />
+                        </div>
+                        <div className='relative flex justify-between w-[300px]'>
+                            <label htmlFor="" className="mr-5 text-[10px]">
+                                Rol:
+                            </label>
+                            <SelectSimple arr={gestionDeRoles[user.rol]} name='Rol' click={handlerSelectClick3} defaultValue={value} uuid='123456789' label='Filtro 4' position='absolute left-0 top-[25px]' bg='white' required />
                         </div>
                         <div className='relative flex justify-between w-[300px]'>
 
@@ -860,13 +904,6 @@ export default function Home() {
 
                         </div>
                     </div>
-
-
-
-
-
-
-
 
                     <div className='flex space-x-12 w-[1150px]   mb-0'>
                         <div className='w-[300px] space-y-2'>
@@ -2135,50 +2172,101 @@ export default function Home() {
                     </table>}
 
 
-                    {(item === 'Usuarios de verificación' || item === 'Usuarios de Cobranza' || item === 'Usuarios de Auditoria') && <table className="min-w-full border-collapse border border-gray-300" >
-                        <thead className="bg-gray-900 text-[10px]  uppercase sticky top-[0px] z-20">
+                    {(item === 'Usuarios de verificación' || item === 'Usuarios de Cobranza' || item === 'Usuarios de Auditoria') &&
+                     <table className="min-w-full border-collapse border border-gray-300" >
+                     <thead className="bg-gray-900 text-[10px]  uppercase sticky top-[0px] z-20">
 
-                            <tr className='text-[white] min-w-[2500px]'>
+                         <tr className='text-[white] min-w-[2500px]'>
 
-                                {encabezadoUsuarios.map((encabezado, index) => (
-                                    <th scope="col" key={index}
-                                        className={`  ${(encabezado === 'Operaciones' || encabezado === "Seleccionar") ? 'text-center' : 'text-left'} w-[50px] px-3 py-3 text-white
+                             {encabezadoAccesos.map((encabezado, index) => (
+                                 <th scope="col" key={index}
+                                     className={`  ${(encabezado === 'Operaciones' || encabezado === "Seleccionar") ? 'text-center' : 'text-left'} w-[50px] px-3 py-3 text-white
+                                     ${index < 10 ? (selectedLeft === index ? 'sticky left-0 z-20 bg-gray-800' : 'bg-gray-900') : (selectedRight === index ? 'sticky right-0 z-20 bg-gray-800' : 'bg-gray-900')}`}
+                                     onClick={() => handlerSelected(index < 10 ? 'LEFT' : 'RIGHT', index)}>
+                                     {encabezado === "Seleccionar" ? <input type="checkbox" /> : encabezado}
+                                 </th>
+                             ))}
+                         </tr>
+                     </thead>
+                     <tbody>
+                         {refunds.map((item, index) => (
+                             item.nombreCliente.toLowerCase().includes(filter['Nombre del cliente'].toLowerCase()) &&
+                             item.numeroMovil.includes(filter['Número de teléfono']) && item.nombreProducto.includes(filter.nombreProducto === 'Todo' ? '' : filter.nombreProducto) && item.estado.includes(filter['Estado de reembolso'] === 'Por favor elige' ? '' : filter['Estado de reembolso'].toLowerCase()) && item.diasAtraso * 1 <= filter['Maximo dias vencido'] && item.diasAtraso * 1 >= filter['Minimo dias vencido'] &&
+                             <tr key={index} className={`text-[12px] border-b`}>
+                                 <td className={`px-3 py-2 text-[12px] border-b text-center ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                     <input type="checkbox" />
+                                 </td>
+                                 <td className={`px-3 py-2 text-[12px] border-b text-left ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 2 ? 'sticky left-0 z-10' : ''}`} ><Link href={`/Home/Datos?seccion=info`} className='text-blue-500 underline'>{item.nombreCliente}</Link></td>
+
+                                 <td className={`px-3 py-2 ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? 'XXX-XXXX-XX' : 'XXX-XXXX-XX'}</td>
+                                 <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 6 ? 'sticky left-0 z-10' : ''}`} >
+                                     <span className='cursor-pointer text-blue-500 underline' onClick={() => copyToClipboard(item.numeroMovil)}>{item.numeroMovil}</span>
+                                     {copied === item.numeroMovil &&
+                                         <p className=" absolute t-2 text-green-500 flex bg-white shadow-sm rounded-[5px] py-1 px-2 shadow-[#979797]"> <ClipboardDocumentCheckIcon className='h-4 w-4 fill-green-400' />Texto copiado al portapapeles!</p>}
+                                 </td>
+                                 <td className={`px-3 py-2 text-[12px] border-b text-left ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 2 ? 'sticky left-0 z-10' : ''}`} ><Link href={`/Home/Datos?seccion=info`} className='text-blue-500 underline'>example@gmail.com</Link></td>
+
+                                 <td className={`px-3 py-2 ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? item.nombreUsuarioCobranza : item.nombreUsuarioCobranza}</td>
+                                 {/* <td className={`px-3 py-2 ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? 'Manager' : 'Manager'}</td> */}
+
+                                 <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedRight === 19 ? 'sticky right-0 z-10' : ''}`}>
+                                     <div className='flex justify-between flex space-x-3'>
+                                         <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => { setModal('Editar Usuario'); setEditItem(item) }}>Editar</button>
+                                     </div>
+                                 </td>
+                             </tr>
+                         ))}
+                     </tbody>
+                 </table>
+                    }
+
+                    {(item === 'Gestión de RH' || item === 'Gestión de administradores' || item === 'Gestión de managers' || item === 'Gestión de asesores') &&
+                        <table className="min-w-full border-collapse border border-gray-300" >
+                            <thead className="bg-gray-900 text-[10px]  uppercase sticky top-[0px] z-20">
+
+                                <tr className='text-[white] min-w-[2500px]'>
+
+                                    {encabezadoAccesos.map((encabezado, index) => (
+                                        <th scope="col" key={index}
+                                            className={`  ${(encabezado === 'Operaciones' || encabezado === "Seleccionar") ? 'text-center' : 'text-left'} w-[50px] px-3 py-3 text-white
                                             ${index < 10 ? (selectedLeft === index ? 'sticky left-0 z-20 bg-gray-800' : 'bg-gray-900') : (selectedRight === index ? 'sticky right-0 z-20 bg-gray-800' : 'bg-gray-900')}`}
-                                        onClick={() => handlerSelected(index < 10 ? 'LEFT' : 'RIGHT', index)}>
-                                        {encabezado === "Seleccionar" ? <input type="checkbox" /> : encabezado}
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {refunds.map((item, index) => (
-                                item.nombreCliente.toLowerCase().includes(filter['Nombre del cliente'].toLowerCase()) &&
-                                item.numeroMovil.includes(filter['Número de teléfono']) && item.nombreProducto.includes(filter.nombreProducto === 'Todo' ? '' : filter.nombreProducto) && item.estado.includes(filter['Estado de reembolso'] === 'Por favor elige' ? '' : filter['Estado de reembolso'].toLowerCase()) && item.diasAtraso * 1 <= filter['Maximo dias vencido'] && item.diasAtraso * 1 >= filter['Minimo dias vencido'] &&
-                                <tr key={index} className={`text-[12px] border-b`}>
-                                    <td className={`px-3 py-2 text-[12px] border-b text-left ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 2 ? 'sticky left-0 z-10' : ''}`} ><Link href={`/Home/Datos?seccion=info`} className='text-blue-500 underline'>{item.nombreCliente}</Link></td>
-                                    <td className={`px-3 py-2 text-[12px] border-b text-center ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
-                                        <input type="checkbox" />
-                                    </td>
-                                    <td className={`px-3 py-2 text-[12px] border-b text-left ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 2 ? 'sticky left-0 z-10' : ''}`} ><Link href={`/Home/Datos?seccion=info`} className='text-blue-500 underline'>example@gmail.com</Link></td>
-                                    {/* <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 3 ? 'sticky left-0 z-10' : ''}`} >{item.idSubFactura}</td> */}
-                                    <td className={`px-3 py-2 ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? item.nombreUsuarioCobranza : item.nombreUsuarioCobranza}</td>
-                                    <td className={`px-3 py-2 ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? 'XXX-XXXX-XX' : 'XXX-XXXX-XX'}</td>
-                                    <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 6 ? 'sticky left-0 z-10' : ''}`} >
-                                        <span className='cursor-pointer text-blue-500 underline' onClick={() => copyToClipboard(item.numeroMovil)}>{item.numeroMovil}</span>
-                                        {copied === item.numeroMovil &&
-                                            <p className=" absolute t-2 text-green-500 flex bg-white shadow-sm rounded-[5px] py-1 px-2 shadow-[#979797]"> <ClipboardDocumentCheckIcon className='h-4 w-4 fill-green-400' />Texto copiado al portapapeles!</p>}
-                                    </td>
-                                    <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedRight === 19 ? 'sticky right-0 z-10' : ''}`}>
-                                        <div className='flex justify-between flex space-x-3'>
-                                            <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal('Registrar Usuario')}>Registrar</button>
-                                        </div>
-                                    </td>
+                                            onClick={() => handlerSelected(index < 10 ? 'LEFT' : 'RIGHT', index)}>
+                                            {encabezado === "Seleccionar" ? <input type="checkbox" /> : encabezado}
+                                        </th>
+                                    ))}
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>}
+                            </thead>
+                            <tbody>
+                                {refunds.map((item, index) => (
+                                    item.nombreCliente.toLowerCase().includes(filter['Nombre del cliente'].toLowerCase()) &&
+                                    item.numeroMovil.includes(filter['Número de teléfono']) && item.nombreProducto.includes(filter.nombreProducto === 'Todo' ? '' : filter.nombreProducto) && item.estado.includes(filter['Estado de reembolso'] === 'Por favor elige' ? '' : filter['Estado de reembolso'].toLowerCase()) && item.diasAtraso * 1 <= filter['Maximo dias vencido'] && item.diasAtraso * 1 >= filter['Minimo dias vencido'] &&
+                                    <tr key={index} className={`text-[12px] border-b`}>
+                                        <td className={`px-3 py-2 text-[12px] border-b text-center ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                            <input type="checkbox" />
+                                        </td>
+                                        <td className={`px-3 py-2 text-[12px] border-b text-left ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 2 ? 'sticky left-0 z-10' : ''}`} ><Link href={`/Home/Datos?seccion=info`} className='text-blue-500 underline'>{item.nombreCliente}</Link></td>
 
+                                        <td className={`px-3 py-2 ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? 'XXX-XXXX-XX' : 'XXX-XXXX-XX'}</td>
+                                        <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 6 ? 'sticky left-0 z-10' : ''}`} >
+                                            <span className='cursor-pointer text-blue-500 underline' onClick={() => copyToClipboard(item.numeroMovil)}>{item.numeroMovil}</span>
+                                            {copied === item.numeroMovil &&
+                                                <p className=" absolute t-2 text-green-500 flex bg-white shadow-sm rounded-[5px] py-1 px-2 shadow-[#979797]"> <ClipboardDocumentCheckIcon className='h-4 w-4 fill-green-400' />Texto copiado al portapapeles!</p>}
+                                        </td>
+                                        <td className={`px-3 py-2 text-[12px] border-b text-left ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 2 ? 'sticky left-0 z-10' : ''}`} ><Link href={`/Home/Datos?seccion=info`} className='text-blue-500 underline'>example@gmail.com</Link></td>
 
+                                        <td className={`px-3 py-2 ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? item.nombreUsuarioCobranza : item.nombreUsuarioCobranza}</td>
+                                        <td className={`px-3 py-2 ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? 'Manager' : 'Manager'}</td>
+
+                                        <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedRight === 19 ? 'sticky right-0 z-10' : ''}`}>
+                                            <div className='flex justify-between flex space-x-3'>
+                                                <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => { setModal('Editar Usuario'); setEditItem(item) }}>Editar</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        }
                 </div>
             </div>
 
