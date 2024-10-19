@@ -212,7 +212,7 @@ export default function Home() {
 
     const encabezadoCasosDeCobranza = !user?.rol?.includes('Usuario')
         ? [
-            "WhatsApp",
+            "Contactos",
             "Seleccionar",
             "Número de préstamo",
             "ID de sub-factura",
@@ -234,7 +234,7 @@ export default function Home() {
             "Operar"
         ]
         : [
-            "WhatsApp",
+            "Contactos",
             "Seleccionar",
             "Número de préstamo",
             "ID de sub-factura",
@@ -256,7 +256,7 @@ export default function Home() {
         ]
         ;
     const encabezadoIncurrirEnUnaEstaciónDeTrabajo = [
-        "WhatsApp",
+        "Contactos",
         "Seleccionar",
         "Número de préstamo",
         "ID de sub-factura",
@@ -292,7 +292,7 @@ export default function Home() {
     ];
     const encabezadoCasosDeVerificacion = !user?.rol?.includes('Usuario')
         ? [
-            "WhatsApp",
+            "Contactos",
             "Seleccionar",
             "Número de préstamo",
             "ID de sub-factura",
@@ -312,7 +312,7 @@ export default function Home() {
             "Operar"
         ]
         : [
-            "WhatsApp",
+            "Contactos",
             "Seleccionar",
             "Número de préstamo",
             "ID de sub-factura",
