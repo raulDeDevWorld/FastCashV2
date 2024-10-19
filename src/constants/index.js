@@ -645,6 +645,8 @@ const menuArray = {
       title: "Colección de casos",
       options: [
         { subtitle: "Casos de Cobranza", icon: <NumberedListIcon className="h-5 w-5" /> },
+        { subtitle: "Incurrir en una estación de trabajo", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Flujo de Clientes", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
         { subtitle: "Usuarios de Cobranza", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
 
       ],
@@ -676,7 +678,6 @@ const menuArray = {
       hash: 'auditoria',
       title: "Auditoría y control de calidad",
       options: [
-        { subtitle: "Registro Histórico", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
         { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
         { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
         { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
