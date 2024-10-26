@@ -472,13 +472,14 @@ const menuArray = {
       title: "Colección de casos",
       options: [
         { subtitle: "Casos de Cobranza", icon: <NumberedListIcon className="h-5 w-5" /> },
-        { subtitle: "Distribución de casos", icon: <AdjustmentsHorizontalIcon className="h-5 w-5" /> },
         { subtitle: "Incurrir en una estación de trabajo", icon: <OutlineUsersIcon className="h-5 w-5" /> },
         { subtitle: "Flujo de Clientes", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
         { subtitle: "Gestión de cuentas de Colección", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
-        { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> }
+        { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
+        { subtitle: "Reporte diario", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
+        { subtitle: "Asistencia", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
       ],
-      length: 'h-[245px]'
+      length: 'h-[380px]'
     },
     {
       icon: <PresentationChartLineIcon className="h-6 w-6" />,
@@ -528,9 +529,11 @@ const menuArray = {
         { subtitle: "Incurrir en una estación de trabajo", icon: <OutlineUsersIcon className="h-5 w-5" /> },
         { subtitle: "Flujo de Clientes", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
         { subtitle: "Gestión de cuentas de Colección", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
-        { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> }
+        { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
+        { subtitle: "Reporte diario", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
+        { subtitle: "Asistencia", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
       ],
-      length: 'h-[245px]'
+      length: 'h-[380px]'
     },
     {
       icon: <PresentationChartLineIcon className="h-6 w-6" />,
@@ -579,9 +582,11 @@ const menuArray = {
         { subtitle: "Incurrir en una estación de trabajo", icon: <OutlineUsersIcon className="h-5 w-5" /> },
         { subtitle: "Flujo de Clientes", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
         { subtitle: "Gestión de cuentas de Colección", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
-        { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> }
+        { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
+        { subtitle: "Reporte diario", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
+        { subtitle: "Asistencia", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
       ],
-      length: 'h-[245px]'
+      length: 'h-[380px]'
     },
     {
       icon: <PresentationChartLineIcon className="h-6 w-6" />,
@@ -630,7 +635,9 @@ const menuArray = {
         { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
         { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
         { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> },
-        { subtitle: "Usuarios de Auditoria", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
+        { subtitle: "Usuarios de Auditoria", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
+        { subtitle: "Reporte diario", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
+        { subtitle: "Asistencia", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
 
       ],
       length: 'h-[230px] overflow-auto'

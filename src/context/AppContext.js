@@ -16,6 +16,7 @@ export function AppProvider({ children }) {
 	const [userDB, setUserDB] = useState(undefined)
     const [subItemNav, setSubItemNav] = useState('Casos de Cobranza')
 
+	const [theme, setTheme] = useState('light');
 
 
 
@@ -33,7 +34,6 @@ export function AppProvider({ children }) {
 	const [fondoPrimario, setFondoPrimario] = useState('#000000')
 	const [fondoSecundario, setFondoSecundario] = useState('#292929')
 	const [fondoTerciario, setFondoTerciario] = useState('')
-	const [theme, setTheme] = useState('neutro')
 
 	const [idioma, setIdioma] = useState('Español')
 
