@@ -1,4 +1,6 @@
 import { AppProvider } from '../context/AppContext'
+import { ThemeProvider } from '../context/ThemeContext';
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Suspense } from 'react'
@@ -27,8 +29,10 @@ export default function RootLayout({
         <meta name="author" content="Fast Cash" />
         <title>Fast Cash</title>
       </head>
+      <ThemeProvider>
+
       <AppProvider>
-        <body className={inter.className}>
+        <body className={inter.className} >
 
         <Suspense fallback={<div>Loading...</div>}>
 
@@ -37,6 +41,8 @@ export default function RootLayout({
 
         </body>
       </AppProvider>
+      </ThemeProvider>
+
     </html>
   );
 }

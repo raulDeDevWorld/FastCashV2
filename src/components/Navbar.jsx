@@ -28,9 +28,11 @@ import {
 } from '@heroicons/react/24/solid';
 import { menuArray } from '@/constants'
 import { useSearchParams } from 'next/navigation'
+import { useTheme } from '@/context/ThemeContext';
 
 export default function BottomNavigation({ rol }) {
     const { user, userDB, modal, setModal, subItemNav, setSubItemNav, setUserProfile, businessData, setUserData, setUserProduct, setRecetaDB, setUserCart, setUserDistributorPDB, filter, setFilter, nav, setNav } = useAppContext()
+    const { theme, toggleTheme } = useTheme();
 
     const router = useRouter()
     const [focus, setFocus] = useState('')
@@ -53,10 +55,10 @@ export default function BottomNavigation({ rol }) {
 
     const Header = () => {
         return <li className="flex flex-col justify-center items-center px-[10px] py-5 border-b border-gray-[1px]  w-full">
-            <img src="/logo.png" className='h-[70px] border-white border-[1px]' alt="" />
+            <img src="/perfil.png" className='h-[150px] border-white border-[1px] rounded-full' alt="" />
             <h1 className='16px font-medium text-center text-white py-[10px]'></h1>
-            <h3 className='text-white text-center'>Bienvenido </h3>
-            <h3 className='text-white text-center'>{rol}</h3>
+            <h3 className={` text-center  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>Kiara Palacios</h3>
+            <h3 className={` text-center text-[12px]  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>{rol}</h3>
         </li>
     }
 console.log(item)

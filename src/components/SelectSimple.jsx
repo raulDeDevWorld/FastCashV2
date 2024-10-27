@@ -3,9 +3,11 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import { useAppContext } from '@/context/AppContext'
+import { useTheme } from '@/context/ThemeContext';
 
 
 export default function Select({ arr, name, click, defaultValue, uuid, label, position, bg, required }) {
+    const { theme, toggleTheme } = useTheme();
 
     const router = useRouter()
     const { select, setSelect, languaje, success} = useAppContext()
@@ -25,7 +27,7 @@ export default function Select({ arr, name, click, defaultValue, uuid, label, po
                     onClick={handlerSelect}>
                     {defaultValue === 'Seleccionar' && <span className='absolute top-2'>Seleccionar</span>}
                     <input type="text" readonly className='relative top-[4.5px] w-full h-full border-transparent outline-none focus:outline-none bg-transparent caret-transparent cursor-pointer' value={defaultValue !== undefined && defaultValue !== 'Seleccionar' ? defaultValue : arr[0]} minLength={2} required={required} />
-                    <span className={select === name ? 'absolute top-[4px] right-[10px] rotate-[270deg]' : 'absolute top-[4.5px] right-[10px] rotate-90'}>{'>'}</span>
+                    <span className={select === name ? `absolute top-[4px] right-[10px] rotate-[270deg]  ${theme === 'light' ? ' text-gray-950' : ' text-white'} dark:text-white` : `absolute top-[4.5px] right-[10px] rotate-90 ${theme === 'light' ? ' text-gray-950' : ' text-white'} dark:text-white`}>{'>'}</span>
                     <ul
                         className={` ${position ? position : 'relative'}  ${bg ? 'bg-gray-50' : 'bg-transparent'} mt-0  transition-all rounded-[5px]  w-full  ${select === name ? ` ${arr.length > 2 && 'h-[75px] border-t z-10 border border-[#cfcfcf]   overflow-auto '} ${arr.length == 2 && 'h-[48px] border-t overflow-hidden border border-[#cfcfcf]   z-10'} ${arr.length == 1 && 'h-[25px] border-t overflow-hidden border border-[#cfcfcf]   z-10'}  ` : 'h-[0] overflow-hidden'}`}  >
                         {

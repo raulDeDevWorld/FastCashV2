@@ -133,6 +133,8 @@ export default function Home() {
     setTheme(savedTheme);
     document.documentElement.classList.add(savedTheme);
   }, []);
+
+  console.log()
   return (
     <div className='relative w-screen h-screen flex flex-col justify-center items-center p-5  bg-gradient-to-t md:bg-gradient-to-tl from-gray-900 from-50% to-gray-200 to-50%'>
       {/* <img src="bg.jpg" className='fixed top-0 left-0 h-screen w-screen object-cover' alt="" /> */}

@@ -1,10 +1,13 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import { WifiIcon } from '@heroicons/react/24/outline';
+import { useTheme } from '@/context/ThemeContext';
 
 
 const WifiStrength = () => {
     const [wifiStrength, setWifiStrength] = useState('Calculando...');
-  
+    const { theme, toggleTheme } = useTheme();
+
     useEffect(() => {
       const updateWifiStrength = () => {
         const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
@@ -44,7 +47,7 @@ const WifiStrength = () => {
       <div className="pr-5  rounded-lg text-white flex items-center">
         <WifiIcon className="w-6 h-6 mr-2 stroke-gray-300" />
         <div>
-          <p className="text-[12px] text-white">Intensidad del WiFi:{wifiStrength}</p>
+          <p className={`text-[12px] ${theme === 'light' ? 'text-black' : ' text-white '} dark:text-white`}>Intensidad del WiFi:{wifiStrength}</p>
         </div>
       </div>
     );

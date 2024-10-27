@@ -1,6 +1,8 @@
 'use client'
 import Wifi from '@/components/Wifi'
 import { useAppContext } from '@/context/AppContext'
+import { useTheme } from '@/context/ThemeContext';
+
 // import LoaderWithLogo from '@/components/LoaderWithLogo'
 import { useState, useEffect } from 'react'
 // import style from './Medico.module.css'
@@ -20,7 +22,11 @@ function Home({ children }) {
     const { user, userDB, setUserProfile,
         fondoPrimario, setFondoPrimario,
         fondoSecundario, setFondoSecundario,
-        fondoTerciario, setFondoTerciario, setUserCart, businessData, theme, setTheme, idioma, setIdioma, setUserProduct, setRecetaDB, precioJustoPDB, setPrecioJustoPDB, whatsapp, setWhatsapp, setUserData, filter, setFilter, nav, setNav, modal, setModal, cart, introClientVideo, setIntroClientVideo, recetaDBP, setRecetaDBP, productDB, search, setSearch, videoClientRef, setFilterQR, webScann, setWebScann, setTienda, setBusinessData, isBack, setBack } = useAppContext()
+        fondoTerciario, setFondoTerciario, setUserCart, businessData, idioma, setIdioma, setUserProduct, setRecetaDB, precioJustoPDB, setPrecioJustoPDB, whatsapp, setWhatsapp, setUserData, filter, setFilter, nav, setNav, modal, setModal, cart, introClientVideo, setIntroClientVideo, recetaDBP, setRecetaDBP, productDB, search, setSearch, videoClientRef, setFilterQR, webScann, setWebScann, setTienda, setBusinessData, isBack, setBack } = useAppContext()
+
+    const { theme, toggleTheme } = useTheme();
+
+
     const pathname = usePathname()
     const [isOpen, setIsOpen] = useState(false);
     const [isOpen2, setIsOpen2] = useState(false);
@@ -87,43 +93,29 @@ function Home({ children }) {
         // setWhatsapp(!whatsapp)
     }
 
-
-
-
-
-
-    // useEffect(() => {
-    // }, [])
+    console.log(theme)
 
 
     return (
 
         <div>
 
-            <div className="h-screen bg-gray-white">
-
-
-                <div className={`fixed top-0 w-[220px] lg:w-[280px] z-40 py-4  ${(theme == 'oscuro' || theme == 'neutro') && 'bg-gray-900'} ${theme === 'claro' && 'bg-gray-200'} shadow-white h-screen transition-all	z-40  ${nav ? 'left-0  ' : 'left-[-220px] lg:left-[-280px] '}`} >
+            <div className={`h-screen  ${theme === 'light' ? ' bg-gray-100' : 'bg-gray-100 '} dark:bg-gray-800`}>
+                <div className={`fixed top-0 w-[220px] lg:w-[280px] py-4 shadow-white h-screen transition-all	z-50   ${theme === 'light' ? 'bg-gray-300 text-black' : 'bg-gray-900 text-white '} ${nav ? 'left-0  ' : 'left-[-220px] lg:left-[-280px] '}`} >
                     {user && user !== undefined && <Navbar rol={user.rol} />}
                 </div>
 
-
-
-
-                {introClientVideo && <div className='fixed top-0 left-0 w-screen h-screen bg-[#ffffff00] z-40' onClick={handlerClientVideo}></div>}
-                {whatsapp && <div className='fixed top-0 left-0 w-screen h-screen bg-[#ffffff00] z-40' onClick={handlerWhatsapp}></div>}
-                {search && <div className='fixed top-0 left-0 w-screen h-screen bg-[#ffffff00] z-40' onClick={() => setSearch(false)}></div>}
-                {webScann && <div className='fixed top-0 left-0 w-screen h-screen bg-[#ffffff00] z-40' onClick={() => setSearch(false)}></div>}
-
-                <main className={`relative w-screen min-w-screen  lg:pb-0  lg:min-w-auto my-[0px]  ${(theme == 'oscuro') && 'bg-gray-800'} ${(theme === 'claro' || theme == 'neutro') && 'bg-gray-50'}  lg:min-h-screen  ${nav ? 'w-screen pl-[220px] lg:pl-[280px] ' : '  lg:px-[0px]'}`} onClick={() => setNav(false)} style={{ transition: 'all 0.5' }}>
-                    <nav className={`w-screen fixed left-0 top-0  ${(theme == 'oscuro' || theme == 'neutro') && 'bg-gray-900'} ${theme === 'claro' && 'bg-gray-200'} shadow-sm flex items-center justify-between  p-0 h-[60px] z-30`} onClick={() => setNav(false)}>
+                <main className={`relative w-screen min-w-screen  lg:pb-0  lg:min-w-auto my-[0px]  lg:min-h-screen ${theme === 'light' ? '' : ''} ${nav ? 'w-screen pl-[220px] lg:pl-[280px] ' : '  lg:px-[0px]'}`} onClick={() => setNav(false)} style={{ transition: 'all 0.5' }}>
+                    <nav className={`w-screen fixed left-0 top-0  shadow-sm flex items-center justify-between  p-0 h-[60px] z-30    ${theme === 'light' ? 'bg-gray-200 text-black' : 'bg-gray-900'} dark:bg-gray-900 `} onClick={() => setNav(false)}>
                         {pathname !== '/Cliente' && <div className='flex  hidden lg:block'>
                             <div className='flex '>
                                 <button type="button" className="p-4 inline-flex items-center p-2 text-[14px] text-[#ffffff] rounded-lg hidden lg:block" onClick={openNav}>
-                                    <svg className="w-9 h-9 text-white" aria-hidden="true" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"  ></path></svg>
+                                    <svg className={`w-[30px] h-[30px]  stroke-[0]  ${theme === 'light' ? 'stroke-black' : 'stroke-white '} dark:stroke-white`} aria-hidden="true" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M24.3333 1H1M24.3333 8.29167H1M24.3333 15.5833H1" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
                                 </button>
                                 <h1 className='text-[18px] hidden lg:flex lg:justify-between  lg:w-[240px] lg:items-center text-white font-medium'>
-                                    <span className='font-medium text-white'>Fast Cash</span>
+                                    <span className={`font-medium  ${theme === 'light' ? ' text-black' : ' text-white '} dark:text-white`}>Fast Cash</span>
                                 </h1>
                             </div>
                         </div>
@@ -133,7 +125,7 @@ function Home({ children }) {
 
 
 
-                        <div className='flex items-center mr-5 z-30'>
+                        <div className='flex items-center mr-5 z-30 '>
 
                             <Wifi />
 
@@ -143,8 +135,6 @@ function Home({ children }) {
 
                                 <button className='flex items-center text-white h-[35px]  bg-gray-800 hover:bg-gradient-to-br focus:ring-2 focus:outline-none focus:ring-gray-500    transition-all  rounded-[5px] border    text-center  p-2 px-5'
                                     onClick={() => setIsOpen(!isOpen)}
-                                // onMouseEnter={() => !isOpen2 && setIsOpen(true)}
-                                // onMouseLeave={() => !isOpen2 && setIsOpen(false)}
                                 >
                                     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10 10C11.1046 10 12 9.10457 12 8C12 6.89543 11.1046 6 10 6C8.89543 6 8 6.89543 8 8C8 9.10457 8.89543 10 10 10Z" stroke="white" stroke-width="1.5" />
@@ -159,12 +149,8 @@ function Home({ children }) {
                                 <div
                                     className={`origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-all duration-300 ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                                         }`}
-                                // onMouseEnter={() => !isOpen2 && setIsOpen(true)}
-                                // onMouseLeave={() => !isOpen2 && setIsOpen(false)}
                                 >
                                     <div className="py-1"
-                                    // onMouseEnter={() => !isOpen2 && setIsOpen(true)}
-                                    // onMouseLeave={() => !isOpen2 && setIsOpen(false)}
                                     >
                                         <button href="#" onClick={() => idioma === 'Español' ? setIdioma('English') : setIdioma('Español')} className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             {idioma === 'Español' && <svg width="36" height="26" viewBox="0 0 36 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -214,10 +200,10 @@ function Home({ children }) {
                             {/* --------------------------------------------------THEME */}
                             <div className=''>
 
-                                <button className='ml-5 mt-2'
+                                <button className={`ml-5 mt-2  ${theme === 'light' ? ' text-black' : 'stroke-white'} dark:stroke-white`}
                                     onClick={() => setIsOpen2(!isOpen2)}>
-                                    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 6.826C12.2422 6.826 12.4744 6.72981 12.6456 6.55859C12.8168 6.38737 12.913 6.15514 12.913 5.913C12.913 5.67086 12.8168 5.43863 12.6456 5.26741C12.4744 5.09619 12.2422 5 12 5C11.7579 5 11.5257 5.09619 11.3544 5.26741C11.1832 5.43863 11.087 5.67086 11.087 5.913C11.087 6.15514 11.1832 6.38737 11.3544 6.55859C11.5257 6.72981 11.7579 6.826 12 6.826ZM18.088 6.826C18.2079 6.826 18.3266 6.80238 18.4374 6.7565C18.5482 6.71062 18.6488 6.64337 18.7336 6.55859C18.8184 6.47381 18.8856 6.37316 18.9315 6.26239C18.9774 6.15162 19.001 6.0329 19.001 5.913C19.001 5.7931 18.9774 5.67438 18.9315 5.56361C18.8856 5.45284 18.8184 5.35219 18.7336 5.26741C18.6488 5.18263 18.5482 5.11538 18.4374 5.0695C18.3266 5.02362 18.2079 5 18.088 5C17.8459 5 17.6137 5.09619 17.4424 5.26741C17.2712 5.43863 17.175 5.67086 17.175 5.913C17.175 6.15514 17.2712 6.38737 17.4424 6.55859C17.6137 6.72981 17.8459 6.826 18.088 6.826ZM5.91202 6.826C6.03192 6.826 6.15064 6.80238 6.26141 6.7565C6.37218 6.71062 6.47283 6.64337 6.55761 6.55859C6.64239 6.47381 6.70964 6.37316 6.75553 6.26239C6.80141 6.15162 6.82502 6.0329 6.82502 5.913C6.82502 5.7931 6.80141 5.67438 6.75553 5.56361C6.70964 5.45284 6.64239 5.35219 6.55761 5.26741C6.47283 5.18263 6.37218 5.11538 6.26141 5.0695C6.15064 5.02362 6.03192 5 5.91202 5C5.66988 5 5.43766 5.09619 5.26643 5.26741C5.09521 5.43863 4.99902 5.67086 4.99902 5.913C4.99902 6.15514 5.09521 6.38737 5.26643 6.55859C5.43766 6.72981 5.66988 6.826 5.91202 6.826ZM12 12.913C12.2422 12.913 12.4744 12.8168 12.6456 12.6456C12.8168 12.4744 12.913 12.2421 12.913 12C12.913 11.7579 12.8168 11.5256 12.6456 11.3544C12.4744 11.1832 12.2422 11.087 12 11.087C11.7579 11.087 11.5257 11.1832 11.3544 11.3544C11.1832 11.5256 11.087 11.7579 11.087 12C11.087 12.2421 11.1832 12.4744 11.3544 12.6456C11.5257 12.8168 11.7579 12.913 12 12.913ZM18.088 12.913C18.3302 12.913 18.5624 12.8168 18.7336 12.6456C18.9048 12.4744 19.001 12.2421 19.001 12C19.001 11.7579 18.9048 11.5256 18.7336 11.3544C18.5624 11.1832 18.3302 11.087 18.088 11.087C17.8459 11.087 17.6137 11.1832 17.4424 11.3544C17.2712 11.5256 17.175 11.7579 17.175 12C17.175 12.2421 17.2712 12.4744 17.4424 12.6456C17.6137 12.8168 17.8459 12.913 18.088 12.913ZM5.91202 12.913C6.15417 12.913 6.38639 12.8168 6.55761 12.6456C6.72883 12.4744 6.82502 12.2421 6.82502 12C6.82502 11.7579 6.72883 11.5256 6.55761 11.3544C6.38639 11.1832 6.15417 11.087 5.91202 11.087C5.66988 11.087 5.43766 11.1832 5.26643 11.3544C5.09521 11.5256 4.99902 11.7579 4.99902 12C4.99902 12.2421 5.09521 12.4744 5.26643 12.6456C5.43766 12.8168 5.66988 12.913 5.91202 12.913ZM12 19C12.2422 19 12.4744 18.9038 12.6456 18.7326C12.8168 18.5614 12.913 18.3291 12.913 18.087C12.913 17.8449 12.8168 17.6126 12.6456 17.4414C12.4744 17.2702 12.2422 17.174 12 17.174C11.7579 17.174 11.5257 17.2702 11.3544 17.4414C11.1832 17.6126 11.087 17.8449 11.087 18.087C11.087 18.3291 11.1832 18.5614 11.3544 18.7326C11.5257 18.9038 11.7579 19 12 19ZM18.088 19C18.3302 19 18.5624 18.9038 18.7336 18.7326C18.9048 18.5614 19.001 18.3291 19.001 18.087C19.001 17.8449 18.9048 17.6126 18.7336 17.4414C18.5624 17.2702 18.3302 17.174 18.088 17.174C17.8459 17.174 17.6137 17.2702 17.4424 17.4414C17.2712 17.6126 17.175 17.8449 17.175 18.087C17.175 18.3291 17.2712 18.5614 17.4424 18.7326C17.6137 18.9038 17.8459 19 18.088 19ZM5.91202 19C6.15417 19 6.38639 18.9038 6.55761 18.7326C6.72883 18.5614 6.82502 18.3291 6.82502 18.087C6.82502 17.8449 6.72883 17.6126 6.55761 17.4414C6.38639 17.2702 6.15417 17.174 5.91202 17.174C5.66988 17.174 5.43766 17.2702 5.26643 17.4414C5.09521 17.6126 4.99902 17.8449 4.99902 18.087C4.99902 18.3291 5.09521 18.5614 5.26643 18.7326C5.43766 18.9038 5.66988 19 5.91202 19Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <svg width="30" height="30" viewBox="0 0 24 24" className={` ${theme === 'light' ? 'stroke-black text-black' : 'bg-black text-white '}`} xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 6.826C12.2422 6.826 12.4744 6.72981 12.6456 6.55859C12.8168 6.38737 12.913 6.15514 12.913 5.913C12.913 5.67086 12.8168 5.43863 12.6456 5.26741C12.4744 5.09619 12.2422 5 12 5C11.7579 5 11.5257 5.09619 11.3544 5.26741C11.1832 5.43863 11.087 5.67086 11.087 5.913C11.087 6.15514 11.1832 6.38737 11.3544 6.55859C11.5257 6.72981 11.7579 6.826 12 6.826ZM18.088 6.826C18.2079 6.826 18.3266 6.80238 18.4374 6.7565C18.5482 6.71062 18.6488 6.64337 18.7336 6.55859C18.8184 6.47381 18.8856 6.37316 18.9315 6.26239C18.9774 6.15162 19.001 6.0329 19.001 5.913C19.001 5.7931 18.9774 5.67438 18.9315 5.56361C18.8856 5.45284 18.8184 5.35219 18.7336 5.26741C18.6488 5.18263 18.5482 5.11538 18.4374 5.0695C18.3266 5.02362 18.2079 5 18.088 5C17.8459 5 17.6137 5.09619 17.4424 5.26741C17.2712 5.43863 17.175 5.67086 17.175 5.913C17.175 6.15514 17.2712 6.38737 17.4424 6.55859C17.6137 6.72981 17.8459 6.826 18.088 6.826ZM5.91202 6.826C6.03192 6.826 6.15064 6.80238 6.26141 6.7565C6.37218 6.71062 6.47283 6.64337 6.55761 6.55859C6.64239 6.47381 6.70964 6.37316 6.75553 6.26239C6.80141 6.15162 6.82502 6.0329 6.82502 5.913C6.82502 5.7931 6.80141 5.67438 6.75553 5.56361C6.70964 5.45284 6.64239 5.35219 6.55761 5.26741C6.47283 5.18263 6.37218 5.11538 6.26141 5.0695C6.15064 5.02362 6.03192 5 5.91202 5C5.66988 5 5.43766 5.09619 5.26643 5.26741C5.09521 5.43863 4.99902 5.67086 4.99902 5.913C4.99902 6.15514 5.09521 6.38737 5.26643 6.55859C5.43766 6.72981 5.66988 6.826 5.91202 6.826ZM12 12.913C12.2422 12.913 12.4744 12.8168 12.6456 12.6456C12.8168 12.4744 12.913 12.2421 12.913 12C12.913 11.7579 12.8168 11.5256 12.6456 11.3544C12.4744 11.1832 12.2422 11.087 12 11.087C11.7579 11.087 11.5257 11.1832 11.3544 11.3544C11.1832 11.5256 11.087 11.7579 11.087 12C11.087 12.2421 11.1832 12.4744 11.3544 12.6456C11.5257 12.8168 11.7579 12.913 12 12.913ZM18.088 12.913C18.3302 12.913 18.5624 12.8168 18.7336 12.6456C18.9048 12.4744 19.001 12.2421 19.001 12C19.001 11.7579 18.9048 11.5256 18.7336 11.3544C18.5624 11.1832 18.3302 11.087 18.088 11.087C17.8459 11.087 17.6137 11.1832 17.4424 11.3544C17.2712 11.5256 17.175 11.7579 17.175 12C17.175 12.2421 17.2712 12.4744 17.4424 12.6456C17.6137 12.8168 17.8459 12.913 18.088 12.913ZM5.91202 12.913C6.15417 12.913 6.38639 12.8168 6.55761 12.6456C6.72883 12.4744 6.82502 12.2421 6.82502 12C6.82502 11.7579 6.72883 11.5256 6.55761 11.3544C6.38639 11.1832 6.15417 11.087 5.91202 11.087C5.66988 11.087 5.43766 11.1832 5.26643 11.3544C5.09521 11.5256 4.99902 11.7579 4.99902 12C4.99902 12.2421 5.09521 12.4744 5.26643 12.6456C5.43766 12.8168 5.66988 12.913 5.91202 12.913ZM12 19C12.2422 19 12.4744 18.9038 12.6456 18.7326C12.8168 18.5614 12.913 18.3291 12.913 18.087C12.913 17.8449 12.8168 17.6126 12.6456 17.4414C12.4744 17.2702 12.2422 17.174 12 17.174C11.7579 17.174 11.5257 17.2702 11.3544 17.4414C11.1832 17.6126 11.087 17.8449 11.087 18.087C11.087 18.3291 11.1832 18.5614 11.3544 18.7326C11.5257 18.9038 11.7579 19 12 19ZM18.088 19C18.3302 19 18.5624 18.9038 18.7336 18.7326C18.9048 18.5614 19.001 18.3291 19.001 18.087C19.001 17.8449 18.9048 17.6126 18.7336 17.4414C18.5624 17.2702 18.3302 17.174 18.088 17.174C17.8459 17.174 17.6137 17.2702 17.4424 17.4414C17.2712 17.6126 17.175 17.8449 17.175 18.087C17.175 18.3291 17.2712 18.5614 17.4424 18.7326C17.6137 18.9038 17.8459 19 18.088 19ZM5.91202 19C6.15417 19 6.38639 18.9038 6.55761 18.7326C6.72883 18.5614 6.82502 18.3291 6.82502 18.087C6.82502 17.8449 6.72883 17.6126 6.55761 17.4414C6.38639 17.2702 6.15417 17.174 5.91202 17.174C5.66988 17.174 5.43766 17.2702 5.26643 17.4414C5.09521 17.6126 4.99902 17.8449 4.99902 18.087C4.99902 18.3291 5.09521 18.5614 5.26643 18.7326C5.43766 18.9038 5.66988 19 5.91202 19Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </button>
 
@@ -227,15 +213,15 @@ function Home({ children }) {
                                         }`}
                                 >
                                     <div className="py-1">
-                                        <button href="#" onClick={() => setTheme('neutro')} className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <button href="#" onClick={() => toggleTheme('neutral')} className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             <WindowIcon className="h-6 w-6" />
                                             <span className="flex-1 text-left ml-3 whitespace-nowrap text-black  text-[12px]">Neutro</span>
                                         </button>
-                                        <button href="#" onClick={() => setTheme('neutro')} className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <button href="#" onClick={() => toggleTheme('light')} className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             <SunIcon className="h-6 w-6" />
                                             <span className="flex-1 text-left ml-3 whitespace-nowrap text-black  text-[12px]">Claro</span>
                                         </button>
-                                        <button href="#" onClick={(e) => { setTheme('neutro') }} className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <button href="#" onClick={(e) => { toggleTheme('dark') }} className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             <MoonIcon className="h-6 w-6" />
                                             <span className="flex-1 text-left ml-3 whitespace-nowrap text-black  text-[12px]">Oscuro</span>
                                         </button>

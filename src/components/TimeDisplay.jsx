@@ -1,9 +1,11 @@
 'use client'
 import { useEffect, useState } from 'react';
+import { useTheme } from '@/context/ThemeContext';
 
 const TimeDisplay = () => {
   const [dateTime, setDateTime] = useState({ time: '', date: '' });
-
+  const { theme, toggleTheme } = useTheme();
+  
   useEffect(() => {
     const intervalId = setInterval(() => {
       const now = new Date();
@@ -34,7 +36,7 @@ const TimeDisplay = () => {
 
   return (
     <div>
-      <p className='w-[280px] text-[12px] text-white'>México city: {dateTime.date} {dateTime.time}</p>
+      <p className={`w-[280px] text-[12px] ${theme === 'light' ? 'text-black' : 'text-white '} dark:text-white`}>México city: {dateTime.date} {dateTime.time}</p>
     </div>
   );
 };
