@@ -442,7 +442,7 @@ const menuArray = {
   //       { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
   //       { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
   //       { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-  //       { subtitle: "Detección de Fraudes", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
+  //       
   //       { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> }
   //     ],
   //     length: 'h-[230px] overflow-auto'
@@ -512,7 +512,7 @@ const menuArray = {
         { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
         { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
         { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        { subtitle: "Detección de Fraudes", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
+        
         { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> }
       ],
       length: 'h-[230px] overflow-auto'
@@ -566,7 +566,7 @@ const menuArray = {
         { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
         { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
         { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        { subtitle: "Detección de Fraudes", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
+        
         { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> }
       ],
       length: 'h-[230px] overflow-auto'
@@ -619,7 +619,7 @@ const menuArray = {
         { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
         { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
         { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        { subtitle: "Detección de Fraudes", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
+        
         { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> }
       ],
       length: 'h-[230px] overflow-auto'

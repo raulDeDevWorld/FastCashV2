@@ -395,7 +395,17 @@ export default function Home() {
 
 
 
-
+    const mensajes = [
+        "Seleccionar",
+        "Remitente de sms",
+        "número de teléfono móvil",
+        "Canal de envío",
+        "Código de producto",
+        "Contenido",
+        "Fecha de envío",
+        "Estado de envío de SMS",
+        'Estado de llegada por SMS'
+    ]
 
 
 
@@ -715,6 +725,30 @@ export default function Home() {
     };
 
 
+    const liquidacion = [
+        "Seleccionar",
+
+        "ID de pedito",
+        "ID de préstamo",
+        "Cantidad prestada",
+        "Cantidad recibida",
+        "Código del proyecto",
+        "número de tarjeta",
+        "Nombre del banco",
+        "Titular de la tarjeta",
+        "Estado final"
+    ];
+    const liquidacion2 = [
+        "16184477",
+        "3036428",
+        "2,800",
+        "1,820",
+        "AMC",
+        "4152313918161022",
+        "BBVA BANCOMER",
+        "JOSE EDUARDO",
+        "Ha llegado a la cuenta"
+    ];
 
     useEffect(() => {
         user === undefined && router.push('/')
@@ -3537,6 +3571,54 @@ export default function Home() {
                             </tbody>
                         </table>
                     }
+                    {(item === 'Registro de SMS' || item === 'Atención al Cliente') &&
+                        <table className="min-w-full " >
+                            <thead className="bg-gray-900 text-[10px]  uppercase sticky top-[0px] z-20">
+
+                                <tr className='text-[white] min-w-[2500px]'>
+
+                                    {mensajes.map((encabezado, index) => (
+                                        <th scope="col" key={index}
+                                            className={`  ${(encabezado === 'Operaciones' || encabezado === "Seleccionar") ? 'text-center' : 'text-left'} w-[50px] px-3 py-3 text-white
+                                            ${index < 10 ? (selectedLeft === index ? 'sticky left-0 z-20 bg-gray-800' : 'bg-gray-900') : (selectedRight === index ? 'sticky right-0 z-20 bg-gray-800' : 'bg-gray-900')}`}
+                                            onClick={() => handlerSelected(index < 10 ? 'LEFT' : 'RIGHT', index)}>
+                                            {encabezado === "Seleccionar" ? <input type="checkbox" /> : encabezado}
+                                        </th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {refunds.map((item, index) => (
+                                    item.nombreCliente.toLowerCase().includes(filter['Nombre del cliente'].toLowerCase()) &&
+                                    item.numeroMovil.includes(filter['Número de teléfono']) && item.nombreProducto.includes(filter.nombreProducto === 'Todo' ? '' : filter.nombreProducto) && item.estado.includes(filter['Estado de reembolso'] === 'Por favor elige' ? '' : filter['Estado de reembolso'].toLowerCase()) && item.diasAtraso * 1 <= filter['Maximo dias vencido'] && item.diasAtraso * 1 >= filter['Minimo dias vencido'] &&
+                                    <tr key={index} className={`text-[12px] border-b`}>
+                                        <th className={`px-3 py-2  ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} `}> <input type="checkbox" /></th>
+
+                                        <td className={`px-3 py-2 text-[12px] border-b  ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedRight === 18 ? 'sticky right-0 z-10' : ''}`} >Maximiliano del Palacios</td>
+
+                                        <td className={`px-3 py-2 text-[12px] border-b  ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedRight === 18 ? 'sticky right-0 z-10' : ''}`} >+564 456465</td>
+                                        <td className={`px-3 py-2 text-[12px] border-b text-center ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                            FastCash
+                                        </td>
+                                        <td className={`px-3 py-2 text-[12px] border-b text-center ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedLeft === 2 ? 'sticky left-0 z-10' : ''}`} ><Link href={`/Home/Datos?seccion=info`} className='text-blue-500 underline'>Fast Cash</Link></td>
+                                        {/* <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedLeft === 3 ? 'sticky left-0 z-10' : ''}`} >{item.idSubFactura}</td> */}
+                                        <td className={`px-3 py-2 ${item.estado === 'pagado' ? 'text-gray-900' : 'text-gray-900'} w-[400px] ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>RICO PAGO. Usted tiene un prestamo y debe pagar. SOLICITAMOS EL PAGO DEL DINERO prestado de inmediato! SU PAGO EN LA FINANCIERA MAXIMO 08:30 AM HORA CENTRO MEXICO Y RECIBE RENOVACION RAPIDA CON UN 10% DE DESCUENTO.
+                                            debe pagar $1700. iSi paga ahora, podr obtener ms dinero prestado de inmediato! Por favor verifique am.pagoc.cc/Xx42AJzKr.
+                                        </td>
+                                        <td className={`px-3 py-2 ${item.estado === 'pagado' ? 'text-green-500' : 'text-orange-600'} ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>2024-10-27 07:47</td>
+                                        <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedLeft === 6 ? 'sticky left-0 z-10' : ''}`} >
+                                            <span className='cursor-pointer text-gray-900' onClick={() => copyToClipboard(item.numeroMovil)}>Exitoso</span>
+                                            {copied === item.numeroMovil &&
+                                                <p className=" absolute t-2 text-green-500 flex bg-white shadow-sm rounded-[5px] py-1 px-2 shadow-[#979797]"> <ClipboardDocumentCheckIcon className='h-4 w-4 fill-green-400' />Texto copiado al portapapeles!</p>}
+                                        </td>
+                                        <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedRight === 19 ? 'sticky right-0 z-10' : ''}`}>
+                                            null
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    }
 
                     {(item === 'Usuarios de verificación' || item === 'Usuarios de Cobranza' || item === 'Usuarios de Auditoria') &&
 
@@ -3663,7 +3745,7 @@ export default function Home() {
                                         </td>
                                         <td className={`px-3 py-2 text-[12px] border-b text-left ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedLeft === 2 ? 'sticky left-0 z-10' : ''}`} ><Link href={`/Home/Datos?seccion=info`} className='text-blue-500 underline'>{item.nombreCliente}</Link></td>
 
-                                        <td className={`px-3 py-2 ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? 'XXX-XXXX-XX' : 'XXX-XXXX-XX'}</td>
+                                        <td className={`px-3 py-2  ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'}  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item.estado === 'pagado' ? 'XXX-XXXX-XX' : 'XXX-XXXX-XX'}</td>
                                         <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedLeft === 6 ? 'sticky left-0 z-10' : ''}`} >
                                             <span className='cursor-pointer text-blue-500 underline' onClick={() => copyToClipboard(item.numeroMovil)}>{item.numeroMovil}</span>
                                             {copied === item.numeroMovil &&
@@ -3687,6 +3769,121 @@ export default function Home() {
 
 
 
+                    {(item === 'Cobro y valance') &&
+                        <table className="min-w-full " >
+                            <thead className="bg-gray-900 text-[10px]  uppercase sticky top-[0px] z-20">
+
+                                <tr className='text-[white] min-w-[2500px]'>
+
+                                    {liquidacion.map((encabezado, index) => (
+                                        <th scope="col" key={index}
+                                            className={`  ${(encabezado === 'Operaciones' || encabezado === "Seleccionar") ? 'text-center' : 'text-left'} w-[50px] px-3 py-3 text-white
+                                            ${index < 10 ? (selectedLeft === index ? 'sticky left-0 z-20 bg-gray-800' : 'bg-gray-900') : (selectedRight === index ? 'sticky right-0 z-20 bg-gray-800' : 'bg-gray-900')}`}
+                                            onClick={() => handlerSelected(index < 10 ? 'LEFT' : 'RIGHT', index)}>
+                                            {encabezado === "Seleccionar" ? <input type="checkbox" /> : encabezado}
+                                        </th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-200 bg-gray-200 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-200  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-300 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-300  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-200 bg-gray-200 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-200  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-300 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-300  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-200 bg-gray-200 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-200  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-300 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-300  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
 
 
 
