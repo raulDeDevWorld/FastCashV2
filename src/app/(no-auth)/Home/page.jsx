@@ -3049,7 +3049,64 @@ export default function Home() {
                     </table>}
 
 
+                    {user?.rol === 'Cuenta personal' && item === 'Asistencia' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
 
+
+                        <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
+                            <tr>
+                         
+                                <th colSpan="1" className="px-4 py-2 text-white text-center"></th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">LUNES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">MARTES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">MIÉRCOLES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">JUEVES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">VIERNES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">SÁBADO</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">DOMINGO</th>
+                            </tr>
+                            <tr>
+                       
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">SEMANA</th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                    {getDay((-2)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((11)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                    {getDay((0)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((1)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((2)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((3)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((4)).val}
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {trabajo.map((cobrador, index) => (
+                                <tr key={index} className='text-[12px]'>
+
+                                    <td className="px-4 py-2 border border-gray-200 bg-gray-200">Semana {index+1}</td>
+                                    <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.lunes)}`}>{cobrador.lunes}</td>
+                                    <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.martes)}`}>{cobrador.martes}</td>
+                                    <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.miercoles)}`}>{cobrador.miercoles}</td>
+                                    <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.jueves)}`}>{cobrador.jueves}</td>
+                                    <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.viernes)}`}>{cobrador.viernes}</td>
+                                    <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.sabado)}`}>{cobrador.sabado}</td>
+                                    <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.domingo)}`}>{cobrador.domingo}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>}
 
                     {user?.rol === 'Cuenta personal' && item === 'Gestion de auditoria' && <table className="w-full min-w-[1500px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
                         <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
