@@ -45,7 +45,7 @@ const WifiStrength = () => {
   
     return (
       <div className="pr-5  rounded-lg text-white flex items-center">
-        <WifiIcon className="w-6 h-6 mr-2 stroke-gray-300" />
+        <WifiIcon className={`h-6 w-6  mr-5 text-[12px] ${theme === 'light' ? 'stroke-black text-black' : 'stroke-black text-white '}   dark:stroke-white`} />
         <div>
           <p className={`text-[12px] ${theme === 'light' ? 'text-black' : ' text-white '} dark:text-white`}>Intensidad del WiFi:{wifiStrength}</p>
         </div>

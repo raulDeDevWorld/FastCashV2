@@ -63,7 +63,7 @@ export default function BottomNavigation({ rol }) {
     }
 console.log(item)
 
-    return <ul className="space-y-3 text-[16px] flex flex-col  items-center text-gray-600 font-medium">
+    return <ul className="space-y-3 text-[16px] flex flex-col  items-center text-gray-600 font-medium ">
         <Header />
         {
             menuArray[rol].map((element, index) => {

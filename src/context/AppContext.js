@@ -20,7 +20,8 @@ export function AppProvider({ children }) {
 
 
 
-
+    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen2, setIsOpen2] = useState(false);
 
 
 
@@ -125,7 +126,7 @@ export function AppProvider({ children }) {
 			users,
 			destinatario,
 
-
+			isOpen, setIsOpen,isOpen2, setIsOpen2,
 
 			fondoPrimario, setFondoPrimario,
 			fondoSecundario, setFondoSecundario,
@@ -188,7 +189,7 @@ export function AppProvider({ children }) {
 		fecha, qr, QRurl, divisas, envios,
 		webScann,
 		filter,
-		filterQR, exchange, countries, destinatarios, transactionDB, navItem, comision,
+		filterQR, exchange, countries, isOpen, isOpen2, destinatarios, transactionDB, navItem, comision,
 		enviosDB,
 		cambiosDB,time_stamp,
 		notificaciones])

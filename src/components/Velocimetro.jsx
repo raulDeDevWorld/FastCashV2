@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as Highcharts from 'highcharts';
 import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsReact from 'highcharts-react-official';
+import { useTheme } from '@/context/ThemeContext';
 
 
 
@@ -32,6 +33,7 @@ Highcharts.setOptions({
 const ColoredSpeedometer = () => {
   const chartRef = useRef(null);
   const [speedValue, setSpeedValue] = useState(30);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (chartRef.current) {
@@ -70,16 +72,18 @@ const ColoredSpeedometer = () => {
         hideCredits(); // Asegúrate de ocultar los créditos al desmontar el componente
       };
     }
-  }, []);
+  }, [theme]);
 
   const options = {
     chart: {
       type: 'gauge',
-      plotBackgroundColor: null,
+      plotBackgroundColor: theme !== 'dark'? '#d1d5db': '#1f2937',
       plotBackgroundImage: null,
       plotBorderWidth: 0,
       plotShadow: false,
       height: '100%',
+      spacing: [0, 0, 0, 0], // Espaciado: [top, right, bottom, left]
+
     },
 
     title: {
@@ -91,7 +95,7 @@ const ColoredSpeedometer = () => {
       endAngle: 150,
       background: [
         {
-          backgroundColor: Highcharts.color('#90ed7d').setOpacity(0.3).get(),
+          backgroundColor: Highcharts.color('#4b5563').setOpacity(0.9).get(),
           borderWidth: 0,
           outerRadius: '105%', // Reducido para acercarse al indicador
           innerRadius: '100%', // Reducido para acercarse al indicador
@@ -99,22 +103,23 @@ const ColoredSpeedometer = () => {
           borderColor: 'none'
         },
         {
-          backgroundColor: Highcharts.color('#7cb5ec').setOpacity(0.3).get(),
+          backgroundColor: Highcharts.color('#4b5563').setOpacity(0.8).get(),
           borderWidth: 0,
           outerRadius: '103%', // Reducido para acercarse al indicador
           innerRadius: '100%', // Reducido para acercarse al indicador
           shape: 'arc',
           borderColor: 'none'
         }
-      ]
+      ],
+
     },
 
     yAxis: {
       min: 0,
       max: 100,
-      lineColor: '#339',
-      tickColor: '#339',
-      minorTickColor: '#339',
+      lineColor: theme !== 'dark' ? '#339' : '#0086c9',
+      tickColor: theme !== 'dark' ? '#339' : '#0086c9',
+      minorTickColor: theme !== 'dark' ? '#339' : '#0086c9',
       offset: -15, // Ajustado para reducir el espacio
       lineWidth: 1,
       tickLength: 5, // Reducido proporcionalmente
@@ -125,7 +130,9 @@ const ColoredSpeedometer = () => {
         distance: -15, // Reducido proporcionalmente
         rotation: 'auto',
         style: {
-          fontSize: '10px' // Reducido proporcionalmente
+          fontSize: '10px', // Reducido proporcionalmente
+          color:  theme !== 'dark' ? '#030712' : '#d1d5db' // Cambia el color a verde
+
         }
       },
       plotBands: [
@@ -155,7 +162,7 @@ const ColoredSpeedometer = () => {
         format: '<span style="color:#0086c9; border:none">{y} %</span>',
         style: {
           fontSize: '18px', // Reducido proporcionalmente
-          color: '#0086c9', // Azul para el texto
+          color: theme !== 'dark' ? '#0086c9' :'#000000', // Azul para el texto
           textOutline: 'none' // Elimina el contorno del texto
         },
         borderWidth: 0, // Elimina el borde de la caja de datos
@@ -166,8 +173,17 @@ const ColoredSpeedometer = () => {
       },
       tooltip: {
         valueSuffix: ' %'
+      },
+      dial: {
+        backgroundColor:  theme !== 'dark' ? '#000000' :'#0086c9',   // Cambia el color del apuntador (verde)
+        baseWidth: 1,                // Ancho de la base del apuntador
+        topWidth: .01,                  // Ancho del extremo del apuntador
+        radius: '60%',                // Longitud del apuntador
+        borderColor: theme !== 'dark' ? '#000000' :'#0086c9',       // Color del borde del apuntador
+        borderWidth: 2                // Ancho del borde del apuntador
       }
-    }]
+    }],
+
   };
 
   return (
@@ -176,6 +192,14 @@ const ColoredSpeedometer = () => {
         highcharts={Highcharts}
         options={options}
         ref={chartRef}
+        containerProps={{
+          style: {
+            borderRadius: '8px', // Opcional, para bordes redondeados
+            padding: '#000000',
+            background:'transparent'
+            
+          }
+        }}
       />
     </div>
   );
