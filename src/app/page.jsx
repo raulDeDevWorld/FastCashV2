@@ -29,7 +29,8 @@ export default function Home() {
 
   const onSubmitWithReCAPTCHA = async (e) => {
     e.preventDefault()
-    if (e.target[0].value === 'UserVe001' ||
+    if (e.target[0].value === 'Personal001' ||
+      e.target[0].value === 'UserVe001' ||
       e.target[0].value === 'UserCo001' ||
       e.target[0].value === 'UserAu001' ||
       e.target[0].value === 'ManaVe001' ||
@@ -43,6 +44,10 @@ export default function Home() {
 
 
       switch (e.target[0].value) {
+        case 'Personal001':
+          setUser({ rol: 'Cuenta personal' })
+          router.push(`/Home`)
+          break;
         case 'UserVe001':
           setUser({ rol: 'Usuario de Verificación' })
           router.push(`/Validacion`)

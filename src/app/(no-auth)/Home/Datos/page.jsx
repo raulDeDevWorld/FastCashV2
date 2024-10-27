@@ -254,6 +254,12 @@ const PaymentInfoCard = () => {
             operation: '-----'
         }
     ];
+
+
+
+    const control =[
+        ''
+    ]
     return (
         <div className="relative mx-auto bg-gray-100 ">
 

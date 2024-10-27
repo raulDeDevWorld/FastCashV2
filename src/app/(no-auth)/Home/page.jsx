@@ -2205,6 +2205,262 @@ export default function Home() {
 
 
 
+{user?.rol === 'Cuenta personal'  && item === 'Comision' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
+                        <thead className="text-[10px] text-white uppercase bg-gray-900 z-20">
+                            <tr>
+                              
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">01/12 - 07/12</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">LUNES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">MARTES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">MIÉRCOLES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">JUEVES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">VIERNES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">SÁBADO</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">DOMINGO</th>
+                             
+                                <th></th>
+                                <th></th> 
+                                 </tr>
+                            <tr>
+                                
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">DETALLE</th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                    {getDay((-2)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((11)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                    {getDay((0)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((1)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((2)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((3)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((4)).val}
+                                </th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">Porcentaje <br /> semanal alcanzado</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">VALOR SEMANAL  <br />  ENTREGADO</th>
+                          
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr  className='text-[12px]'>
+                                 
+                                    <td className="px-4 py-2 border border-gray-200 bg-gray-200">Recoleccion final</td>
+                                    <td className={`px-4 py-2 border border-gray-20`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                </tr>
+                                <tr  className='text-[12px]'>
+                                    
+                                    <td className="px-4 py-2 border border-gray-200 bg-gray-200">Porcentaje alcanzado</td>
+                                    <td className={`px-4 py-2 border border-gray-20`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                </tr>
+                                <tr  className='text-[12px]'>
+                                   
+                                    <td className="px-4 py-2 border border-gray-200 bg-gray-200">Valor entregado</td>
+                                    <td className={`px-4 py-2 border border-gray-20`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>5.00 $</td>
+                                </tr>
+                        
+                        </tbody>
+                    </table>}
+                    <br />
+                    {user?.rol === 'Cuenta personal'  && item === 'Comision' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
+                        <thead className="text-[10px] text-white uppercase bg-gray-900 z-20">
+                            <tr>
+                              
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">01/12 - 07/12</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">LUNES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">MARTES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">MIÉRCOLES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">JUEVES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">VIERNES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">SÁBADO</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">DOMINGO</th>
+                             
+                                <th></th>
+                                <th></th> 
+                                 </tr>
+                            <tr>
+                                
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">DETALLE</th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                    {getDay((-2)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((11)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                    {getDay((0)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((1)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((2)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((3)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((4)).val}
+                                </th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">Porcentaje <br /> semanal alcanzado</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">VALOR SEMANAL  <br />  ENTREGADO</th>
+                          
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr  className='text-[12px]'>
+                                 
+                                    <td className="px-4 py-2 border border-gray-200 bg-gray-200">Recoleccion final</td>
+                                    <td className={`px-4 py-2 border border-gray-20`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                </tr>
+                                <tr  className='text-[12px]'>
+                                    
+                                    <td className="px-4 py-2 border border-gray-200 bg-gray-200">Porcentaje alcanzado</td>
+                                    <td className={`px-4 py-2 border border-gray-20`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                </tr>
+                                <tr  className='text-[12px]'>
+                                   
+                                    <td className="px-4 py-2 border border-gray-200 bg-gray-200">Valor entregado</td>
+                                    <td className={`px-4 py-2 border border-gray-20`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>5.00 $</td>
+                                </tr>
+                        
+                        </tbody>
+                    </table>}
+                    <br />
+                    {user?.rol === 'Cuenta personal'  && item === 'Comision' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
+                        <thead className="text-[10px] text-white uppercase bg-gray-900  z-20">
+                            <tr>
+                              
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">01/12 - 07/12</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">LUNES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">MARTES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">MIÉRCOLES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">JUEVES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">VIERNES</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">SÁBADO</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">DOMINGO</th>
+                             
+                                <th></th>
+                                <th></th> 
+                                 </tr>
+                            <tr>
+                                
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">DETALLE</th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                    {getDay((-2)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((11)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                    {getDay((0)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((1)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((2)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((3)).val}
+                                </th>
+                                <th scope="col" className=" px-3 py-1 text-white text-center">
+                                    {getDay((4)).val}
+                                </th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">Porcentaje <br /> semanal alcanzado</th>
+                                <th colSpan="1" className="px-4 py-2 text-white text-center">VALOR SEMANAL  <br />  ENTREGADO</th>
+                          
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr  className='text-[12px]'>
+                                 
+                                    <td className="px-4 py-2 border border-gray-200 bg-gray-200">Recoleccion final</td>
+                                    <td className={`px-4 py-2 border border-gray-20`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                </tr>
+                                <tr  className='text-[12px]'>
+                                    
+                                    <td className="px-4 py-2 border border-gray-200 bg-gray-200">Porcentaje alcanzado</td>
+                                    <td className={`px-4 py-2 border border-gray-20`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>25/50</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>25/50</td>
+                                </tr>
+                                <tr  className='text-[12px]'>
+                                   
+                                    <td className="px-4 py-2 border border-gray-200 bg-gray-200">Valor entregado</td>
+                                    <td className={`px-4 py-2 border border-gray-20`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200`}>5.00 $</td>
+                                    <td className={`px-4 py-2 border border-gray-200 `}>5.00 $</td>
+                                </tr>
+                        
+                        </tbody>
+                    </table>}
+
+
+
+
+
 
             <div className="overflow-x-auto">
                 <div className="max-h-[calc(100vh-90px)] overflow-y-auto relative scroll-smooth" ref={refFirst}>
@@ -2724,6 +2980,130 @@ export default function Home() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+                    {user?.rol === 'Cuenta personal'  && item === 'Control de casos' && <table className="w-full min-w-[1500px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
+                        <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
+                            {/* <tr>
+        <th className="px-4 py-2 text-white" colSpan="3">Columna 1</th>
+        <th className="px-4 py-2 text-white" colSpan="3">Columna 2</th>
+        <th className="px-4 py-2 text-white" colSpan="3">Columna 3</th>
+    </tr> */}
+
+                            <tr className=' bg-gray-800'>
+                                <th className='px-3 py-2'> <input type="checkbox" /></th>
+                                <th className="px-4 py-2 text-white">Segmento</th>
+                                <th className="px-4 py-2 text-white">Nombre</th>
+
+                                <th className="px-4 py-2 text-white">Usuario asignado</th>
+
+
+                                <th className="px-4 py-2 text-white">Cantidad de casos</th>
+                                <th className="px-4 py-2 text-white">Porcentaje a alcanzar</th>
+                                <th className="px-4 py-2  text-yellow-400">Pagos 10:00 aM</th>
+                                <th className="px-4 py-2 text-white">PTP</th>
+                                <th className="px-4 py-2  text-yellow-400">Pagos 2:00 PM</th>
+                                <th className="px-4 py-2 text-white">PTP</th>
+                                <th className="px-4 py-2  text-yellow-400">Pagos 4:00 PM</th>
+                                <th className="px-4 py-2 text-white">PTP</th>
+                                <th className="px-4 py-2 text-white">Pagos alcanzados</th>
+                                <th className="px-4 py-2 text-white">Taza de recuperacion</th>
+                            
+
+
+                            </tr>
+                          
+                        </thead>
+                        <tbody>
+                            {cobradores.map((cobrador, index) => (
+                                <tr key={index} className={`bg-gray-100 border-b text-[12px] ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'}`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+                                    <td className="px-4 py-2">{cobrador.id}</td>
+                                    <td className="px-4 py-2">{cobrador.nombre}</td>
+                                    <td className="px-4 py-2">{cobrador.usuario}</td>
+                                    <td className="px-4 py-2">{cobrador.casos}</td>
+
+                                    <td className="px-4 py-2">{cobrador.pagosHoy}</td>
+                                    <td className="px-4 py-2 bg-yellow-400">{cobrador.ptp2pm}</td>
+                                    <td className="px-4 py-2">{cobrador.ptp6pm}</td>
+                                    <td className="px-4 py-2 bg-yellow-400">{cobrador.llamadas3pm}</td>
+                                    <td className="px-4 py-2">{cobrador.ptp10am}</td>
+                                    <td className="px-4 py-2">{cobrador.llamadasElDiaSiguiente}</td>
+                                    <td className="px-4 py-2 bg-yellow-400">{cobrador.llamadasFinales}</td>
+                                    <td className="px-4 py-2">{cobrador.tasaFinal}</td>
+                                    <td className="px-4 py-2 bg-yellow-400">{cobrador.porcentajeTasaFinal}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>}
+
+
+
+
+                    {user?.rol === 'Cuenta personal'  && item === 'Gestion de auditoria' && <table className="w-full min-w-[1500px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
+                        <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
+                 
+
+                            <tr className=' bg-gray-800'>
+                                <th className='px-3 py-2'> <input type="checkbox" /></th>
+                                <th className="px-4 py-2 text-white">Id Auditor</th>
+                                <th className="px-4 py-2 text-white">Nombre del auditor</th>
+
+                                <th className="px-4 py-2 text-white">Usuario asignado</th>
+
+
+                                <th className="px-4 py-2 text-white">Nombre del operador</th>
+                                <th className="px-4 py-2 text-yellow-400">Observacion</th>
+                                <th className="px-4 py-2  text-white ">Amonestacion</th>
+                                <th className="px-4 py-2 text-yellow-400">Valor de multa</th>
+                                <th className="px-4 py-2  text-white">Estado de multa</th>
+                                <th className="px-4 py-2 text-white">Fecha de creacion</th>
+                              
+
+                            </tr>
+                          
+                        </thead>
+                        <tbody>
+                            {cobradores.map((cobrador, index) => (
+                                 <tr key={index} className={`bg-gray-100 border-b text-[12px] ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'}`}>
+                                 <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-100'} ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                     <input type="checkbox" />
+                                 </td>
+                                 <td className="px-4 py-2">{cobrador.id}</td>
+                                 <td className="px-4 py-2">{cobrador.nombre}</td>
+                                 <td className="px-4 py-2">{cobrador.usuario}</td>
+                                 <td className="px-4 py-2">{cobrador.nombre}</td>
+
+                                 <td className="px-4 py-2 bg-yellow-400">Con observacion</td>
+                                 <td className="px-4 py-2">Operativa</td>
+                                 <td className="px-4 py-2 bg-yellow-400"> $ 10</td>
+                                 <td className="px-4 py-2">Aprobada</td>
+                                 <td className="px-4 py-2">01/12/2024 10:00 am</td>
+                                 
+                             </tr>
+                            ))}
+                        </tbody>
+                    </table>}
+
+
+                    {user?.rol === 'Cuenta personal'  && item === 'Asistencia' && <div>
+                        <img src='/perfil.png' className='h-[150px]'/>
+                        <span> Nombre:</span><span> Kiara Palacios</span>
+                        <span> Apellido:</span>
+                        
+                        
+                        
+                        </div>}
 
 
 

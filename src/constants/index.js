@@ -465,6 +465,36 @@ const menuArray = {
   //     length: 'h-[0px]'
   //   }
   // ],
+
+  ['Cuenta personal']: [
+    {
+      icon: <IdentificationIcon className="h-6 w-6" />,
+      hash: 'Centro',
+      title: "Centro de notificaciones",
+      options: [
+        { subtitle: "Control de casos", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Gestion de auditoria", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Asistencia", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Comision", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
+        { subtitle: "Informacion personal", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
+
+      ],
+      length: 'h-[0px]'
+    }
+  ],
+
+
+
+
+
+
+
+
+
+
+
+
+
   ['Super Admin']: [
     {
       icon: <CircleStackIcon className="h-6 w-6" />,
@@ -478,6 +508,7 @@ const menuArray = {
         { subtitle: "Registro de SMS", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
         { subtitle: "Reporte diario", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
         { subtitle: "Asistencia", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
+        
       ],
       length: 'h-[380px]'
     },
@@ -514,6 +545,20 @@ const menuArray = {
         { subtitle: "Gestión de administradores", icon: <OutlineUsersIcon className="h-5 w-5" /> },
         { subtitle: "Gestión de managers", icon: <OutlineUsersIcon className="h-5 w-5" /> },
         { subtitle: "Gestión de asesores", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
+      ],
+      length: 'h-[0px]'
+    },
+    {
+      icon: <IdentificationIcon className="h-6 w-6" />,
+      hash: 'Centro',
+      title: "Centro de notificaciones",
+      options: [
+        { subtitle: "Control de casos", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Gestion de auditoria", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Asistencia", icon: <OutlineUsersIcon className="h-5 w-5" /> },
+        { subtitle: "Comision", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
+        { subtitle: "Informacion personal", icon: <OutlineUserGroupIcon className="h-5 w-5" /> },
+
       ],
       length: 'h-[0px]'
     }
