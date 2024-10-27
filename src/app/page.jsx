@@ -46,7 +46,7 @@ export default function Home() {
       switch (e.target[0].value) {
         case 'Personal001':
           setUser({ rol: 'Cuenta personal' })
-          router.push(`/Home`)
+          router.push(`/Home?seccion=Centro&item=Control%20de%20casos`)
           break;
         case 'UserVe001':
           setUser({ rol: 'Usuario de Verificación' })
@@ -142,8 +142,14 @@ export default function Home() {
   console.log()
   return (
     <div className='relative w-screen h-screen flex flex-col justify-center items-center p-5  bg-gradient-to-t md:bg-gradient-to-tl from-gray-900 from-50% to-gray-200 to-50%'>
-      {/* <img src="bg.jpg" className='fixed top-0 left-0 h-screen w-screen object-cover' alt="" /> */}
-      {/*  <div className='fixed top-0 left-0 h-screen w-screen bg-[#00000052] z-20'></div> */}
+   
+   
+   
+   
+   
+   
+      <img src="bg2.jpg" className='fixed top-0 left-0 h-screen w-screen object-cover' alt="" />
+       <div className='fixed top-0 left-0 h-screen w-screen bg-[#131920da] z-20'></div>
       <span className='absolute top-[20px] left-[30px] z-30 text-[60px] bg-gradient-to-r from-blue-400 from-50%  to-orange-400 to-50% bg-clip-text text-transparent'  > Fast Cash</span>
 
       {/* <img src="/bg-top.png" className='absolute top-0 right-0 h-[30vh] z-20' alt="" />
@@ -154,21 +160,21 @@ export default function Home() {
      
 
       </div> */}
-      <form className={`relative w-full max-w-[400px] space-y-3 shadow-2xl  bg-gray-100 rounded-[10px] px-5 py-8 z-[50]`} onSubmit={onSubmitWithReCAPTCHA} >
+      <form className={`relative w-full max-w-[400px] space-y-3 shadow-2xl  bg-[#39444e80] rounded-[10px] px-5 py-8 z-50`} onSubmit={onSubmitWithReCAPTCHA} >
         {/* <form className={`w-full max-w-[450px] space-y-4 border-[1px] border-white shadow-2xl shadow-white px-5 py-10`} onSubmit={!isDisable ? signInHandler : (e) => e.preventDefault()} > */}
         <img src="user.svg" className='relative right-0 left-0  mx-auto h-[100px] w-[100px] ' alt="" />
 
-        <h5 className="text-[20px] text-center text-gray-800" >Login</h5>
+        <h5 className="text-[20px] text-center text-gray-50" >Login</h5>
         <div >
-          <label htmlFor="email" className="block mb-2 text-[14px] text-left font-medium text-gray-800">User</label>
+          <label htmlFor="email" className="block mb-2 text-[14px] text-left font-medium text-gray-50">User</label>
           <Input type="text" name="user" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " placeholder="User123" />
         </div>
         <div>
-          <label htmlFor="password" className="block mb-2 text-[14px] text-left  font-medium text-gray-800">Contraseña</label>
+          <label htmlFor="password" className="block mb-2 text-[14px] text-left  font-medium text-gray-50">Contraseña</label>
           <InputPass type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " />
         </div>
         {/* <div >
-          <label htmlFor="cod" className="block mb-2 text-[14px] text-left font-medium text-gray-800">Codigo de Validación</label>
+          <label htmlFor="cod" className="block mb-2 text-[14px] text-left font-medium text-gray-50">Codigo de Validación</label>
           <Input type="text" name="user" id="cod" className="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " placeholder="User123" />
         </div>
 
@@ -182,7 +188,7 @@ export default function Home() {
           />
         </div>
         <Button type="submit" theme="Primary">Iniciar Sesión</Button>
-        {/* <div className="text-[14px] text-center font-medium text-gray-800 underline cursor-pointer">Solicitar Codigo de validacion<Link href="#" className="text-gray-400 underline"></Link ></div> */}
+        {/* <div className="text-[14px] text-center font-medium text-gray-50 underline cursor-pointer">Solicitar Codigo de validacion<Link href="#" className="text-gray-400 underline"></Link ></div> */}
       </form>
     </div>
   )
