@@ -511,8 +511,7 @@ const menuArray = {
         { subtitle: "Registro Histórico", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
         { subtitle: "Monitoreo de Transacciones", icon: <OutlinePresentationChartLineIcon className="h-5 w-5" /> },
         { subtitle: "Control de Cumplimiento", icon: <OutlineCheckCircleIcon className="h-5 w-5" /> },
-        { subtitle: "Auditoria Periódica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        
+        { subtitle: "Auditoria Periodica", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
         { subtitle: "Atención al Cliente", icon: <OutlineUsersIcon className="h-5 w-5" /> }
       ],
       length: 'h-[230px] overflow-auto'
@@ -754,20 +753,12 @@ const menuArray = {
 
 const filtro_1 = [
   'Todo',
-  'BEC',
-  'PRF',
-  'CRI',
-  'DNP',
-  'SPF',
-  'SPCA',
-  'EFIN',
-  'CESE',
-  'SPCR',
-  'GOCE',
-  'CLPA',
-  'MSFN',
-  'FNIN',
-  'MSLO']
+  'Fast Cash',
+  'Arrow Loan',
+  'Eazy Money',
+  'Will Cash',
+  'Clean Ticket',
+]
 const rangesArray = [
   'D1(-1,-1)',
   'D2(-2,-2)',

@@ -728,7 +728,7 @@ export default function Home() {
     const liquidacion = [
         "Seleccionar",
 
-        "ID de pedito",
+        "ID de pedido",
         "ID de préstamo",
         "Cantidad prestada",
         "Cantidad recibida",
@@ -750,6 +750,33 @@ export default function Home() {
         "Ha llegado a la cuenta"
     ];
 
+
+
+    const auditoriaPeriodica = [
+        "Seleccionar",
+        "ID auditor",
+        "Nombre del auditor",
+        "Usuario designado",
+        "Nombre del operador",
+        "Observación",
+        "Amonestacion",
+        "Valor de multa",
+        "Estado de multa",
+        "Fecha de creacion",
+        "Operar"
+    ];
+
+    const auditoriaPeriodica2 = [
+        "16184477",
+        "Alan Montenegro",
+        "Alan001",
+        "Kiara Palacios",
+        "Con observacion",
+        "Operativa",
+        "$ 10.00",
+        "Aprobado",
+        "12/12/2024 12:00 pm"
+    ];
     useEffect(() => {
         user === undefined && router.push('/')
     }, [])
@@ -2117,28 +2144,6 @@ export default function Home() {
                 </div>}
 
             {/* -----------------------  Tablas  ---------------------------*/}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             {item === 'Flujo de Clientes' &&
@@ -3883,6 +3888,221 @@ export default function Home() {
                                 </tr>
                             </tbody>
                         </table>
+                    }
+
+                    {(item === 'Monitoreo de Transacciones') &&
+                        <table className="min-w-full " >
+                            <thead className="bg-gray-900 text-[10px]  uppercase sticky top-[0px] z-20">
+
+                                <tr className='text-[white] min-w-[2500px]'>
+
+                                    {liquidacion.map((encabezado, index) => (
+                                        <th scope="col" key={index}
+                                            className={`  ${(encabezado === 'Operaciones' || encabezado === "Seleccionar") ? 'text-center' : 'text-left'} w-[50px] px-3 py-3 text-white
+                                            ${index < 10 ? (selectedLeft === index ? 'sticky left-0 z-20 bg-gray-800' : 'bg-gray-900') : (selectedRight === index ? 'sticky right-0 z-20 bg-gray-800' : 'bg-gray-900')}`}
+                                            onClick={() => handlerSelected(index < 10 ? 'LEFT' : 'RIGHT', index)}>
+                                            {encabezado === "Seleccionar" ? <input type="checkbox" /> : encabezado}
+                                        </th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-200 bg-gray-200 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-200  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-300 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-300  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-200 bg-gray-200 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-200  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-300 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-300  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-200 bg-gray-200 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-200  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+
+                                <tr className={`text-[12px] border-b`}>
+                                    <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-300 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                        <input type="checkbox" />
+                                    </td>
+
+
+                                    {liquidacion2.map((item, index) => (
+
+
+                                        <td className={`px-3 py-2  bg-gray-300  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                    ))}
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+
+
+
+
+
+
+
+
+
+                    {console.log(item)}
+
+
+                    {item === 'Auditoria Periodica' && <table className="min-w-full " >
+                        <thead className="bg-gray-900 text-[10px]  uppercase sticky top-[0px] z-20">
+
+                            <tr className='text-[white] min-w-[2500px]'>
+
+                                {auditoriaPeriodica.map((encabezado, index) => (
+                                    <th scope="col" key={index}
+                                        className={`  ${(encabezado === 'Operaciones' || encabezado === "Seleccionar") ? 'text-center' : 'text-left'} w-[50px] px-3 py-3 text-white
+                                            ${index < 10 ? (selectedLeft === index ? 'sticky left-0 z-20 bg-gray-800' : 'bg-gray-900') : (selectedRight === index ? 'sticky right-0 z-20 bg-gray-800' : 'bg-gray-900')}`}
+                                        onClick={() => handlerSelected(index < 10 ? 'LEFT' : 'RIGHT', index)}>
+                                        {encabezado === "Seleccionar" ? <input type="checkbox" /> : encabezado}
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+
+
+
+
+
+                            <tr className={`text-[12px] border-b`}>
+                                <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-300 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                    <input type="checkbox" />
+                                </td>
+
+
+                                {auditoriaPeriodica2.map((item, index) => (
+
+
+                                    <td className={`px-3 py-2  bg-gray-300  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                ))}
+                                
+
+                                <td className={`px-3 py-2 text-[12px] border-b bg-gray-30 bg-gray-300`}>
+                                    <div className='flex justify-between flex space-x-3'>
+                                        <Link href={`/Home?seccion=auditoria&item=Casos%20de%20Cobranza`} className=''>
+                                            <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Observacion</button>
+
+                                        </Link>
+
+                                        <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal('Registrar Auditor')}>Multa</button>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+
+
+                            <tr className={`text-[12px] border-b`}>
+                                <td className={`px-3 py-2 text-[12px] border-b text-center bg-gray-300 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                    <input type="checkbox" />
+                                </td>
+
+
+                                {auditoriaPeriodica2.map((item, index) => (
+
+
+                                    <td className={`px-3 py-2  bg-gray-300  ${selectedLeft === 4 ? 'sticky left-0 z-10' : ''}`}>{item}</td>
+
+
+                                ))}
+
+
+
+
+                                <td className={`px-3 py-2 text-[12px] border-b bg-gray-30 bg-gray-300`}>
+                                    <div className='flex justify-between flex space-x-3'>
+                                        <Link href={`/Home?seccion=auditoria&item=Casos%20de%20Cobranza`} className=''>
+                                            <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Observacion</button>
+
+                                        </Link>
+
+                                        <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal('Registrar Auditor')}>Multa</button>
+
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
                     }
 
 
