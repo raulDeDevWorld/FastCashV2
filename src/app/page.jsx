@@ -139,6 +139,26 @@ export default function Home() {
     document.documentElement.classList.add(savedTheme);
   }, []);
 
+
+// Realizar una solicitud GET
+fetch('https://backend-fast-cash.vercel.app/api/data')
+  .then(response => {
+    // Verifica si la respuesta es exitosa
+    if (!response.ok) {
+      throw new Error('Error en la red: ' + response.status);
+    }
+    return response.json(); // Convierte la respuesta a JSON
+  })
+  .then(data => {
+    console.log(data); // Imprime los datos en la consola
+  })
+  .catch(error => {
+    console.error('Hubo un problema con la solicitud Fetch:', error); // Maneja errores
+  });
+
+
+
+
   console.log()
   return (
     <div className='relative w-screen h-screen flex flex-col justify-center items-center p-5  bg-gradient-to-t md:bg-gradient-to-tl from-gray-900 from-50% to-gray-200 to-50%'>
