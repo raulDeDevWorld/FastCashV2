@@ -695,8 +695,9 @@ const menuArray = {
       options: [
         { subtitle: "Recolección y Validación de Datos", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
         { subtitle: "Lista final", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
-        { subtitle: "Usuarios de verificación", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
-
+        { subtitle: "Usuarios de verificación", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
+        { subtitle: "Reporte diario", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
+        { subtitle: "Asistencia", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
       ],
       length: 'h-[100px]'
     },

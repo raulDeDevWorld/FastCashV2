@@ -386,6 +386,12 @@ export default function Home() {
         ['Recursos Humanos']: ['Admin', 'Manager de Auditoria', 'Manager de Cobranza', 'Manager de Verificación', 'Asesor de Auditoria', 'Asesor de Cobranza', 'Asesor de Verificación'],
         ['Super Admin']: ['RH', 'Admin', 'Manager de Auditoria', 'Manager de Cobranza', 'Manager de Verificación', 'Asesor de Auditoria', 'Asesor de Cobranza', 'Asesor de Verificación']
     }
+
+
+
+
+
+    
     console.log(editItem)
 
 
@@ -2127,7 +2133,7 @@ export default function Home() {
             }
 
 
-            {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza') && item === 'Asistencia' &&
+            {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza'  || user.rol === 'Manager de Auditoria'  || user.rol === 'Manager de Verificación') && item === 'Asistencia' &&
                 <div>
 
 
@@ -2342,14 +2348,6 @@ export default function Home() {
                     </tbody>
                 </table>
             }
-
-
-
-
-
-
-
-
 
 
 
@@ -2607,9 +2605,6 @@ export default function Home() {
 
 
 
-
-
-
             <div className="overflow-x-auto">
                 <div className="max-h-[calc(100vh-90px)] overflow-y-auto relative scroll-smooth" ref={refFirst}>
 
@@ -2618,7 +2613,7 @@ export default function Home() {
 
 
 
-
+{/* Rol  Super Admin */}
 
 
 
@@ -2918,7 +2913,7 @@ export default function Home() {
                         </table>
                     )}
 
-                    {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza') && item === 'Asistencia' && <table className="w-full min-w-[1000px] bg-white text-[14px] text-left text-gray-500 border-t-4  shadow">
+                    {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza'  || user.rol === 'Manager de Cobranza'  || user.rol === 'Manager de Auditoria'  || user.rol === 'Manager de Verificación') && item === 'Asistencia' && <table className="w-full min-w-[1000px] bg-white text-[14px] text-left text-gray-500 border-t-4  shadow">
 
 
                         <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
@@ -2982,7 +2977,7 @@ export default function Home() {
                         </tbody>
                     </table>}
 
-                    {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza') && item === 'Reporte diario' && <table className="w-full min-w-[2000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
+                    {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza'  || user.rol === 'Manager de Cobranza'  || user.rol === 'Manager de Auditoria'  || user.rol === 'Manager de Verificación') && item === 'Reporte diario' && <table className="w-full min-w-[2000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
                         <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
 
 
@@ -4115,13 +4110,6 @@ export default function Home() {
 
 
 
-
-
-
-
-
-
-                    {console.log(item)}
 
 
                     {item === 'Auditoria Periodica' && <table className="min-w-full " >
