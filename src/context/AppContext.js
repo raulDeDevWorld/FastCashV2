@@ -11,7 +11,7 @@ const AppContext = createContext();
 
 export function AppProvider({ children }) {
 
-	const [user, setUser] = useState(undefined)
+	const [user, setUser] = useState({ rol: 'Super Admin' })
 	const [users, setUsers] = useState(undefined)
 	const [userDB, setUserDB] = useState(undefined)
     const [subItemNav, setSubItemNav] = useState('Casos de Cobranza')
@@ -54,7 +54,7 @@ export function AppProvider({ children }) {
 	const [state, setState] = useState('Remesas')
 	const [nav, setNav] = useState(false)
 	const [userNav, setUserNav] = useState(false)
-	const [modal, setModal] = useState('modal')
+	const [modal, setModal] = useState('')
 	const [currency, setCurrency] = useState("BOB");
 	const [select, setSelect] = useState('BOB')
 	const [select2, setSelect2] = useState('USD')
@@ -77,6 +77,8 @@ export function AppProvider({ children }) {
 	const [transferencia, setTransferencia] = useState('')
 	const [comision, setComision] = useState('')
 	const [item, setItem] = useState(null)
+
+	const [itemSelected, setItemSelected] = useState(null)
 	const [qr, setQr,] = useState(null)
 	const [QRurl, setQRurl,] = useState(null)
 
@@ -125,7 +127,7 @@ export function AppProvider({ children }) {
 			select,
 			users,
 			destinatario,
-
+itemSelected, setItemSelected,
 			isOpen, setIsOpen,isOpen2, setIsOpen2,
 
 			fondoPrimario, setFondoPrimario,
