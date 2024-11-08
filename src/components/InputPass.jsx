@@ -33,7 +33,7 @@ export default function Button({ click, type, name, onChange, reference, placeho
                 required={require ? true : false}
                 defaultValue={defValue}
                 value={valu}
-                disabled
+                disabled={disabled}
             />
             {name == 'password'  && <span className="flex items-center absolute cursor-pointer top-0 right-5 bottom-0  my-auto" onClick={()=> setShowPassword(!showPassword)}>
                 <svg width="22" height="22" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

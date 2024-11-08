@@ -41,10 +41,8 @@ export default function Home() {
     ) {
       setUser({ rol: e.target[0].value })
 
-
       switch (e.target[0].value) {
         case 'UserVe001':
-          setUser({ rol: 'Usuario de Verificación' })
           router.push(`/Home?seccion=${menuArray['Usuario de Verificación'][0].hash}&item=${menuArray['Usuario de Verificación'][0].options[0].subtitle}`)
           break;
         case 'UserCo001':
@@ -71,10 +69,10 @@ export default function Home() {
           setUser({ rol: 'Admin' })
           router.push(`/Home?seccion=${menuArray['Admin'][0].hash}&item=${menuArray['Admin'][0].options[0].subtitle}`)
           break;
-          case 'RH001':
-            setUser({ rol: 'Recursos Humanos' })
-            router.push(`/Home?seccion=${menuArray['Recursos Humanos'][0].hash}&item=${menuArray['Recursos Humanos'][0].options[0].subtitle}`)
-            break;
+        case 'RH001':
+          setUser({ rol: 'Recursos Humanos' })
+          router.push(`/Home?seccion=${menuArray['Recursos Humanos'][0].hash}&item=${menuArray['Recursos Humanos'][0].options[0].subtitle}`)
+          break;
         case 'SuperAdmin001':
           setUser({ rol: 'Super Admin' })
           router.push(`/Home?seccion=${menuArray['Super Admin'][0].hash}&item=${menuArray['Super Admin'][0].options[0].subtitle}`)
@@ -83,19 +81,11 @@ export default function Home() {
           console.log(`Sorry, we are out of ${expr}.`);
       }
 
-
-
-
-
     } else {
 
     }
 
-
-
     // captcha.length > 10 && router.push('/Home?seccion=coleccion&item=Casos%20de%20Cobranza')
-
-
   }
 
 
@@ -133,10 +123,10 @@ export default function Home() {
       {/*  <div className='fixed top-0 left-0 h-screen w-screen bg-[#00000052] z-20'></div> */}
       <span className='absolute top-[20px] left-[30px] z-30 text-[60px] bg-gradient-to-r from-blue-400 from-50%  to-orange-400 to-50% bg-clip-text text-transparent'  > Fast Cash</span>
       <img src="bg2.jpg" className='fixed top-0 left-0 h-screen w-screen object-cover' alt="" />
-       <div className='fixed top-0 left-0 h-screen w-screen bg-[#131920da] ] z-20'></div>
+      <div className='fixed top-0 left-0 h-screen w-screen bg-[#131920da] ] z-20'></div>
       {/* <img src="/bg-top.png" className='absolute top-0 right-0 h-[30vh] z-20' alt="" />
       <img src="/bg-bottom.png" className='absolute bottom-0 left-0 h-[40vh] z-20' alt="" /> */}
-   {/* <img src="bg.jpg" className='fixed top-0 left-0 h-[50vh] w-screen object-cover' alt="" />
+      {/* <img src="bg.jpg" className='fixed top-0 left-0 h-[50vh] w-screen object-cover' alt="" />
      <div className='fixed top-0 left-0 h-[50vh] w-screen bg-[#000000b6] z-20'></div> */}
       {/* <div className='absolute bottom-0 bg-gray-900 h-[50%] w-full overflow-hidden'>
      

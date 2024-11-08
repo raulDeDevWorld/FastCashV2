@@ -380,7 +380,6 @@ const menuArray = {
       length: 'h-[150px]'
     },
   ],
-
 }
 
 

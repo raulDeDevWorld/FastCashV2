@@ -12,11 +12,10 @@ import dynamic from 'next/dynamic';
 import { useTheme } from '@/context/ThemeContext';
 import InputPass from '@/components/InputPass'
 import Table from '@/components/Table'
-
 // import Velocimetro from '@/components/Velocimetro'
 const Velocimetro = dynamic(() => import("@/components/Velocimetro"), { ssr: false, });
 import FormAddAccount from '@/components/AddAccount'
-
+import Alert from '@/components/Alert'
 
 import {
     refunds, historial,
@@ -55,7 +54,7 @@ export default function Home() {
 
     const router = useRouter()
     const [texto, setTexto] = useState('');
-    const { user, userDB, setUserProfile, users, modal, setModal, setUsers, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario, itemSelected, setItemSelected } = useAppContext()
+    const { user, userDB, setUserProfile, users, alerta, setAlerta, modal, setModal, loader, setLoader, setUsers, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario, itemSelected, setItemSelected } = useAppContext()
     const [filter, setFilter] = useState({
         nombreProducto: 'Todo',
         ['Minimo dias vencido']: 0,
@@ -659,10 +658,17 @@ export default function Home() {
 
 
 
-
-
-
-
+            {alerta === 'Operación exitosa!' && <Alert
+                type={'success'}
+                duration={5000}
+                onClose={() => setAlerta('')}
+            >{alerta}</Alert>}
+            {alerta === 'Error de datos!' && <Alert
+                type={'error'}
+                duration={5000}
+                onClose={() => setAlerta('')}
+            >{alerta}</Alert>}
+            {loader === 'Guardando...' && <Loader>Guardando...</Loader>}
 
 
 
@@ -2293,14 +2299,85 @@ export default function Home() {
                         />
                     }
                     {
-                        (item === 'Gestión de administradores' || item === 'Gestión de RH' || item === 'Gestión de managers' || item === 'Gestión de asesores' || item === 'Gestión de cuentas personales') && <Table
+                        (item === 'Gestión de administradores') && <Table
                             access={true}
                             headArray={encabezadoGestionDeAccesos}
-                            dataFilter={(i) => i?.estadoDeCredito.toLowerCase() === 'aprobado' || i.estadoDeCredito.toLowerCase() === 'reprobado'}
-                            local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/data'}
+                            dataFilter={(i) => i.tipoDeGrupo === 'Admin'}
+                            local={'http://localhost:3000/api/auth/users'}
+                            server={'http://18.220.249.246/api/auth/users'}
                         />
                     }
+                    {
+                        (item === 'Gestión de RH') && <Table
+                            access={true}
+                            headArray={encabezadoGestionDeAccesos}
+                            dataFilter={(i) => i?.tipoDeGrupo?.toLowerCase().includes('recursos humanos')}
+                            local={'http://localhost:3000/api/auth/users'}
+                            server={'http://18.220.249.246/api/auth/users'}
+                        />
+                    }
+
+                    {
+                        (item === 'Gestión de managers') && <Table
+                            access={true}
+                            headArray={encabezadoGestionDeAccesos}
+                            dataFilter={(i) => i?.tipoDeGrupo?.toLowerCase().includes('manager')}
+                            local={'http://localhost:3000/api/auth/users'}
+                            server={'http://18.220.249.246/api/auth/users'}
+                        />
+                    }
+                    {
+                        (item === 'Gestión de asesores') && <Table
+                            access={true}
+                            headArray={encabezadoGestionDeAccesos}
+                            dataFilter={(i) => i?.tipoDeGrupo?.toLowerCase().includes('asesor')}
+                            local={'http://localhost:3000/api/auth/users'}
+                            server={'http://18.220.249.246/api/auth/users'}
+                        />
+                    }
+                    {
+                        (item === 'Gestión de cuentas personales') && <Table
+                            access={true}
+                            headArray={encabezadoGestionDeAccesos}
+                            dataFilter={(i) => i.tipoDeGrupo === 'Cuenta personal'}
+                            local={'http://localhost:3000/api/auth/users'}
+                            server={'http://18.220.249.246/api/auth/users'}
+                        />
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Auditoria' || user.rol === 'Manager de Verificación') && item === 'Asistencia' && <table className="w-full min-w-[1000px] bg-white text-[14px] text-left text-gray-500 border-t-4  shadow">
 

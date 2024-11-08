@@ -12,7 +12,7 @@ const Table = ({
     local,
     server
 }) => {
-    const { user, userDB, setUserProfile, users, setUsers, setModal, itemSelected, setItemSelected, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario } = useAppContext()
+    const { user, userDB,loader, setUserProfile, users, setUsers, setModal, itemSelected, setItemSelected, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario } = useAppContext()
 
 
     const [data, setData] = useState([])
@@ -37,21 +37,20 @@ const Table = ({
             .replace(/^[A-Z]/, firstChar => firstChar.toLowerCase());
     };
 
-function handlerVerification (i) {
-    setModal('Registrar Verificacion')
-    itemSelected, setItemSelected(i)
-}
+    function handlerVerification(i) {
+        setModal('Registrar Verificacion')
+        itemSelected, setItemSelected(i)
+    }
     async function handlerFetch() {
         const res = await fetch(window?.location?.href.includes('localhost') ? local : server)
         const data = await res.json()
         console.log(data)
         setData(data)
-
     }
 
     useEffect(() => {
         handlerFetch()
-    }, [])
+    }, [loader])
 
 
     return (
@@ -116,7 +115,7 @@ function handlerVerification (i) {
                                                     </svg>
                                                 </a>
                                             </div>}
-{console.log(item)}
+                                        {console.log(item)}
                                         {item.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
                                             <Link href={`/Home/Datos?seccion=info`} className=''>
                                                 <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Visitar</button>

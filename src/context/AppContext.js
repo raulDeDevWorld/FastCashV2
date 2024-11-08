@@ -14,14 +14,15 @@ export function AppProvider({ children }) {
 	const [user, setUser] = useState({ rol: 'Super Admin' })
 	const [users, setUsers] = useState(undefined)
 	const [userDB, setUserDB] = useState(undefined)
-    const [subItemNav, setSubItemNav] = useState('Casos de Cobranza')
-
+	const [subItemNav, setSubItemNav] = useState('Casos de Cobranza')
+	const [alerta, setAlerta] = useState('')
 	const [theme, setTheme] = useState('light');
 
+	const [loader, setLoader] = useState('');
 
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [isOpen2, setIsOpen2] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen2, setIsOpen2] = useState(false);
 
 
 
@@ -71,7 +72,7 @@ export function AppProvider({ children }) {
 	const [webScann, setWebScann] = useState(null)
 	const [filter, setFilter] = useState(null)
 	const [filterQR, setFilterQR] = useState(null)
-    const [transactionDB, setTransactionDB] = useState(undefined)
+	const [transactionDB, setTransactionDB] = useState(undefined)
 	const [navItem, setNavItem] = useState(undefined)
 
 	const [transferencia, setTransferencia] = useState('')
@@ -90,7 +91,7 @@ export function AppProvider({ children }) {
 
 	const webcamRef1 = useRef(null);
 	const webcamRef2 = useRef(null);
-	const webcamRef3 = useRef(null);      
+	const webcamRef3 = useRef(null);
 
 
 
@@ -108,7 +109,7 @@ export function AppProvider({ children }) {
 				console.log('timer')
 				return clearTimeout(timer)
 			}, 6000)
-		
+
 		}
 
 	}
@@ -127,15 +128,15 @@ export function AppProvider({ children }) {
 			select,
 			users,
 			destinatario,
-itemSelected, setItemSelected,
-			isOpen, setIsOpen,isOpen2, setIsOpen2,
-
+			itemSelected, setItemSelected,
+			isOpen, setIsOpen, isOpen2, setIsOpen2,
+			loader, setLoader,
 			fondoPrimario, setFondoPrimario,
 			fondoSecundario, setFondoSecundario,
 			fondoTerciario, setFondoTerciario,
 			idioma, setIdioma,
 			theme, setTheme,
-
+			alerta, setAlerta,
 			image1, setImage1, image2, setImage2, image3, setImage3,
 			webcamRef1, item, setItem,
 			webcamRef2,
@@ -158,13 +159,13 @@ itemSelected, setItemSelected,
 			isSelect3, setIsSelect3,
 			isSelect4, setIsSelect4,
 			isSelect5, setIsSelect5,
-			fecha, setFecha, qr, setQr, QRurl, 
+			fecha, setFecha, qr, setQr, QRurl,
 			select3, setSelect3,
 			countries, setCountries,
 			destinatarios, setDestinatarios,
 			enviosDB, setEnviosDB,
 			cambiosDB, setCambiosDB,
-			setQRurl, 
+			setQRurl,
 
 			setDestinatario,
 			setUsers,
@@ -182,9 +183,10 @@ itemSelected, setItemSelected,
 
 	}, [user, userDB,
 		theme,
+		alerta,
 		fondoPrimario,
-			fondoSecundario,
-			fondoTerciario, subItemNav,success, state, nav, userNav, modal, transferencia, currency, select, select2, select3, isSelect, isSelect2, isSelect3, isSelect4, isSelect5, users, destinatario, image1, image2, image3, item, webcamRef1,
+		fondoSecundario,
+		fondoTerciario, subItemNav, success, state, nav, userNav, modal, transferencia, currency, select, select2, select3, isSelect, isSelect2, isSelect3, isSelect4, isSelect5, users, destinatario, image1, image2, image3, item, webcamRef1,
 		webcamRef2,
 		idioma,
 		webcamRef3,
@@ -193,7 +195,8 @@ itemSelected, setItemSelected,
 		filter,
 		filterQR, exchange, countries, isOpen, isOpen2, destinatarios, transactionDB, navItem, comision,
 		enviosDB,
-		cambiosDB,time_stamp,
+		loader,
+		cambiosDB, time_stamp,
 		notificaciones])
 
 

@@ -5,12 +5,14 @@ import { useAppContext } from '@/context/AppContext'
 import { useTheme } from '@/context/ThemeContext';
 import SelectSimple from '@/components/SelectSimple'
 import { domainToASCII } from "url";
+import { useSearchParams } from 'next/navigation'
 
+import { toast } from 'react-hot-toast';
 
 
 
 export default function AddAccount() {
-    const { user, userDB, setUserProfile, users, modal, setModal, setUsers, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario, itemSelected, setItemSelected } = useAppContext()
+    const { user, userDB, setUserProfile, setAlerta, users, modal, setModal, setUsers, loader, setLoader, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario, itemSelected, setItemSelected } = useAppContext()
     const { theme, toggleTheme } = useTheme();
     const [data, setData] = useState({})
     const [value1, setValue1] = useState('Por favor elige')
@@ -20,6 +22,13 @@ export default function AddAccount() {
     const [password, setPassword] = useState('');
     const [selectedCheckbox, setSelectedCheckbox] = useState(null);
 
+
+    const searchParams = useSearchParams()
+
+
+    const seccion = searchParams.get('seccion')
+
+    const item = searchParams.get('item')
     const codificacionDeRoles = {
         'Recursos Humanos': ['Recursos Humanos'],
         'Admin': ['Admin'],
@@ -65,21 +74,153 @@ export default function AddAccount() {
             const indice = Math.floor(Math.random() * caracteres.length);
             contrasenaGenerada += caracteres[indice];
         }
-        setPassword(contrasenaGenerada);
+        setData({ ...data, password: contrasenaGenerada })
+
     };
-    function saveAccount() {
-        const db = {
-            'situacion laboral': selectedCheckbox,
-            'Origen de la cuenta': value1,
-            'Tipo de grupo': value2,
-            'Codificación de roles': value3,
-            ...data,
+    // function saveAccount() {
+    //     const db = {
+    //         'situacion laboral': selectedCheckbox,
+    //         'Origen de la cuenta': value1,
+    //         'Tipo de grupo': value2,
+    //         'Codificación de roles': value3,
+    //         ...data,
+    //     }
+    //     console.log(db)
+    // }
+
+    //     const saveAccount = async (e) => {
+    //         e.preventDefault();
+    //         try {
+    //             const db= {
+    //                 'situacionLaboral': selectedCheckbox,
+    //                 'origenDeLaCuenta': value1,
+    //                 'tipoDeGrupo': value2,
+    //                 'codificacionDeRoles': value3,
+    //                 ...data,
+    //             }
+    //             console.log(db)
+    //             const response = await axios.post('http://localhost:3000/api/auth/register', db);
+    // console.log(response)
+    //             login(response.data.token, response.data.user);
+    //             toast.success('Registration successful!');
+    //             navigate('/dashboard');
+    //         } catch (error) {
+    //             toast.error(error.response?.data?.message || 'Registration failed');
+    //         }
+    //     };
+    const saveAccount = async (e) => {
+        e.preventDefault();
+        try {
+            setLoader('Guardando...')
+            const db = {
+                'situacionLaboral': selectedCheckbox,
+                'origenDeLaCuenta': value1,
+                'tipoDeGrupo': value2,
+                'codificacionDeRoles': value3,
+                ...data,
+            };
+            console.log(db);
+
+            const response = await fetch('http://localhost:3000/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(db),
+            });
+
+            if (!response.ok) {
+                setLoader('')
+                setAlerta('Error de datos!')
+                throw new Error('Registration failed');
+            }
+
+            const result = await response.json();
+            console.log(result);
+
+
+
+            const res = await fetch('http://localhost:3000/api/email/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: db.email,
+                    subject: 'Credenciales FastCash',
+                    html: `<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <tr>
+            <td style="background-color: #4CAF50; color: #ffffff; text-align: center; padding: 20px; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                <h1 style="margin: 0;">¡Bienvenido a [Nombre de la Empresa]!</h1>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 20px; color: #333333;">
+                <p>Hola ${db.email},</p>
+                <p>Nos complace darte la bienvenida a nuestra plataforma. A continuación, encontrarás tus credenciales de acceso:</p>
+                <p style="font-size: 16px;">
+                    <strong>Usuario:</strong> <span style="color: #4CAF50;">${db.cuenta}</span><br>
+                    <strong>Contraseña:</strong> <span style="color: #4CAF50;">${db.password}</span>
+                </p>
+                <p>Para iniciar sesión, haz clic en el siguiente enlace:</p>
+                <p style="text-align: center;">
+                    <a href="https://fastcash-mx.com" style="display: inline-block; background-color: #4CAF50; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Iniciar sesión</a>
+                </p>
+                <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
+                <p>Saludos,<br> de parte de Fast Cash LLC</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color: #eeeeee; text-align: center; padding: 10px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; color: #666666; font-size: 12px;">
+                © 2024 Fast Cash LLC. Todos los derechos reservados.
+            </td>
+        </tr>
+    </table>
+</body>
+`
+                }),
+            });
+
+            setAlerta('Operación exitosa!')
+            setModal('')
+            setLoader('')
+            // navigate('/dashboard');
+        } catch (error) {
+            setLoader('')
+            setAlerta('Error de datos!')
+
         }
-        console.log(db)
+    };
+    const arrTipoDeGrupo = {
+
+        ['Gestión de administradores']: [
+            'Admin',
+        ],
+        ['Gestión de RH']: [
+            'Recursos Humanos',
+        ],
+        ['Gestión de managers']: [
+            'Por favor elige',
+            'Manager de Auditoria',
+            'Manager de Cobranza',
+            'Manager de Verificación',
+        ],
+        ['Gestión de asesores']: [
+            'Por favor elige',
+            'Asesor de Auditoria',
+            'Asesor de Cobranza',
+            'Asesor de Verificación',
+            'Cuenta personal'
+        ],
+        ['Gestión de cuentas personales']: [
+            'Cuenta personal'
+        ],
     }
 
 
-    return <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
+
+    return <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-40' onClick={() => setModal('')}>
         <div className='relative flex flex-col items-start justify-center bg-gray-200 w-[450px] h-[450px] p-5 px-12 space-y-3 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
             <button
                 className="absolute top-5 right-5 flex items-center justify-center w-12 h-6 bg-red-500 text-white rounded-[5px] hover:bg-red-600 focus:outline-none"
@@ -112,18 +253,7 @@ export default function AddAccount() {
                     Tipo de grupo:
                 </label>
                 <SelectSimple
-                    arr={[
-                        'Por favor elige',
-                        'Recursos Humanos',
-                        'Admin',
-                        'Manager de Auditoria',
-                        'Manager de Cobranza',
-                        'Manager de Verificación',
-                        'Usuario de Auditoria',
-                        'Usuario de Cobranza',
-                        'Usuario de Verificación',
-                        'Cuenta personal'
-                    ]}
+                    arr={arrTipoDeGrupo[item]}
                     name='Tipo de grupo'
                     click={handlerSelectClick2}
                     defaultValue={value2}
@@ -220,8 +350,7 @@ export default function AddAccount() {
             </div>
             <button type="button"
                 class="w-[300px] relative left-0 right-0 mx-auto text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center  mb-2"
-                onClick={saveAccount}>Registro de cobro</button>
-
+                onClick={saveAccount}>Registrar cuenta</button>
         </div>
 
     </div>
