@@ -19,7 +19,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Home() {
   // const { user, userDB, setUserProfile, setUserSuccess, success, setUser, postsIMG, setUserPostsIMG, sound1, sound2, setSound1, setSound2, } = useAppContext()
-  const { user, setUser, userDB, theme, setTheme } = useAppContext()
+  const { user, setUser, userDB,setUserDB, theme, setTheme } = useAppContext()
 
   const [isDisable, setIsDisable] = useState(false)
   const [captcha, setCaptcha] = useState('')
@@ -32,15 +32,17 @@ export default function Home() {
   const onSubmitWithReCAPTCHA = async (e) => {
     e.preventDefault();
     try {
-      let cuenta = e.target[0].value
+      let email = e.target[0].value
       let password = e.target[1].value
-      const response = await axios.post(window?.location?.href.includes('localhost') ? 'http://localhost:3000/api/auth/login' : 'http://18.220.249.246/api/auth/login', {
-        cuenta,
+      const response = await axios.post(window?.location?.href.includes('localhost') ? 'http://localhost:3000/api/auth/loginPersonal' : 'http://18.220.249.246/api/auth/loginPersonal', {
+        email,
         password,
       });
       console.log(response)
       if(response.status === 200){
-        setUser({ rol: response.data.user.tipoDeGrupo })
+        setUser({ rol: response.data.user.codificacionDeRoles })
+        setUserDB(response.data.user)
+
         router.push('/Home')
       }
     } catch (error) {
@@ -50,7 +52,7 @@ export default function Home() {
     // captcha.length > 10 && router.push('/Home?seccion=coleccion&item=Casos%20de%20Cobranza')
   }
 
-  console.log(user)
+  console.log(userDB)
 
   
   function onChange(value) {

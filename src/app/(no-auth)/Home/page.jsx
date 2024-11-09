@@ -15,6 +15,9 @@ import Table from '@/components/Table'
 // import Velocimetro from '@/components/Velocimetro'
 const Velocimetro = dynamic(() => import("@/components/Velocimetro"), { ssr: false, });
 import FormAddAccount from '@/components/AddAccount'
+import FormAddPersonalAccount from '@/components/FormAddPersonalAccount'
+import FormAddPersonalData from '@/components/FormAddPersonalData'
+
 import Alert from '@/components/Alert'
 
 import {
@@ -186,7 +189,7 @@ export default function Home() {
         "Pagará pronto"
     ];
 
-    console.log(filter)
+    console.log(user)
 
     const copyToClipboard = (textToCopy) => {
         navigator.clipboard.writeText(textToCopy).then(() => {
@@ -310,8 +313,294 @@ export default function Home() {
             'S2 = 8 - 16 DIAS DE MORA EN EL SISTEMA'
         ],
         'Usuario de Verificación': ['Usuario de Verificación'],
-        'Cuenta personal': ['Cuenta personal'],
+        'Cuenta Personal': ['Cuenta Personal'],
     }
+
+
+
+
+
+
+    const trabajo = [
+        { nombre: "taipe alejandro cristina magaly", lunes: "libre", martes: "operando", miercoles: "atraso-1", jueves: "libre", viernes: "falta", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "porozo aguirre brayan david", lunes: "libre", martes: "libre", miercoles: "operando", jueves: "libre", viernes: "atraso-1", sabado: "falta", domingo: "atraso-2" },
+        { nombre: "abad usiña jilson vladimir", lunes: "atraso-1", martes: "libre", miercoles: "atraso-2", jueves: "operando", viernes: "libre", sabado: "falta", domingo: "libre" },
+        { nombre: "castillo armas brandon alexis", lunes: "libre", martes: "atraso-2", miercoles: "libre", jueves: "operando", viernes: "atraso-1", sabado: "libre", domingo: "falta" },
+        { nombre: "benavides quiroz jazmín carolina", lunes: "operando", martes: "libre", miercoles: "atraso-1", jueves: "falta", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "leon cuchipe lady priscila", lunes: "atraso-1", martes: "libre", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "paucar alquinga andres steven", lunes: "atraso-2", martes: "operando", miercoles: "libre", jueves: "falta", viernes: "libre", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "arce mendez cristian santiago", lunes: "falta", martes: "libre", miercoles: "atraso-1", jueves: "operando", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "murillo jerez josselyne michelle", lunes: "libre", martes: "atraso-1", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "alvarez puente gabriela geomar", lunes: "libre", martes: "atraso-2", miercoles: "falta", jueves: "operando", viernes: "libre", sabado: "libre", domingo: "atraso-1" },
+        { nombre: "cuaspud gallegos katherine dayana", lunes: "atraso-1", martes: "libre", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "bernal ceron tobias bryan", lunes: "libre", martes: "operando", miercoles: "libre", jueves: "atraso-1", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "jimenez espinoza byron andres", lunes: "libre", martes: "libre", miercoles: "atraso-2", jueves: "operando", viernes: "falta", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "ponce murillo yesika ariani", lunes: "atraso-2", martes: "falta", miercoles: "libre", jueves: "operando", viernes: "libre", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "quijia sotalin valeria paulina", lunes: "operando", martes: "libre", miercoles: "atraso-1", jueves: "falta", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "encalada quishpe david andres", lunes: "libre", martes: "atraso-1", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "sigcha palango tania selena", lunes: "atraso-1", martes: "libre", miercoles: "libre", jueves: "operando", viernes: "falta", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "carrasco ortega bryan josue", lunes: "libre", martes: "operando", miercoles: "atraso-1", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "montenegro villacis alan david", lunes: "libre", martes: "atraso-1", miercoles: "operando", jueves: "falta", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "andrango allauca erick fabricio", lunes: "falta", martes: "libre", miercoles: "atraso-2", jueves: "operando", viernes: "libre", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "blasio gonzalez tito jonathan", lunes: "libre", martes: "atraso-1", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "garnica robayo hernan garnica", lunes: "atraso-1", martes: "libre", miercoles: "libre", jueves: "operando", viernes: "falta", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "ramos sánchez janny joey", lunes: "libre", martes: "falta", miercoles: "atraso-1", jueves: "operando", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "lobo sanchez miguel eduardo", lunes: "libre", martes: "atraso-2", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-1" },
+        { nombre: "andi andy silvana maritza", lunes: "libre", martes: "operando", miercoles: "falta", jueves: "libre", viernes: "atraso-1", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "pulupa cornejo katty pamela", lunes: "atraso-1", martes: "libre", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "lopez morales tifany gissell", lunes: "libre", martes: "atraso-2", miercoles: "falta", jueves: "operando", viernes: "libre", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "riera monard dayana andrea", lunes: "libre", martes: "atraso-1", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "marquez ayala marcos jeremias", lunes: "atraso-1", martes: "libre", miercoles: "falta", jueves: "operando", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "lizano arauz fernando daniel", lunes: "libre", martes: "operando", miercoles: "atraso-1", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "balderramo loor xavier sebastian", lunes: "atraso-2", martes: "libre", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-1" },
+        { nombre: "choque quinteros ariana mateo", lunes: "libre", martes: "atraso-1", miercoles: "falta", jueves: "operando", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "sucari jara edward pablo", lunes: "atraso-1", martes: "libre", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "delgado barros rafael adrian", lunes: "falta", martes: "libre", miercoles: "atraso-1", jueves: "operando", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "guzman tovar eric adrian", lunes: "libre", martes: "atraso-2", miercoles: "falta", jueves: "operando", viernes: "libre", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "velasco masi losy jazmin", lunes: "atraso-2", martes: "libre", miercoles: "operando", jueves: "falta", viernes: "libre", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "gonzales perez brayan diego", lunes: "libre", martes: "falta", miercoles: "libre", jueves: "operando", viernes: "atraso-1", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "carrasco salazar jaime roberto", lunes: "operando", martes: "atraso-1", miercoles: "falta", jueves: "libre", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "rivadeneira gonzalez laura", lunes: "libre", martes: "atraso-2", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-1" },
+        { nombre: "campos villavicencio brayan alexander", lunes: "libre", martes: "operando", miercoles: "falta", jueves: "atraso-1", viernes: "libre", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "quebrada morales solymar", lunes: "atraso-2", martes: "libre", miercoles: "falta", jueves: "operando", viernes: "libre", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "yucra ordonez jhonny erick", lunes: "atraso-1", martes: "libre", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "salazar rodriguez katherine vitory", lunes: "libre", martes: "atraso-2", miercoles: "operando", jueves: "falta", viernes: "libre", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "rodriguez lopez jhonnatthan", lunes: "falta", martes: "libre", miercoles: "atraso-1", jueves: "operando", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "aillón choque benjamin", lunes: "atraso-2", martes: "libre", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "acosta ramirez emily", lunes: "libre", martes: "atraso-1", miercoles: "falta", jueves: "operando", viernes: "libre", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "flores veintimilla jose luis", lunes: "atraso-1", martes: "libre", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+        { nombre: "toapanta tulcan nicole", lunes: "atraso-2", martes: "libre", miercoles: "falta", jueves: "operando", viernes: "libre", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "moreno velasco milena", lunes: "falta", martes: "operando", miercoles: "libre", jueves: "atraso-1", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "verdugo lasso jhonny wilson", lunes: "atraso-1", martes: "libre", miercoles: "falta", jueves: "operando", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "ingacochea haro eliana", lunes: "libre", martes: "atraso-2", miercoles: "operando", jueves: "falta", viernes: "libre", sabado: "atraso-1", domingo: "libre" },
+        { nombre: "zapata aguilar cristian edward", lunes: "libre", martes: "atraso-1", miercoles: "falta", jueves: "operando", viernes: "libre", sabado: "atraso-2", domingo: "libre" },
+        { nombre: "de la torre muñoz luis andres", lunes: "atraso-2", martes: "libre", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-1" },
+        { nombre: "rios ávila diana carolina", lunes: "libre", martes: "atraso-1", miercoles: "operando", jueves: "libre", viernes: "falta", sabado: "libre", domingo: "atraso-2" },
+
+    ]
+
+
+    const cobradores = [
+        {
+            id: "S0",
+            nombre: "Alvarez Puente Gabriela Geomar",
+            usuario: "CobradorA1",
+            telefono: "5215838160069",
+            extension: "88136193",
+            casos: 26,
+            llamadasRealizadas: 16,
+            clientesContactados: 20,
+            clientesSinResponder: 3,
+            pagosHoy: 5,
+            porcentajeHoy: "11.54%",
+            ptp2pm: 7,
+            ptp6pm: 5,
+            porcentajePTP: "26.92%",
+            llamadas3pm: 7,
+            ptp10am: 6,
+            porcentajeLlamadas: "26.92%",
+            llamadasElDiaSiguiente: 8,
+            llamadasFinales: 7,
+            porcentajeFinal: "30.77%",
+            tasaFinal: 12,
+            porcentajeTasaFinal: "46.15%",
+        },
+        {
+            id: "S0",
+            nombre: "Benavides Quiroz Jazmín Carolina",
+            usuario: "CobradorA8",
+            telefono: "5215838160070",
+            extension: "53828419",
+            casos: 27,
+            llamadasRealizadas: 16,
+            clientesContactados: 22,
+            clientesSinResponder: 4,
+            pagosHoy: 5,
+            porcentajeHoy: "14.81%",
+            ptp2pm: 6,
+            ptp6pm: 5,
+            porcentajePTP: "22.22%",
+            llamadas3pm: 8,
+            ptp10am: 5,
+            porcentajeLlamadas: "29.63%",
+            llamadasElDiaSiguiente: 8,
+            llamadasFinales: 4,
+            porcentajeFinal: "29.63%",
+            tasaFinal: 10,
+            porcentajeTasaFinal: "37.04%",
+        },
+        {
+            id: "S0",
+            nombre: "Sigcha Palango Tania Selena",
+            usuario: "CobradorA9",
+            telefono: "5215838160071",
+            extension: "97187966",
+            casos: 26,
+            llamadasRealizadas: 16,
+            clientesContactados: 22,
+            clientesSinResponder: 5,
+            pagosHoy: 6,
+            porcentajeHoy: "19.23%",
+            ptp2pm: 9,
+            ptp6pm: 6,
+            porcentajePTP: "34.62%",
+            llamadas3pm: 10,
+            ptp10am: 3,
+            porcentajeLlamadas: "38.46%",
+            llamadasElDiaSiguiente: 11,
+            llamadasFinales: 2,
+            porcentajeFinal: "42.31%",
+            tasaFinal: 12,
+            porcentajeTasaFinal: "46.15%",
+        },
+        {
+            id: "S0",
+            nombre: "Jimenez Espinoza Byron Andres",
+            usuario: "CobradorA10",
+            telefono: "5215838160072",
+            extension: "35625589",
+            casos: 26,
+            llamadasRealizadas: 16,
+            clientesContactados: 24,
+            clientesSinResponder: 5,
+            pagosHoy: 0,
+            porcentajeHoy: "19.23%",
+            ptp2pm: 11,
+            ptp6pm: 0,
+            porcentajePTP: "42.31%",
+            llamadas3pm: 11,
+            ptp10am: "",
+            porcentajeLlamadas: "42.31%",
+            llamadasElDiaSiguiente: 13,
+            llamadasFinales: 0,
+            porcentajeFinal: "50.00%",
+            tasaFinal: 15,
+            porcentajeTasaFinal: "57.69%",
+        },
+        {
+            id: "S0",
+            nombre: "Garnica Robayo Hernan Garnica",
+            usuario: "CobradorA16",
+            telefono: "5215838160084",
+            extension: "68942789",
+            casos: 27,
+            llamadasRealizadas: 16,
+            clientesContactados: 19,
+            clientesSinResponder: 0,
+            pagosHoy: 4,
+            porcentajeHoy: "0.00%",
+            ptp2pm: 2,
+            ptp6pm: 6,
+            porcentajePTP: "7.41%",
+            llamadas3pm: 4,
+            ptp10am: 2,
+            porcentajeLlamadas: "14.81%",
+            llamadasElDiaSiguiente: 4,
+            llamadasFinales: 6,
+            porcentajeFinal: "14.81%",
+            tasaFinal: 8,
+            porcentajeTasaFinal: "29.63%",
+        },
+        {
+            id: "S0",
+            nombre: "Murillo Jerez Josselyne Michelle",
+            usuario: "CobradorA17",
+            telefono: "5215838160085",
+            extension: "69544512",
+            casos: 27,
+            llamadasRealizadas: 16,
+            clientesContactados: 18,
+            clientesSinResponder: 9,
+            pagosHoy: 6,
+            porcentajeHoy: "33.33%",
+            ptp2pm: 10,
+            ptp6pm: 9,
+            porcentajePTP: "37.04%",
+            llamadas3pm: 10,
+            ptp10am: 7,
+            porcentajeLlamadas: "37.04%",
+            llamadasElDiaSiguiente: 11,
+            llamadasFinales: 6,
+            porcentajeFinal: "40.74%",
+            tasaFinal: 12,
+            porcentajeTasaFinal: "44.44%",
+        },
+        {
+            id: "S0",
+            nombre: "Lopez Morales Tifany Gissell",
+            usuario: "CobradorA18",
+            telefono: "5215838160086",
+            extension: "62862435",
+            casos: 27,
+            llamadasRealizadas: 16,
+            clientesContactados: 21,
+            clientesSinResponder: 2,
+            pagosHoy: 3,
+            porcentajeHoy: "7.41%",
+            ptp2pm: 4,
+            ptp6pm: 9,
+            porcentajePTP: "14.81%",
+            llamadas3pm: 6,
+            ptp10am: 2,
+            porcentajeLlamadas: "22.22%",
+            llamadasElDiaSiguiente: 6,
+            llamadasFinales: 6,
+            porcentajeFinal: "22.22%",
+            tasaFinal: 9,
+            porcentajeTasaFinal: "33.33%",
+        },
+        {
+            id: "S0",
+            nombre: "Andi Andy Silvana Maritza",
+            usuario: "CobradorA19",
+            telefono: "5215838160087",
+            extension: "71868466",
+            casos: 21,
+            llamadasRealizadas: 16,
+            clientesContactados: 16,
+            clientesSinResponder: 3,
+            pagosHoy: 4,
+            porcentajeHoy: "14.29%",
+            ptp2pm: 5,
+            ptp6pm: 4,
+            porcentajePTP: "23.81%",
+            llamadas3pm: 6,
+            ptp10am: 4,
+            porcentajeLlamadas: "28.57%",
+            llamadasElDiaSiguiente: 7,
+            llamadasFinales: 6,
+            porcentajeFinal: "33.33%",
+            tasaFinal: 10,
+            porcentajeTasaFinal: "47.62%",
+        },
+        {
+            id: "S0",
+            nombre: "Carrasco Ortega Bryan Josue",
+            usuario: "CobradorA20",
+            telefono: "5215838160088",
+            extension: "46712168",
+            casos: 27,
+            llamadasRealizadas: 16,
+            clientesContactados: 24,
+            clientesSinResponder: 1,
+            pagosHoy: 6,
+            porcentajeHoy: "3.70%",
+            ptp2pm: 5,
+            ptp6pm: 9,
+            porcentajePTP: "18.52%",
+            llamadas3pm: 7,
+            ptp10am: 6,
+            porcentajeLlamadas: "43.75%",
+            llamadasElDiaSiguiente: 7,
+            llamadasFinales: 5,
+            porcentajeFinal: "25.93%",
+            tasaFinal: 10,
+            porcentajeTasaFinal: "37.04%",
+        }
+    ];
+
+
+
 
 
     function saveAccount() {
@@ -680,26 +969,6 @@ export default function Home() {
 
 
 
-            {
-                modal === 'Añadir cuenta' && <FormAddAccount />
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -746,7 +1015,7 @@ export default function Home() {
                                 'Usuario de Auditoria',
                                 'Usuario de Cobranza',
                                 'Usuario de Verificación',
-                                'Cuenta personal'
+                                'Cuenta Personal'
                             ]}
                             name='Tipo de grupo'
                             click={handlerSelectClick2}
@@ -1850,7 +2119,7 @@ export default function Home() {
                     </tbody>
                 </table>
             }
-            {user?.rol === 'Cuenta personal' && item === 'Comision' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
+            {user?.rol === 'Cuenta Personal' && item === 'Comision' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
                 <thead className="text-[10px] text-white uppercase bg-gray-900 z-20">
                     <tr>
 
@@ -1934,7 +2203,7 @@ export default function Home() {
                 </tbody>
             </table>}
             <br />
-            {user?.rol === 'Cuenta personal' && item === 'Comision' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
+            {user?.rol === 'Cuenta Personal' && item === 'Comision' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
                 <thead className="text-[10px] text-white uppercase bg-gray-900 z-20">
                     <tr>
 
@@ -2018,7 +2287,7 @@ export default function Home() {
                 </tbody>
             </table>}
             <br />
-            {user?.rol === 'Cuenta personal' && item === 'Comision' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
+            {user?.rol === 'Cuenta Personal' && item === 'Comision' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
                 <thead className="text-[10px] text-white uppercase bg-gray-900  z-20">
                     <tr>
 
@@ -2106,8 +2375,10 @@ export default function Home() {
 
 
 
+            {/* ---------------------------------'GESTION DE ACCESOS' --------------------------------- */}
 
-            {(item === 'Gestión de RH' || item === 'Gestión de administradores' || item === 'Gestión de managers' || item === 'Gestión de asesores') &&
+
+            {(item === 'Gestión de RH' || item === 'Gestión de administradores' || item === 'Gestión de managers' || item === 'Gestión de asesores' || item === 'Gestión de cuentas personales') &&
                 <div>
 
 
@@ -2127,7 +2398,7 @@ export default function Home() {
                                     </label>
                                     <input className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
                                 </div>
-                                <button type="button" onClick={() => setModal('Añadir cuenta')} class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Crear Usuarios</button>
+                                <button type="button" onClick={() => setModal('Añadir cuenta personal')} class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Crear Usuarios</button>
 
                             </div>
                             <div className='w-[300px] space-y-2'>
@@ -2137,21 +2408,12 @@ export default function Home() {
                                     </label>
                                     <input className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
                                 </div>
-
-
                                 <div className='flex justify-between'>
                                     <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
                                         Numero de páginas:
                                     </label>
                                     <input className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Numero de páginas' onChange={onChangeHandler} defaultValue={filter['Numero de páginas']} uuid='123' label='Numero de páginas' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
                                 </div>
-                                {/* 
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Jumiah periode:
-                                    </label>
-                                    <SelectSimple arr={Jumlah} name='Jumiah periode' click={handlerSelectClick} defaultValue={filter['Jumiah periode']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]'  bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div> */}
                             </div>
                             <div className='w-[300px] space-y-2'>
 
@@ -2161,16 +2423,7 @@ export default function Home() {
                                     </label>
                                     <SelectSimple arr={['Activo', 'Inactivo']} name='Estado de reembolso' click={handlerSelectClick} defaultValue={filter['Estado de reembolso']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
                                 </div>
-                                {/* <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Fecha de rembolso:
-                                    </label>
-                                    <div className='grid grid-cols-2 gap-2'>
-                                        <input type='date' className="h-[25px] max-w-[173px] w-full px-2 border border-[#cfcfcf] rounded-[5px] text-[10px]  " arr={['Opción 1', 'Opción 2']} name='Nombre del cliente' click={handlerSelectClick} defaultValue={filter['Nombre del cliente']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]'  bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                        <input type='date' className="h-[25px] max-w-[173px] w-full px-2 border border-[#cfcfcf] rounded-[5px] text-[10px]  " arr={['Opción 1', 'Opción 2']} name='Nombre del cliente' click={handlerSelectClick} defaultValue={filter['Nombre del cliente']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]'  bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                    </div>
 
-                                </div> */}
 
 
 
@@ -2184,6 +2437,14 @@ export default function Home() {
 
                 </div>
             }
+
+
+            {modal === 'Añadir cuenta' && <FormAddAccount />}
+            {modal === 'Añadir cuenta personal' && <FormAddPersonalAccount />}
+
+
+
+
             <div className="overflow-x-auto">
                 {isMounted && user?.rol && <div className="max-h-[calc(100vh-90px)] pb-[70px] overflow-y-auto relative scroll-smooth" ref={refFirst}>
 
@@ -2339,9 +2600,9 @@ export default function Home() {
                         (item === 'Gestión de cuentas personales') && <Table
                             access={true}
                             headArray={encabezadoGestionDeAccesos}
-                            dataFilter={(i) => i.tipoDeGrupo === 'Cuenta personal'}
-                            local={'http://localhost:3000/api/auth/users'}
-                            server={'http://18.220.249.246/api/auth/users'}
+                            dataFilter={(i) => true}
+                            local={'http://localhost:3000/api/auth/personalAccounts'}
+                            server={'http://18.220.249.246/api/auth/personalAccounts'}
                         />
                     }
 
@@ -2522,7 +2783,7 @@ export default function Home() {
                         </tbody>
                     </table>}
 
-                    {user?.rol === 'Cuenta personal' && item === 'Control de casos' && <table className="w-full min-w-[1500px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
+                    {user?.rol === 'Cuenta Personal' && item === 'Control de casos' && <table className="w-full min-w-[1500px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
                         <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
 
                             <tr className=' bg-gray-800'>
@@ -2568,7 +2829,13 @@ export default function Home() {
                         </tbody>
                     </table>}
 
-                    {user?.rol === 'Cuenta personal' && item === 'Asistencia' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
+
+
+
+
+
+                    {user?.rol === 'Cuenta Personal' && !userDB?.nombre &&  <FormAddPersonalData/>}
+                    {user?.rol === 'Cuenta Personal' && item === 'Asistencia' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
 
 
                         <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
@@ -2627,7 +2894,7 @@ export default function Home() {
                         </tbody>
                     </table>}
 
-                    {user?.rol === 'Cuenta personal' && item === 'Gestion de auditoria' && <table className="w-full min-w-[1500px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
+                    {user?.rol === 'Cuenta Personal' && item === 'Gestion de auditoria' && <table className="w-full min-w-[1500px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
                         <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
 
 
@@ -2672,46 +2939,38 @@ export default function Home() {
                         </tbody>
                     </table>}
 
-                    {user?.rol === 'Cuenta personal' && item === 'Informacion personal' && <div className='relative w-full h-full items-center flex flex-col justify-center'>
+                    {user?.rol === 'Cuenta Personal' && item === 'Informacion personal' && <div className='relative w-full h-full items-center flex flex-col justify-center'>
 
 
-                        <div className={`relative w-[350px] h-auto rounded-[20px]  items-center flex flex-col justify-center space-y-3  ${theme === 'light' ? 'relative bg-white shadow-2xl shadow-gray-500' : ' relative bg-white shadow-2xl shadow-gray-500 '} p-5 dark:shadow-none dark:bg-gray-900`}>
+                        <div className={`relative w-[450px] h-auto rounded-[20px]  items-center flex flex-col justify-center space-y-3  ${theme === 'light' ? 'relative bg-white shadow-2xl shadow-gray-500' : ' relative bg-white shadow-2xl shadow-gray-500 '} p-5 dark:shadow-none dark:bg-gray-900`}>
 
-
+                            {console.log(userDB)}
                             <div><img src='/perfil.png' className='h-[150px] rounded-full' /></div>
 
 
-                            <div className='relative w-[250px]  items-between flex   justify-between'>
+                            <div className='relative w-[350px]  items-between flex   justify-between'>
                                 <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`}> Nombre:</span>
                                 <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > Kiara</span>
                             </div >
 
-                            <div className='relative w-[250px]  items-between flex   justify-between'>
+                            <div className='relative w-[350px]  items-between flex   justify-between'>
                                 <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > Apellido:</span>
                                 <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > Palacios</span>
                             </div >
-                            <div className='relative w-[250px]  items-between flex   justify-between'>
+                            <div className='relative w-[350px]  items-between flex   justify-between'>
                                 <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > DNI:</span>
                                 <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > 2121323312</span>
                             </div >
-                            <div className='relative w-[250px]  items-between flex   justify-between'>
+                            <div className='relative w-[350px]  items-between flex   justify-between'>
                                 <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > Correo:</span>
-                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > alquien@gmail.com</span>
+                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > {userDB?.email}</span>
                             </div >
-                            <div className='relative w-[250px]  items-between flex   justify-between'>
-                                <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > Usuario personal:</span>
-                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > Personal001</span>
-                            </div >
-                            <div className='relative w-[250px]  items-between flex   justify-between'>
+                            <div className='relative w-[350px]  items-between flex   justify-between'>
                                 <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > Usuario asignado hoy:</span>
                                 <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > UserVe001</span>
                             </div >
 
                             <InputPass type="password" name="password" valu='User@#$' id="password" disabled placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " />
-
-
-
-
                         </div>
 
 

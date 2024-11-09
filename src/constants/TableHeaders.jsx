@@ -100,7 +100,7 @@ export const encabezadoListaFinal = () => [
 
 export const encabezadoGestionDeAccesos = () => [
     "Seleccionar", "Nombre completo", "DNI", "Telefono", "Email", "(Usuario asignado) cuenta", "Origen de la cuenta", "Tipo de grupo",
-    "Codificación de roles", "Operaciones"
+    "Codificación de roles", "Operar"
 ];
 
 

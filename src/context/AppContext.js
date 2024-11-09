@@ -96,9 +96,7 @@ export function AppProvider({ children }) {
 
 
 
-	const setUserData = (data) => {
-		setUserDB(data)
-	}
+
 
 	const setUserSuccess = (data) => {
 
@@ -176,7 +174,7 @@ export function AppProvider({ children }) {
 			setNav,
 			setState,
 			setUser,
-			setUserData,
+			setUserDB,
 			setUserSuccess
 
 		})

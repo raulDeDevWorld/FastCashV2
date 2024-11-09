@@ -1,8 +1,10 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useAppContext } from '@/context/AppContext'
+import { useSearchParams } from 'next/navigation'
 
 import Link from 'next/link';
+import { ChatIcon, PhoneIcon, ClipboardDocumentCheckIcon, FolderPlusIcon, CurrencyDollarIcon, DocumentTextIcon, UserCircleIcon, ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/solid';
 
 const Table = ({
     headArray,
@@ -12,9 +14,10 @@ const Table = ({
     local,
     server
 }) => {
-    const { user, userDB,loader, setUserProfile, users, setUsers, setModal, itemSelected, setItemSelected, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario } = useAppContext()
-
-
+    const { user, userDB, loader, setUserProfile, users, setUsers, setModal, itemSelected, setItemSelected, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario } = useAppContext()
+    const searchParams = useSearchParams()
+    const seccion = searchParams.get('seccion')
+    const item = searchParams.get('item')
     const [data, setData] = useState([])
 
 
@@ -42,7 +45,7 @@ const Table = ({
         itemSelected, setItemSelected(i)
     }
     async function handlerFetch() {
-        const res = await fetch(window?.location?.href.includes('localhost') ? local : server)
+        const res = await fetch(window?.location?.href?.includes('localhost') ? local : server)
         const data = await res.json()
         console.log(data)
         setData(data)
@@ -81,14 +84,14 @@ const Table = ({
 
                     return dataFilter(i) && (
                         <tr key={index} className="text-[12px] border-b">
-                            {headArray().map((item, index) => {
+                            {headArray().map((it, index) => {
                                 return (
                                     <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} `} >
 
-                                        {item.toLowerCase() === 'contactos' &&
+                                        {it.toLowerCase() === 'contactos' &&
                                             <div className="flex justify-around items-center">
                                                 <a
-                                                    href={`https://wa.me/${item.whatsapp}`}
+                                                    href={`https://wa.me/${it.whatsapp}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex items-center text-green-500 hover:text-green-600"
@@ -98,7 +101,7 @@ const Table = ({
                                                     </svg>
                                                 </a>
                                                 <a
-                                                    href={`https://https://t.me/${item.whatsapp}`}
+                                                    href={`https://https://t.me/${it.whatsapp}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex items-center text-green-500 hover:text-green-600"
@@ -115,8 +118,7 @@ const Table = ({
                                                     </svg>
                                                 </a>
                                             </div>}
-                                        {console.log(item)}
-                                        {item.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
+                                        {it.toLowerCase() === 'operar'&& item?.toLowerCase().includes('colección') && <div className='flex justify-between flex space-x-3'>
                                             <Link href={`/Home/Datos?seccion=info`} className=''>
                                                 <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Visitar</button>
 
@@ -125,7 +127,23 @@ const Table = ({
 
                                         </div>}
 
-                                        {(item.toLowerCase() !== 'operar' || item.toLowerCase() !== 'contactos') && i[toCamelCase(item)]}
+
+                                        {item?.toLowerCase().includes('gestión de') && !item?.toLowerCase().includes('colección') && it.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
+                                            <Link href={`/Home/Datos?seccion=info`} className=''>
+                                                <UserCircleIcon className='h-6 w-6 fill-[#ebbb40]' />
+                                            </Link>
+                                            {/* <DocumentTextIcon className='h-6 w-6 fill-[#5c78d3] cursor-pointer' onClick={() => setModal('Registrar')} /> */}
+                                            <ChatBubbleLeftEllipsisIcon className='h-6 w-6 fill-[#5bc0cf] cursor-pointer' onClick={() => setModal('SMS')} />
+                                            <CurrencyDollarIcon className='h-6 w-6 fill-[#1ab418] cursor-pointer' />
+                                            {/* <FolderPlusIcon className='h-6 w-6 fill-[#eba140]' /> */}
+
+
+                                        </div>}
+
+
+
+
+                                        {(it.toLowerCase() !== 'operar' || it.toLowerCase() !== 'contactos') && i[toCamelCase(it)]}
 
                                     </td>
                                 )

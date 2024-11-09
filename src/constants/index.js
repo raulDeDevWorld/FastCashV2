@@ -104,7 +104,7 @@ const menuArray = {
   //   }
   // ],
 
-  ['Cuenta personal']: [
+  ['Cuenta Personal']: [
     {
       icon: <IdentificationIcon className="h-6 w-6" />,
       hash: 'Centro',
