@@ -42,8 +42,13 @@ const Table = ({
 
     function handlerVerification(i) {
         setModal('Registrar Verificacion')
-        itemSelected, setItemSelected(i)
+        setItemSelected(i)
     }
+    function handlerAcount(mod, i) {
+        setModal(mod)
+        setItemSelected(i)
+    }
+    console.log(itemSelected)
     async function handlerFetch() {
         const res = await fetch(window?.location?.href?.includes('localhost') ? local : server)
         const data = await res.json()
@@ -118,7 +123,7 @@ const Table = ({
                                                     </svg>
                                                 </a>
                                             </div>}
-                                        {it.toLowerCase() === 'operar'&& item?.toLowerCase().includes('colección') && <div className='flex justify-between flex space-x-3'>
+                                        {it.toLowerCase() === 'operar' && item?.toLowerCase().includes('colección') && <div className='flex justify-between flex space-x-3'>
                                             <Link href={`/Home/Datos?seccion=info`} className=''>
                                                 <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Visitar</button>
 
@@ -129,14 +134,17 @@ const Table = ({
 
 
                                         {item?.toLowerCase().includes('gestión de') && !item?.toLowerCase().includes('colección') && it.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
-                                            <Link href={`/Home/Datos?seccion=info`} className=''>
-                                                <UserCircleIcon className='h-6 w-6 fill-[#ebbb40]' />
-                                            </Link>
-                                            {/* <DocumentTextIcon className='h-6 w-6 fill-[#5c78d3] cursor-pointer' onClick={() => setModal('Registrar')} /> */}
-                                            <ChatBubbleLeftEllipsisIcon className='h-6 w-6 fill-[#5bc0cf] cursor-pointer' onClick={() => setModal('SMS')} />
-                                            <CurrencyDollarIcon className='h-6 w-6 fill-[#1ab418] cursor-pointer' />
-                                            {/* <FolderPlusIcon className='h-6 w-6 fill-[#eba140]' /> */}
+                                            <UserCircleIcon
+                                                className='h-6 w-6 fill-[#ebbb40]'
+                                                onClick={() => handlerAcount('Administrar cuenta', i)} />
 
+                                            {/* <DocumentTextIcon className='h-6 w-6 fill-[#5c78d3] cursor-pointer' onClick={() => setModal('Registrar')} /> */}
+                                            <ChatBubbleLeftEllipsisIcon
+                                                className='h-6 w-6 fill-[#5bc0cf] cursor-pointer'
+                                                onClick={() => setModal('SMS')} />
+                                            <CurrencyDollarIcon
+                                                className='h-6 w-6 fill-[#1ab418] cursor-pointer' />
+                                            {/* <FolderPlusIcon className='h-6 w-6 fill-[#eba140]' /> */}
 
                                         </div>}
 
@@ -152,7 +160,7 @@ const Table = ({
                         </tr>
                     )
                 })}
-                <tr className=''>
+                {/* <tr className=''>
                     <div className='absolute right-0 left-0 mx-auto bottom-[15px] flex justify-center'>
 
                         <nav aria-label="mr-5 ">
@@ -208,7 +216,7 @@ const Table = ({
 
                     </div>
 
-                </tr>
+                </tr> */}
             </tbody>
         </table>
     );

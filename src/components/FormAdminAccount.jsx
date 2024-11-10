@@ -77,57 +77,27 @@ export default function AddAccount() {
         setData({ ...data, password: contrasenaGenerada })
 
     };
-    // function saveAccount() {
-    //     const db = {
-    //         'situacion laboral': selectedCheckbox,
-    //         'Origen de la cuenta': value1,
-    //         'Tipo de grupo': value2,
-    //         'Codificación de roles': value3,
-    //         ...data,
-    //     }
-    //     console.log(db)
-    // }
 
-    //     const saveAccount = async (e) => {
-    //         e.preventDefault();
-    //         try {
-    //             const db= {
-    //                 'situacionLaboral': selectedCheckbox,
-    //                 'origenDeLaCuenta': value1,
-    //                 'tipoDeGrupo': value2,
-    //                 'codificacionDeRoles': value3,
-    //                 ...data,
-    //             }
-    //             console.log(db)
-    //             const response = await axios.post('http://localhost:3000/api/auth/register', db);
-    // console.log(response)
-    //             login(response.data.token, response.data.user);
-    //             toast.success('Registration successful!');
-    //             navigate('/dashboard');
-    //         } catch (error) {
-    //             toast.error(error.response?.data?.message || 'Registration failed');
-    //         }
-    //     };
+
+
     const saveAccount = async (e) => {
         e.preventDefault();
         try {
             setLoader('Guardando...')
             const db = {
-                'situacionLaboral': selectedCheckbox,
-                'origenDeLaCuenta': value1,
-                'tipoDeGrupo': value2,
-                'codificacionDeRoles': value3,
                 ...data,
             };
             console.log(db);
-
-            const response = await fetch(window?.location?.href?.includes('localhost') ? 'http://localhost:3000/api/auth/register': 'http://18.220.249.246/api/auth/register', {
-                method: 'POST',
+            const id = itemSelected._id
+            const response = await fetch(window?.location?.href?.includes('localhost') ? `http://localhost:3000/api/auth/register/${id}` : 'http://18.220.249.246/api/auth/register/${id}', {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(db),
             });
+
+
 
             if (!response.ok) {
                 setLoader('')
@@ -158,14 +128,14 @@ export default function AddAccount() {
         <tr>
             <td style="padding: 20px; color: #333333;">
                 <p>Hola ${db.email},</p>
-                <p>Nos complace darte la bienvenida a FastCash-MX. A continuación, encontrarás tus credenciales de acceso:</p>
+                <p>Nos complace darte la bienvenida a FastCash-MX. A continuación, encontrarás tus credenciales de acceso para empezar a operar:</p>
                 <p style="font-size: 16px;">
-                    <strong>Usuario:</strong> <span style="color: #4CAF50;">${db.cuenta}</span><br>
+                    <strong>User:</strong> <span style="color: #4CAF50;">${result.user.cuenta}</span><br>
                     <strong>Contraseña:</strong> <span style="color: #4CAF50;">${db.password}</span>
                 </p>
                 <p>Para iniciar sesión, haz clic en el siguiente enlace:</p>
                 <p style="text-align: center;">
-                    <a href="https://fastcash-mx.com" style="display: inline-block; background-color: #4CAF50; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Iniciar sesión</a>
+                    <a href="https://fastcash-mx.com/" style="display: inline-block; background-color: #4CAF50; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Iniciar sesión</a>
                 </p>
                 <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
                 <p>Saludos,<br> de parte de Fast Cash LLC</p>
@@ -192,99 +162,28 @@ export default function AddAccount() {
 
         }
     };
-    const arrTipoDeGrupo = {
 
-        ['Gestión de administradores']: [
-            'Admin',
-        ],
-        ['Gestión de RH']: [
-            'Recursos Humanos',
-        ],
-        ['Gestión de managers']: [
-            'Por favor elige',
-            'Manager de Auditoria',
-            'Manager de Cobranza',
-            'Manager de Verificación',
-        ],
-        ['Gestión de asesores']: [
-            'Por favor elige',
-            'Asesor de Auditoria',
-            'Asesor de Cobranza',
-            'Asesor de Verificación',
-            'Cuenta personal'
-        ],
-        ['Gestión de cuentas personales']: [
-            'Cuenta personal'
-        ],
-    }
 
 
 
     return <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-40' onClick={() => setModal('')}>
-        <div className='relative flex flex-col items-start justify-center bg-gray-200 w-[450px] h-[450px] p-5 px-12 space-y-3 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
+        <div className='relative flex flex-col items-start justify-center bg-gray-200 w-[450px] h-[250px] p-5 px-12 space-y-3 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
             <button
                 className="absolute top-5 right-5 flex items-center justify-center w-12 h-6 bg-red-500 text-white rounded-[5px] hover:bg-red-600 focus:outline-none"
                 onClick={() => setModal('')}
             >
                 X
             </button>
-            <h4 className='w-full text-center text-gray-950'>Añadir cuenta</h4>
-            <div className='relative flex justify-between w-[300px]'>
-                <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                    Origen de la cuenta:
-                </label>
-                <SelectSimple
-                    arr={['Por favor elige',
-                        '通达富-UIO',
-                        '通达富-CLI',
-                        '通达富-EUA'
-                    ]}
-                    name='Origen de la cuenta'
-                    click={handlerSelectClick2}
-                    defaultValue={value1}
-                    uuid='123'
-                    label='Filtro 1'
-                    position='absolute left-0 top-[25px]'
-                    bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}
-                    required />
-            </div>
-            <div className='relative flex justify-between w-[300px]'>
-                <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                    Tipo de grupo:
-                </label>
-                <SelectSimple
-                    arr={arrTipoDeGrupo[item]}
-                    name='Tipo de grupo'
-                    click={handlerSelectClick2}
-                    defaultValue={value2}
-                    uuid='123'
-                    label='Filtro 1'
-                    position='absolute left-0 top-[25px]'
-                    bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}
-                    required />
-            </div>
-            <div className='relative flex justify-between w-[300px]'>
-                <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                    Codificación de roles:
-                </label>
-                <SelectSimple
-                    arr={codificacionDeRoles[value2]
-                        ? codificacionDeRoles[value2]
-                        : []}
-                    name='Codificación de roles'
-                    click={handlerSelectClick2}
-                    defaultValue={value3}
-                    uuid='123'
-                    label='Filtro 1'
-                    position='absolute left-0 top-[25px]'
-                    bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}
-                    required />
-            </div>
+            <h4 className='w-full text-center text-gray-950'>Asignar email</h4>
+
             <div className='flex justify-between'>
                 <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                    Cuenta:
+                    Email:
                 </label>
-                <input name='cuenta' className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} onChange={onChangeHandler} placeholder='Mathew' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
+                <input
+                    type='email'
+                    className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`}
+                    name='email' onChange={onChangeHandler} placeholder='example@gmail.com' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
             </div>
 
             <div className='flex justify-between items-center space-x-2'>
@@ -317,40 +216,12 @@ export default function AddAccount() {
                     Generar
                 </button>
             </div>
-            <div className='flex justify-between'>
-                <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                    Apodo:
-                </label>
-                <input
-                    name='apodo' className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`}
-                    arr={['Opción 1', 'Opción 2']} onChange={onChangeHandler} placeholder='user123' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
-            </div>
-            <div className='flex justify-between'>
-                <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                    Email:
-                </label>
-                <input
-                    type='email'
-                    className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`}
-                    name='email' onChange={onChangeHandler} placeholder='example@gmail.com' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
-            </div>
-            <div className="flex  space-x-2"><span className='text-[10px] pr-5'>Situacion laboral:</span>
-                {['En el trabajo', 'Dimitir', 'Reposo'].map((num, index) => (
-                    <label key={index} className="flex items-center space-x-2">
-                        <input
-                            name={num}
-                            type="checkbox"
-                            checked={selectedCheckbox === num}
-                            onChange={() => handleCheckboxChange(num)}
-                            className="form-checkbox h-3 w-3 text-blue-600"
-                        />
-                        <span className='text-[10px] '>{num}</span>
-                    </label>
-                ))}
-            </div>
+
+
+
             <button type="button"
                 class="w-[300px] relative left-0 right-0 mx-auto text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center  mb-2"
-                onClick={saveAccount}>Registrar cuenta</button>
+                onClick={saveAccount}>Asignar email</button>
         </div>
 
     </div>

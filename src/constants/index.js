@@ -342,7 +342,7 @@ const menuArray = {
     },
 
   ],
-  ['Usuario de Auditoria']: [
+  ['Asesor de Auditoria']: [
 
     {
       icon: <PresentationChartLineIcon className="h-6 w-6" />,
@@ -357,7 +357,7 @@ const menuArray = {
       length: 'h-[230px] overflow-auto'
     },
   ],
-  ['Usuario de Cobranza']: [
+  ['Asesor de Cobranza']: [
     {
       icon: <CircleStackIcon className="h-6 w-6" />,
       hash: 'coleccion',
@@ -368,7 +368,7 @@ const menuArray = {
       length: 'h-[50px]'
     }
   ],
-  ['Usuario de Verificación']: [
+  ['Asesor de Verificación']: [
     {
       icon: <DocumentCheckIcon className="h-6 w-6" />,
       hash: 'verificacion',

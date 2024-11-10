@@ -14,9 +14,14 @@ import InputPass from '@/components/InputPass'
 import Table from '@/components/Table'
 // import Velocimetro from '@/components/Velocimetro'
 const Velocimetro = dynamic(() => import("@/components/Velocimetro"), { ssr: false, });
-import FormAddAccount from '@/components/AddAccount'
+import FormAddAccount from '@/components/FormAddAccount'
+import FormAddMasiveAccounts from '@/components/FormAddMasiveAccounts'
 import FormAddPersonalAccount from '@/components/FormAddPersonalAccount'
 import FormAddPersonalData from '@/components/FormAddPersonalData'
+import FormAddVerification from '@/components/FormAddVerification'
+import FormAdminAccount from '@/components/FormAdminAccount'
+
+import TableTools from '@/components/TableTools'
 
 import Alert from '@/components/Alert'
 
@@ -214,7 +219,7 @@ export default function Home() {
             contrasenaGenerada += caracteres[indice];
         }
 
-        setPassword(contrasenaGenerada);
+        console.log(contrasenaGenerada);
     };
 
     function onChangePass(e) {
@@ -263,38 +268,8 @@ export default function Home() {
 
 
 
-    function* infiniteSequence() {
-        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        let level = 1;  // Nivel de profundidad de la combinación de letras (A, AA, AAA, etc.)
-        const suffix = "1";  // El sufijo constante que se añade a cada secuencia
-
-        while (true) {
-            // Bucle para generar combinaciones de un nivel determinado
-            for (let i = 0; i < Math.pow(26, level); i++) {
-                let seq = "";
-                let n = i;
-                // Genera una combinación de letras de acuerdo al nivel actual
-                for (let j = 0; j < level; j++) {
-                    seq = alphabet[n % 26] + seq;
-                    n = Math.floor(n / 26);
-                }
-                yield `${seq}${suffix}`;
-            }
-            // Aumenta el nivel de profundidad para el siguiente conjunto de combinaciones
-            level += 1;
-        }
-    }
 
 
-
-    function generateCuentasMasivas() {
-        // Ejemplo de uso:
-        const generator = infiniteSequence();
-
-        for (let i = 0; i < 200; i++) {  // Cambia el número para mostrar más o menos elementos
-            console.log(generator.next().value);
-        }
-    }
 
 
 
@@ -602,7 +577,18 @@ export default function Home() {
 
 
 
+    // const generarContrasena = () => {
+    //     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?';
+    //     let contrasenaGenerada = '';
+    //     const longitud = 16; // Longitud de la contraseña
 
+    //     for (let i = 0; i < longitud; i++) {
+    //         const indice = Math.floor(Math.random() * caracteres.length);
+    //         contrasenaGenerada += caracteres[indice];
+    //     }
+    //     setData({ ...data, password: contrasenaGenerada })
+
+    // };
     function saveAccount() {
 
     }
@@ -849,38 +835,7 @@ export default function Home() {
 
                 </div>
             }
-            {
-                modal === 'Registrar Verificacion' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
-                    <div className='relative flex flex-col items-center justify-center bg-gray-200 w-[400px] h-[300px] p-5 space-y-5 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
-                        <button
-                            className="absolute top-5 right-5 flex items-center justify-center w-12 h-6 bg-red-500 text-white rounded-[5px] hover:bg-red-600 focus:outline-none"
-                            onClick={() => setModal('')}
-                        >
-                            X
-                        </button>
 
-                        <h4>Registro de Verificación</h4>
-                        <div className='relative flex justify-between w-[300px]'>
-                            <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-black`}>
-                                Estado de Verificación:
-                            </label>
-                            <SelectSimple arr={['Aprobado', 'Reprobado']} name='Estado de reembolso' click={handlerSelectClick2} defaultValue={value} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]'
-                                bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-black`} required />
-                        </div>
-                        <div className='relative flex justify-between w-[300px]'>
-
-                            <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-black`}>
-                                Acotación:
-                            </label>
-                            <textarea name="" className='text-[10px] p-2 w-[200px] focus:outline-none bg-gray-200 border-[1px] border-gray-300 rounded-[5px]' id=""></textarea>                        </div>
-
-
-                        <button type="button" class="w-[300px] text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal('Registro de cobro')}>Registrar</button>
-
-                    </div>
-
-                </div>
-            }
             {
                 modal === 'Registrar Auditor' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
                     <div className='relative flex flex-col items-center justify-center bg-gray-200 w-[400px] h-[300px] p-5 space-y-5 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
@@ -960,162 +915,6 @@ export default function Home() {
             {loader === 'Guardando...' && <Loader>Guardando...</Loader>}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-            {modal === 'Añadir cuenta 000' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
-                <div className='relative flex flex-col items-start justify-center bg-gray-200 w-[450px] h-[450px] p-5 px-12 space-y-3 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
-                    <button
-                        className="absolute top-5 right-5 flex items-center justify-center w-12 h-6 bg-red-500 text-white rounded-[5px] hover:bg-red-600 focus:outline-none"
-                        onClick={() => setModal('')}
-                    >
-                        X
-                    </button>
-                    <h4 className='w-full text-center text-gray-950'>Añadir cuenta</h4>
-                    <div className='relative flex justify-between w-[300px]'>
-                        <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                            Origen de la cuenta:
-                        </label>
-                        <SelectSimple
-                            arr={['Por favor elige',
-                                '通达富-UIO',
-                                '通达富-CLI',
-                                '通达富-EUA'
-                            ]}
-                            name='Origen de la cuenta'
-                            click={handlerSelectClick2}
-                            defaultValue={value?.['Origen de la cuenta'] ? value['Origen de la cuenta'] : 'Por favor elige'}
-                            uuid='123'
-                            label='Filtro 1'
-                            position='absolute left-0 top-[25px]'
-                            bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}
-                            required />
-                    </div>
-                    <div className='relative flex justify-between w-[300px]'>
-                        <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                            Tipo de grupo:
-                        </label>
-                        <SelectSimple
-                            arr={[
-                                'Por favor elige',
-                                'Recursos Humanos',
-                                'Admin',
-                                'Manager de Auditoria',
-                                'Manager de Cobranza',
-                                'Manager de Verificación',
-                                'Usuario de Auditoria',
-                                'Usuario de Cobranza',
-                                'Usuario de Verificación',
-                                'Cuenta Personal'
-                            ]}
-                            name='Tipo de grupo'
-                            click={handlerSelectClick2}
-                            defaultValue={value?.['Tipo de grupo'] ? value['Tipo de grupo'] : 'Por favor elige'}
-                            uuid='123'
-                            label='Filtro 1'
-                            position='absolute left-0 top-[25px]'
-                            bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}
-                            required />
-                    </div>
-                    <div className='relative flex justify-between w-[300px]'>
-                        <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                            Codificación de roles:
-                        </label>
-                        <SelectSimple
-                            arr={codificacionDeRoles[value?.['Tipo de grupo']]
-                                ? codificacionDeRoles[value?.['Tipo de grupo']]
-                                : []}
-                            name='Codificación de roles'
-                            click={handlerSelectClick2}
-                            defaultValue={value?.['Codificación de roles'] ? value['Codificación de roles'] : 'Por favor elige'}
-                            uuid='123'
-                            label='Filtro 1'
-                            position='absolute left-0 top-[25px]'
-                            bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}
-                            required />
-                    </div>
-                    <div className='flex justify-between'>
-                        <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                            Cuenta:
-                        </label>
-                        <input className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} onChange={onChangeHandler} placeholder='Mathew' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
-                    </div>
-
-                    <div className='flex justify-between items-center space-x-2'>
-                        <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                            Contraseña:
-                        </label>
-                        <span className='relative inline-block '>
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`}
-                                placeholder={'**********'}
-                                required
-                                value={password}
-                                onChange={onChangePass}
-                            />
-                            {<span className="flex items-center absolute cursor-pointer top-0 right-2 bottom-0  my-auto" onClick={() => setShowPassword(!showPassword)}>
-                                <svg width="12" height="12" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 16.0833C13.1421 16.0833 16.5 12.6158 16.5 10.25C16.5 7.88417 13.1421 4.41667 9 4.41667C4.85792 4.41667 1.5 7.88667 1.5 10.25C1.5 12.6133 4.85792 16.0833 9 16.0833Z" stroke="#00000080" strokeWidth="2" strokeLinejoin="round" />
-                                    <path d="M9 12.75C9.66304 12.75 10.2989 12.4866 10.7678 12.0178C11.2366 11.5489 11.5 10.913 11.5 10.25C11.5 9.58696 11.2366 8.95107 10.7678 8.48223C10.2989 8.01339 9.66304 7.75 9 7.75C8.33696 7.75 7.70107 8.01339 7.23223 8.48223C6.76339 8.95107 6.5 9.58696 6.5 10.25C6.5 10.913 6.76339 11.5489 7.23223 12.0178C7.70107 12.4866 8.33696 12.75 9 12.75Z" stroke="#00000080" strokeWidth="2" strokeLinejoin="round" />
-                                    <path d="M4.52686 3.69417L5.60769 5.2025M13.8439 3.87917L12.7627 5.3875M9.00394 1.91667V4.41667" stroke="#00000080" strokeWidth="2" strokeLinecap="round" />
-                                </svg>
-                                {showPassword == false && <span className='absolute bg-[#ffffff] border-x-[.5px] border-gray-50 right-[3px] transform rotate-45 w-[4px] h-[30px]'></span>}
-                            </span>}
-                        </span>
-                        <button
-                            onClick={generarContrasena}
-                            class="w- text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center "
-                        >
-                            Generar
-                        </button>
-                    </div>
-                    <div className='flex justify-between'>
-                        <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                            Apodo:
-                        </label>
-                        <input
-                            className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`}
-                            arr={['Opción 1', 'Opción 2']} onChange={onChangeHandler} placeholder='user123' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
-                    </div>
-                    <div className='flex justify-between'>
-                        <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
-                            Email:
-                        </label>
-                        <input
-                            type='email'
-                            className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`}
-                            name='Email' onChange={onChangeHandler} placeholder='example@gmail.com' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
-                    </div>
-                    <div className="flex  space-x-2"><span className='text-[10px] pr-5'>Situacion laboral:</span>
-                        {['En el trabajo', 'Dimitir', 'Reposo'].map((num, index) => (
-                            <label key={index} className="flex items-center space-x-2">
-                                <input
-                                    type="checkbox"
-                                    checked={selectedCheckbox === num}
-                                    onChange={() => handleCheckboxChange(num)}
-                                    className="form-checkbox h-3 w-3 text-blue-600"
-                                />
-                                <span className='text-[10px] '>{num}</span>
-                            </label>
-                        ))}
-                    </div>
-                    <button type="button"
-                        class="w-[300px] relative left-0 right-0 mx-auto text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center  mb-2"
-                        onClick={saveAccount}>Registro de cobro</button>
-
-                </div>
-
-            </div>}
 
 
 
@@ -1290,7 +1089,6 @@ export default function Home() {
                     </div>
 
                 </div>
-
             }
             {item === 'Incurrir en una estación de trabajo' &&
                 <div>
@@ -2372,13 +2170,18 @@ export default function Home() {
             </table>}
 
 
+            {/* ---------------------------------'VERIFICACION DE CREDITOS' --------------------------------- */}
 
-
+            {
+                modal === 'Registrar Verificacion' && <FormAddVerification />
+            }
 
             {/* ---------------------------------'GESTION DE ACCESOS' --------------------------------- */}
 
-
-            {(item === 'Gestión de RH' || item === 'Gestión de administradores' || item === 'Gestión de managers' || item === 'Gestión de asesores' || item === 'Gestión de cuentas personales') &&
+            {(item === 'Gestión de RH' || item === 'Gestión de administradores' || item === 'Gestión de managers' || item === 'Gestión de asesores') &&
+              <TableTools></TableTools>
+            }
+            {(item === 'Gestión de cuentas personales') &&
                 <div>
 
 
@@ -2414,6 +2217,8 @@ export default function Home() {
                                     </label>
                                     <input className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Numero de páginas' onChange={onChangeHandler} defaultValue={filter['Numero de páginas']} uuid='123' label='Numero de páginas' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
                                 </div>
+                                <button type="button" onClick={() => generateCuentasMasivas()} class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Crear Usuarios Masivos</button>
+
                             </div>
                             <div className='w-[300px] space-y-2'>
 
@@ -2437,19 +2242,17 @@ export default function Home() {
 
                 </div>
             }
-
-
+               {modal === 'Añadir cuenta masivas' && <FormAddMasiveAccounts />}
             {modal === 'Añadir cuenta' && <FormAddAccount />}
             {modal === 'Añadir cuenta personal' && <FormAddPersonalAccount />}
+            {modal === 'Administrar cuenta' && <FormAdminAccount />}
 
 
-
+            {/* ---------------------------------TABLAS--------------------------------- */}
 
             <div className="overflow-x-auto">
                 {isMounted && user?.rol && <div className="max-h-[calc(100vh-90px)] pb-[70px] overflow-y-auto relative scroll-smooth" ref={refFirst}>
-
                     {/* ---------------------------------COLECCION DE CASOS--------------------------------- */}
-
                     {
                         item === 'Casos de Cobranza' && <Table
                             access={true}
@@ -2577,7 +2380,6 @@ export default function Home() {
                             server={'http://18.220.249.246/api/auth/users'}
                         />
                     }
-
                     {
                         (item === 'Gestión de managers') && <Table
                             access={true}
@@ -2605,21 +2407,6 @@ export default function Home() {
                             server={'http://18.220.249.246/api/auth/personalAccounts'}
                         />
                     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2834,7 +2621,7 @@ export default function Home() {
 
 
 
-                    {user?.rol === 'Cuenta Personal' && !userDB?.nombre &&  <FormAddPersonalData/>}
+                    {user?.rol === 'Cuenta Personal' && !userDB?.nombre && <FormAddPersonalData />}
                     {user?.rol === 'Cuenta Personal' && item === 'Asistencia' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
 
 
