@@ -50,7 +50,7 @@ export default function AddAccount() {
         setSelectedCheckbox(index);
     };
     function onChangeHandler(e) {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setData({ ...data, [e.target.name]: e.target.value })
     }
     function handlerSelectClick2(name, i, uuid) {
@@ -86,7 +86,7 @@ export default function AddAccount() {
                 'codificacionDeRoles': 'Cuenta Personal',
                 ...data,
             };
-            console.log(db);
+            // console.log(db);
 
             const response = await fetch(window?.location?.href?.includes('localhost') ? 'http://localhost:3000/api/auth/registerPersonal': 'http://18.220.249.246/api/auth/registerPersonal', {
                 method: 'POST',
@@ -103,7 +103,7 @@ export default function AddAccount() {
             }
 
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
 
 
 

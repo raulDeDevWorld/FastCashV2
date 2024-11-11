@@ -48,7 +48,7 @@ export default function App({ propIsSelect, propHandlerIsSelect, operation, clic
 //     const res = await fetch('https://restcountries.com/v3.1/all')
 //     const db = await res.json()
 
-//     console.log(db)
+//     // console.log(db)
 //     const data = db.reduce((acc, i) => {
 //         const obj = {
 //             cambioUSD: 0,
@@ -65,7 +65,7 @@ export default function App({ propIsSelect, propHandlerIsSelect, operation, clic
 //             flagPNG: i.flags.png,
 //             translation: i.translations
 //         }
-//         console.log(obj)
+//         // console.log(obj)
 //         return { ...acc, [obj.cca3]: obj }
 //     }, {})
 
@@ -79,7 +79,7 @@ export default function App({ propIsSelect, propHandlerIsSelect, operation, clic
 //     const res = await fetch('https://restcountries.com/v3.1/all')
 //     const db = await res.json()
 
-//     console.log(db)
+//     // console.log(db)
 //     const data = db.reduce((acc, i) => {
 //         const obj = {
 //             cambioUSD: 0,
@@ -96,7 +96,7 @@ export default function App({ propIsSelect, propHandlerIsSelect, operation, clic
 //             flagPNG: i.flags.png,
 //             translation: i.transalations ? i.transalations : 'non exist',
 //         }
-//         console.log(obj)
+//         // console.log(obj)
 //         return { ...acc, [obj.code !== null && obj.code !== undefined ? obj.code : obj.ccn3]: obj }
 //     }, {})
 

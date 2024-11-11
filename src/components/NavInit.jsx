@@ -16,7 +16,7 @@ export default function Button({ mobile }) {
     function handlerMode(e, data) {
         setState(data)
         router.push(data)
-        console.log('click')
+        // console.log('click')
       }
 
 

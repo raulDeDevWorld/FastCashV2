@@ -8,7 +8,7 @@ export default function Loader() {
     function off() {
         if (visible === true) {
             let timer = setTimeout(() => {
-                console.log('ejec')
+                // console.log('ejec')
                 setVisible(false)
             }, 6000)
         }

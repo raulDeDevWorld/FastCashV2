@@ -93,7 +93,7 @@ export default function Home() {
         requestAnimationFrame(() => {
             if (refFirst.current) {
                 const scrollLeft = refFirst.current.scrollLeft;
-                console.log(scrollLeft);
+                // console.log(scrollLeft);
                 const itemWidth = screen.width - 50;
                 refFirst.current.scrollLeft = scrollLeft - itemWidth;
             }
@@ -103,9 +103,9 @@ export default function Home() {
         requestAnimationFrame(() => {
             if (refFirst.current) {
                 const scrollLeft = refFirst.current.scrollLeft;
-                console.log(scrollLeft);
+                // console.log(scrollLeft);
                 const itemWidth = screen.width - 50;
-                console.log(itemWidth);
+                // console.log(itemWidth);
                 refFirst.current.scrollLeft = scrollLeft + itemWidth;
             }
         });
@@ -113,9 +113,9 @@ export default function Home() {
     function handlerSelectClick(name, i, uuid) {
         setFilter({ ...filter, [name]: i })
     }
-    console.log(filter)
+    // console.log(filter)
     function onChangeHandler(e) {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setFilter({ ...filter, [e.target.name]: e.target.value })
     }
     function formatDate(date) {
@@ -131,7 +131,7 @@ export default function Home() {
 
         const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",];
 
-        // console.log('Fecha Actual: ' + dt);
+        // // console.log('Fecha Actual: ' + dt);
         //restando los dias deseados
         const dat = dt.setDate(dt.getDate() + dias);
         const index = new Date(dat).getDay()
@@ -168,7 +168,7 @@ export default function Home() {
         "Pagará pronto"
     ];
 
-    console.log(filter)
+    // console.log(filter)
 
     const copyToClipboard = (textToCopy) => {
         navigator.clipboard.writeText(textToCopy).then(() => {
@@ -211,7 +211,7 @@ export default function Home() {
 
 
     const [showPassword, setShowPassword] = useState(false)
-    console.log(selectedLeft)
+    // console.log(selectedLeft)
 
 
 

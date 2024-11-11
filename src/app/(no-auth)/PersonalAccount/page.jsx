@@ -38,7 +38,7 @@ export default function Home() {
         email,
         password,
       });
-      console.log(response)
+      // console.log(response)
       if(response.status === 200){
         setUser({ rol: response.data.user.codificacionDeRoles })
         setUserDB(response.data.user)
@@ -52,7 +52,7 @@ export default function Home() {
     // captcha.length > 10 && router.push('/Home?seccion=coleccion&item=Casos%20de%20Cobranza')
   }
 
-  console.log(userDB)
+  // console.log(userDB)
 
   
   function onChange(value) {

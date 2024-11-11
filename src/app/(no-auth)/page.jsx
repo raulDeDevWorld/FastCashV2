@@ -19,7 +19,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Home() {
   // const { user, userDB, setUserProfile, setUserSuccess, success, setUser, postsIMG, setUserPostsIMG, sound1, sound2, setSound1, setSound2, } = useAppContext()
-  const { user, setUser, userDB, theme, setTheme } = useAppContext()
+  const { user, setUser, userDB, setUserDB, theme, setTheme } = useAppContext()
 
   const [isDisable, setIsDisable] = useState(false)
   const [captcha, setCaptcha] = useState('')
@@ -38,9 +38,13 @@ export default function Home() {
         cuenta,
         password,
       });
-      console.log(response)
-      if(response.status === 200){
+      // // console.log(response)
+      if (response.status === 200) {
         setUser({ rol: response.data.user.tipoDeGrupo })
+        setUserDB(response.data.user)
+        // Guardar el JWT en sessionStorage
+        sessionStorage.setItem('token', response.data.token);
+
         router.push('/Home')
       }
     } catch (error) {
@@ -50,9 +54,9 @@ export default function Home() {
     // captcha.length > 10 && router.push('/Home?seccion=coleccion&item=Casos%20de%20Cobranza')
   }
 
-  console.log(user)
+  // // console.log(user)
 
-  
+
   function onChange(value) {
     setCaptcha(value);
   }
@@ -69,10 +73,6 @@ export default function Home() {
       <img src="bg2.jpg" className='fixed top-0 left-0 h-screen w-screen object-cover' alt="" />
       <div className='fixed top-0 left-0 h-screen w-screen bg-[#131920da] z-20'></div>
       <span className='absolute top-[20px] left-[30px] z-30 text-[60px] bg-gradient-to-r from-blue-400 from-50%  to-orange-400 to-50% bg-clip-text text-transparent'  > Fast Cash</span>
-
-
-
-
       <form className={`relative w-full max-w-[400px] space-y-3 shadow-2xl  bg-[#39444e80] rounded-[10px] px-5 py-8 z-50`} onSubmit={onSubmitWithReCAPTCHA} >
         {/* <form className={`w-full max-w-[450px] space-y-4 border-[1px] border-white shadow-2xl shadow-white px-5 py-10`} onSubmit={!isDisable ? signInHandler : (e) => e.preventDefault()} > */}
         <img src="user.svg" className='relative right-0 left-0  mx-auto h-[100px] w-[100px] ' alt="" />

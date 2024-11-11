@@ -12,6 +12,8 @@ import dynamic from 'next/dynamic';
 import { useTheme } from '@/context/ThemeContext';
 import InputPass from '@/components/InputPass'
 import Table from '@/components/Table'
+import TableReporteDiario from '@/components/TableReporteDiario'
+
 // import Velocimetro from '@/components/Velocimetro'
 const Velocimetro = dynamic(() => import("@/components/Velocimetro"), { ssr: false, });
 import FormAddAccount from '@/components/FormAddAccount'
@@ -20,6 +22,7 @@ import FormAddPersonalAccount from '@/components/FormAddPersonalAccount'
 import FormAddPersonalData from '@/components/FormAddPersonalData'
 import FormAddVerification from '@/components/FormAddVerification'
 import FormAdminAccount from '@/components/FormAdminAccount'
+import FormAsignarAsesor from '@/components/FormAsignarAsesor'
 
 import TableTools from '@/components/TableTools'
 
@@ -114,7 +117,7 @@ export default function Home() {
         requestAnimationFrame(() => {
             if (refFirst.current) {
                 const scrollLeft = refFirst.current.scrollLeft;
-                console.log(scrollLeft);
+                // console.log(scrollLeft);
                 const itemWidth = screen.width - 50;
                 refFirst.current.scrollLeft = scrollLeft - itemWidth;
             }
@@ -124,9 +127,9 @@ export default function Home() {
         requestAnimationFrame(() => {
             if (refFirst.current) {
                 const scrollLeft = refFirst.current.scrollLeft;
-                console.log(scrollLeft);
+                // console.log(scrollLeft);
                 const itemWidth = screen.width - 50;
-                console.log(itemWidth);
+                // console.log(itemWidth);
                 refFirst.current.scrollLeft = scrollLeft + itemWidth;
             }
         });
@@ -134,9 +137,9 @@ export default function Home() {
     function handlerSelectClick(name, i, uuid) {
         setFilter({ ...filter, [name]: i })
     }
-    console.log(filter)
+    // console.log(filter)
     function onChangeHandler(e) {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setFilter({ ...filter, [e.target.name]: e.target.value })
     }
     function formatDate(date) {
@@ -152,7 +155,7 @@ export default function Home() {
 
         const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",];
 
-        // console.log('Fecha Actual: ' + dt);
+        // // console.log('Fecha Actual: ' + dt);
         //restando los dias deseados
         const dat = dt.setDate(dt.getDate() + dias);
         const index = new Date(dat).getDay()
@@ -194,7 +197,7 @@ export default function Home() {
         "Pagará pronto"
     ];
 
-    console.log(user)
+    // console.log(user)
 
     const copyToClipboard = (textToCopy) => {
         navigator.clipboard.writeText(textToCopy).then(() => {
@@ -219,7 +222,7 @@ export default function Home() {
             contrasenaGenerada += caracteres[indice];
         }
 
-        console.log(contrasenaGenerada);
+        // console.log(contrasenaGenerada);
     };
 
     function onChangePass(e) {
@@ -227,7 +230,7 @@ export default function Home() {
     }
 
     const [showPassword, setShowPassword] = useState(false)
-    console.log(selectedLeft)
+    // console.log(selectedLeft)
 
     const getBackgroundClass = (estado) => {
         switch (estado) {
@@ -257,7 +260,7 @@ export default function Home() {
         "12/12/2024 12:00 pm"
     ];
     const [isMounted, setIsMounted] = useState(false);
-    console.log(item)
+    // console.log(item)
 
 
 
@@ -592,6 +595,9 @@ export default function Home() {
     function saveAccount() {
 
     }
+
+
+    // console.log(modal)
     useEffect(() => {
         setIsMounted(true);
     }, []);
@@ -1369,153 +1375,7 @@ export default function Home() {
                     </div>
                 </div>
             }
-            {item === 'Recolección y Validación de Datos' &&
-                <div>
-                    <div className='flex min-w-[90vw] flex-wrap justify-around relative top-[-25px]'>
-                        <div className='px-2'>
-                            <Velocimetro></Velocimetro>
-                            <h4 className={`text-center text-[14px]  m-0 p-0 pb-2 ${theme === 'light' ? ' text-[steelblue]' : ' text-[#55abf1] '} dark:text-text-[#55abf1]`}>Tasa de finalizacion hoy</h4>
-                            <div className='grid grid-cols-3 w-[300px]'>
-                                <p className={`col-span-2 text-center text-[10px] ${theme === 'light' ? ' text-gray-500' : ' text-gray-500 '} dark:text-white`}>0 <br />El número de recordatorios en el dia que se asigna en el día.</p>
-                                <p className={`col-span-1 text-center text-[10px] ${theme === 'light' ? ' text-gray-500' : ' text-gray-500 '} dark:text-white`}>0 <br />Añadir el número hoy.</p>
-                            </div>
-                        </div>
-                        <div className=' px-2'>
-                            <Velocimetro></Velocimetro>
-                            <h4 className={`text-center text-[14px]  m-0 p-0 pb-2 ${theme === 'light' ? ' text-[steelblue]' : ' text-[#55abf1] '} dark:text-text-[#55abf1]`}>Tasa de recuperación de caso</h4>
-                            <div className='grid grid-cols-3 w-[300px]'>
-                                <p className={`col-span-2 text-center text-[10px] ${theme === 'light' ? ' text-gray-500' : ' text-gray-500 '} dark:text-white`}>0 <br />Cobro de hoy.</p>
-                                <p className={`col-span-1 text-center text-[10px] ${theme === 'light' ? ' text-gray-500' : ' text-gray-500 '} dark:text-white`}>0 <br /> Número total de casos.</p>
-                            </div>
-                        </div>
-                        <div className=' px-2'>
-                            <Velocimetro></Velocimetro>
-                            <h4 className={`text-center text-[14px]  m-0 p-0 pb-2 ${theme === 'light' ? ' text-[steelblue]' : ' text-[#55abf1] '} dark:text-text-[#55abf1]`}>Tasa de recuperación de grupo</h4>
-                            <h4 className='text-center text-[14px] text-green-600  m-0 p-0 pb-2'> <span className='bg-green-600 mr-2 w-[10px] h-[10px] inline-block'></span>Tasa de recuperación de grupos</h4>
 
-                        </div>
-                        <div className=' p-2 border my-5 flex flex-col justify-between'>
-                            <h4 className={`text-center text-[14px]  m-0 p-0 pb-2 ${theme === 'light' ? ' text-[steelblue]' : ' text-[#55abf1] '} dark:text-text-[#55abf1]`}>Ranking de hoy</h4>
-                            <br />
-                            <div className='grid grid-cols-2 gap-2'>
-                                <div>
-                                    <h4 className='text-center text-[18px] text-[steelblue] m-0 p-0 pb-2'>NO.0</h4>
-                                    <p className='col-span-2 text-center text-[12px] text-gray-500'>Ranking Individual <br /> por Equipos</p>
-
-                                </div>
-                                <div>
-                                    <h4 className='text-center text-[18px] text-[steelblue] m-0 p-0 pb-2'>0.00</h4>
-                                    <p className='col-span-2 text-center text-[12px] text-gray-500'>Monto del cobro</p>
-
-                                </div>
-
-                            </div>
-                            <br />
-
-                            <h4 className='text-center text-[18px] text-[steelblue] m-0 p-0 pb-2'>0.00</h4>
-
-
-                            <p className='col-span-2 text-center text-[12px] text-gray-500'>Monto del cobro</p>
-
-
-                        </div>
-                    </div>
-
-                    <div className="w-full   relative  overflow-auto  scroll-smooth mb-2 lg:overflow-hidden">
-                        <div className='grid grid-cols-3 gap-x-5 gap-y-2 w-[1050px]'>
-                            <div className='w-[330px] space-y-2'>
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Codigo del producto:
-                                    </label>
-                                    <SelectSimple arr={filtro_1} name='nombreProducto' click={handlerSelectClick} defaultValue={filter['nombreProducto']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-                                {/* <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Cobrador:
-                                    </label>
-                                    <div className='grid grid-cols-2 gap-2'>
-                                        <SelectSimple arr={rangesArray} name='Cobrador 1' click={handlerSelectClick} defaultValue={filter['Cobrador 1']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]'  bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                        <SelectSimple arr={cobrador} name='Cobrador 2' click={handlerSelectClick} defaultValue={filter['Cobrador 2']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]'  bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                    </div>
-                                </div> */}
-                                {/* <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Dias vencidos:
-                                    </label>
-                                    <div className='grid grid-cols-2 gap-2'>
-                                        <input className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`}   arr={['Opción 1', 'Opción 2']} name='Minimo dias vencido' onChange={onChangeHandler} placeholder='Minimo' defaultValue={filter['Nombre del cliente']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]'  bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                        <input className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`}   arr={['Opción 1', 'Opción 2']} name='Maximo dias vencido' onChange={onChangeHandler} placeholder='Maximo' defaultValue={filter['Nombre del cliente']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]'  bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                    </div>
-                                </div> */}
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Clientes nuevos y antiguos:
-                                    </label>
-                                    <SelectSimple arr={filterCliente} name='Clientes nuevos y antiguos' click={handlerSelectClick} defaultValue={filter['Cliente nuevo']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-                                {user?.rol === 'Manager de Verificación' && <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Distribuir</button>
-                                }
-                            </div>
-                            <div className='w-[300px] space-y-2'>
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Número de teléfono:
-                                    </label>
-                                    <input className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Factura a plazos:
-                                    </label>
-                                    <SelectSimple arr={factura} name='Factura a plazos' click={handlerSelectClick} defaultValue={filter['Factura a plazos']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Numero de páginas:
-                                    </label>
-                                    <input className={`h-[25px] max-w-[173px] w-full px-3 border border-[#cfcfcf] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Numero de páginas' onChange={onChangeHandler} defaultValue={filter['Numero de páginas']} uuid='123' label='Numero de páginas' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Jumiah periode:
-                                    </label>
-                                    <SelectSimple arr={Jumlah} name='Jumiah periode' click={handlerSelectClick} defaultValue={filter['Jumiah periode']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-                            </div>
-                            <div className='w-[300px] space-y-2'>
-
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Estado de reembolso:
-                                    </label>
-                                    <SelectSimple arr={['Aprobado', 'Reprobado']} name='Estado de reembolso' click={handlerSelectClick} defaultValue={filter['Estado de reembolso']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Fecha de rembolso:
-                                    </label>
-                                    <div className='grid grid-cols-2 gap-2'>
-                                        <input type='date' className="h-[25px] max-w-[173px] w-full px-2 border border-[#cfcfcf] rounded-[5px] text-[10px]  " arr={['Opción 1', 'Opción 2']} name='Nombre del cliente' click={handlerSelectClick} defaultValue={filter['Nombre del cliente']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                        <input type='date' className="h-[25px] max-w-[173px] w-full px-2 border border-[#cfcfcf] rounded-[5px] text-[10px]  " arr={['Opción 1', 'Opción 2']} name='Nombre del cliente' click={handlerSelectClick} defaultValue={filter['Nombre del cliente']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                    </div>
-
-                                </div>
-
-
-
-                                <div className='flex justify-between flex space-x-3'>
-                                    <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Consultar</button>
-                                    <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Restablecer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            }
             {item === 'Lista final' &&
                 <div>
 
@@ -1763,7 +1623,7 @@ export default function Home() {
                     </div>
 
                 </div>}
-            {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza') && item === 'Reporte diario' &&
+            {/* {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza') && item === 'Reporte diario' &&
                 <div>
 
 
@@ -1826,7 +1686,7 @@ export default function Home() {
 
                     </div>
 
-                </div>}
+                </div>} */}
             {/* -----------------------  Tablas  ---------------------------*/}
             {item === 'Flujo de Clientes' &&
                 <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
@@ -2169,6 +2029,21 @@ export default function Home() {
                 </tbody>
             </table>}
 
+            {/* ---------------------------------'VERIFICACION DE CREDITOS' --------------------------------- */}
+
+            {item === 'Recolección y Validación de Datos' &&
+                            <TableTools></TableTools>
+
+           
+            }
+
+            {/* ---------------------------------'COLECCION DE CASOS' --------------------------------- */}
+
+            {(item === 'Reporte diario') &&
+                <TableTools></TableTools>
+            }
+            {modal === 'Asignar Asesor' && <FormAsignarAsesor />}
+
 
             {/* ---------------------------------'VERIFICACION DE CREDITOS' --------------------------------- */}
 
@@ -2179,8 +2054,9 @@ export default function Home() {
             {/* ---------------------------------'GESTION DE ACCESOS' --------------------------------- */}
 
             {(item === 'Gestión de RH' || item === 'Gestión de administradores' || item === 'Gestión de managers' || item === 'Gestión de asesores') &&
-              <TableTools></TableTools>
+                <TableTools></TableTools>
             }
+
             {(item === 'Gestión de cuentas personales') &&
                 <div>
 
@@ -2242,7 +2118,7 @@ export default function Home() {
 
                 </div>
             }
-               {modal === 'Añadir cuenta masivas' && <FormAddMasiveAccounts />}
+            {modal === 'Añadir cuenta masivas' && <FormAddMasiveAccounts />}
             {modal === 'Añadir cuenta' && <FormAddAccount />}
             {modal === 'Añadir cuenta personal' && <FormAddPersonalAccount />}
             {modal === 'Administrar cuenta' && <FormAdminAccount />}
@@ -2258,7 +2134,7 @@ export default function Home() {
                             access={true}
                             headArray={encabezadoCasosDeCobranza}
                             dataArray={['']}
-                            dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
+                            dataFilter={(i) => i?.estadoDeCredito === 'Aprobado' || i?.estadoDeCredito === 'Reprobado'}
                             local={'http://localhost:3000/api/verification'}
                             server={'http://18.220.249.246/api/data'}
                         />
@@ -2409,24 +2285,6 @@ export default function Home() {
                     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Auditoria' || user.rol === 'Manager de Verificación') && item === 'Asistencia' && <table className="w-full min-w-[1000px] bg-white text-[14px] text-left text-gray-500 border-t-4  shadow">
 
 
@@ -2491,84 +2349,14 @@ export default function Home() {
                         </tbody>
                     </table>}
 
-                    {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Auditoria' || user.rol === 'Manager de Verificación') && item === 'Reporte diario' && <table className="w-full min-w-[2000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
-                        <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
-
-
-                            <tr className=' bg-gray-800'>
-                                <th></th>
-                                <th className="px-4 py-2 text-white">SEGMENTO</th>
-                                <th className="px-4 py-2 text-white">Nombres</th>
-
-                                <th className="px-4 py-2 text-white">Usuario</th>
+                    {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Auditoria' || user.rol === 'Manager de Verificación') && item === 'Reporte diario' &&
+                        <TableReporteDiario />
+                    }
 
 
 
 
-                                <th className="px-4 py-2 text-white">CASOS</th>
-                                <th className="px-4 py-2 text-white">Meta</th>
-
-                                <th className="px-4 py-2 text-yellow-400 ">PAGOS 10:00 am</th>
-                                <th className="px-4 py-2 text-white">PTP 10:00 am</th>
-                                <th className="px-4 py-2 text-white">Tasa de recuperación</th>
-
-                                <th className="px-4 py-2 text-yellow-400 ">PAGOS 12:00 am</th>
-                                <th className="px-4 py-2 text-white">PTP 12:00 am</th>
-                                <th className="px-4 py-2 text-white">Tasa de recuperación</th>
-
-                                <th className="px-4 py-2 text-yellow-400 ">PAGOS 2:00 pm</th>
-                                <th className="px-4 py-2 text-white">PTP 2:00 pm</th>
-                                <th className="px-4 py-2 text-white">Tasa de recuperación</th>
-
-                                <th className="px-4 py-2 text-yellow-400 ">PAGOS 4:00 pm</th>
-                                <th className="px-4 py-2 text-white">PTP 4:00 pm</th>
-                                <th className="px-4 py-2 text-white">Tasa de recuperación</th>
-
-                                <th className="px-4 py-2 text-yellow-400 ">PAGOS 6:00 pm</th>
-                                <th className="px-4 py-2 text-white">PTP 6:00 pm</th>
-                                <th className="px-4 py-2 text-white">Tasa de recuperación</th>
-
-                                <th className="px-4 py-2   text-yellow-400">Pagos total</th>
-                                <th className="px-4 py-2 text-white">Tasa de recuperación</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {cobradores.map((cobrador, index) => (
-                                <tr key={index} className={`bg-gray-200 border-b text-[12px] ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'}`}>
-
-                                    <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
-                                        <input type="checkbox" />
-                                    </td>
-                                    <td className="px-4 py-2">{cobrador.id}</td>
-                                    <td className="px-4 py-2">{cobrador.nombre}</td>
-                                    <td className="px-4 py-2">{cobrador.usuario}</td>
-
-                                    <td className="px-4 py-2">{cobrador.casos}</td>
-                                    <td className="px-4 py-2">{cobrador.llamadasRealizadas}</td>
-                                    <td className="px-4 py-2  bg-yellow-400">{cobrador.clientesSinResponder}</td>
-                                    <td className="px-4 py-2">{cobrador.pagosHoy}</td>
-                                    <td className="px-4 py-2">{cobrador.porcentajeHoy}</td>
-                                    <td className="px-4 py-2 bg-yellow-400">{cobrador.ptp2pm}</td>
-                                    <td className="px-4 py-2">{cobrador.ptp6pm}</td>
-                                    <td className="px-4 py-2">{cobrador.porcentajePTP}</td>
-                                    <td className="px-4 py-2 bg-yellow-400">{cobrador.llamadas3pm}</td>
-                                    <td className="px-4 py-2">{cobrador.ptp10am}</td>
-                                    <td className="px-4 py-2">{cobrador.porcentajeLlamadas}</td>
-                                    <td className="px-4 py-2 bg-yellow-400">{cobrador.llamadasFinales}</td>
-                                    <td className="px-4 py-2">{cobrador.tasaFinal}</td>
-                                    <td className="px-4 py-2">{cobrador.porcentajeFinal}</td>
-
-                                    <td className="px-4 py-2 bg-yellow-400">{cobrador.porcentajeTasaFinal}</td>
-                                    <td className="px-4 py-2">{cobrador.tasaFinal}</td>
-                                    <td className="px-4 py-2">{cobrador.porcentajeFinal}</td>
-                                    <td className="px-4 py-2 bg-yellow-400">{cobrador.tasaFinal}</td>
-
-                                    <td className="px-4 py-2">{cobrador.porcentajeTasaFinal}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>}
+                    {user?.rol === 'Cuenta Personal' && !userDB?.nombreCompleto && <FormAddPersonalData />}
 
                     {user?.rol === 'Cuenta Personal' && item === 'Control de casos' && <table className="w-full min-w-[1500px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
                         <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
@@ -2615,13 +2403,6 @@ export default function Home() {
                             ))}
                         </tbody>
                     </table>}
-
-
-
-
-
-
-                    {user?.rol === 'Cuenta Personal' && !userDB?.nombre && <FormAddPersonalData />}
                     {user?.rol === 'Cuenta Personal' && item === 'Asistencia' && <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
 
 
@@ -2680,7 +2461,6 @@ export default function Home() {
                             ))}
                         </tbody>
                     </table>}
-
                     {user?.rol === 'Cuenta Personal' && item === 'Gestion de auditoria' && <table className="w-full min-w-[1500px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
                         <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
 
@@ -2725,38 +2505,35 @@ export default function Home() {
                             ))}
                         </tbody>
                     </table>}
-
                     {user?.rol === 'Cuenta Personal' && item === 'Informacion personal' && <div className='relative w-full h-full items-center flex flex-col justify-center'>
 
 
                         <div className={`relative w-[450px] h-auto rounded-[20px]  items-center flex flex-col justify-center space-y-3  ${theme === 'light' ? 'relative bg-white shadow-2xl shadow-gray-500' : ' relative bg-white shadow-2xl shadow-gray-500 '} p-5 dark:shadow-none dark:bg-gray-900`}>
 
-                            {console.log(userDB)}
+                            
                             <div><img src='/perfil.png' className='h-[150px] rounded-full' /></div>
 
 
                             <div className='relative w-[350px]  items-between flex   justify-between'>
                                 <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`}> Nombre:</span>
-                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > Kiara</span>
-                            </div >
-
-                            <div className='relative w-[350px]  items-between flex   justify-between'>
-                                <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > Apellido:</span>
-                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > Palacios</span>
+                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > {userDB?.nombreCompleto}</span>
                             </div >
                             <div className='relative w-[350px]  items-between flex   justify-between'>
                                 <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > DNI:</span>
-                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > 2121323312</span>
+                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > {userDB?.dni}</span>
                             </div >
                             <div className='relative w-[350px]  items-between flex   justify-between'>
                                 <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > Correo:</span>
                                 <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > {userDB?.email}</span>
                             </div >
                             <div className='relative w-[350px]  items-between flex   justify-between'>
-                                <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > Usuario asignado hoy:</span>
-                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > UserVe001</span>
+                                <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > Rol asignado hoy:</span>
+                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > {userDB?.rolAsignado}</span>
                             </div >
-
+                            <div className='relative w-[350px]  items-between flex   justify-between'>
+                                <span className={`${theme === 'light' ? ' text-green-500' : ' text-green-500 '} dark:text-green-500`} > Usuario asignado hoy:</span>
+                                <span className={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} > {userDB?.cuenta}</span>
+                            </div >
                             <InputPass type="password" name="password" valu='User@#$' id="password" disabled placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    " />
                         </div>
 

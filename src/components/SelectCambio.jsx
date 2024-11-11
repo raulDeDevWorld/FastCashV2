@@ -17,19 +17,19 @@ export default function App({ placeholder, value, onChange, propHandlerSelect, p
     // e.nativeEvent.stopImmediatePropagation()
     // e.stopPropagation()
 
-    console.log('child')
+    // console.log('child')
     propHandlerSelect(i.code)
   }
   function handlerIsSelect(e, i) {
     e.stopPropagation()
 
-    console.log('child')
+    // console.log('child')
     propHandlerIsSelect()
   }
 
 
   const handlerOnChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     onChange == 'Transference' && setTransferencia(e.target.value)
   }
 

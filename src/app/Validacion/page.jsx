@@ -78,7 +78,7 @@ export default function Home() {
           router.push(`/Home?seccion=${menuArray['Super Admin'][0].hash}&item=${menuArray['Super Admin'][0].options[0].subtitle}`)
           break;
         default:
-          console.log(`Sorry, we are out of ${expr}.`);
+          // console.log(`Sorry, we are out of ${expr}.`);
       }
 
     } else {
@@ -93,7 +93,7 @@ export default function Home() {
 
 
 
-  console.log(user)
+  // console.log(user)
 
   const signInHandler = async (e) => {
 

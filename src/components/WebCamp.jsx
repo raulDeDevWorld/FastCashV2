@@ -20,15 +20,15 @@ export default function WebCamp({ takePhoto }) {
     const ref1 = useRef(null)
     const ref2 = useRef(null)
     const ref3 = useRef(null)
-    console.log(ref1)
-    console.log(ref2)
-    console.log(ref3)
+    // console.log(ref1)
+    // console.log(ref2)
+    // console.log(ref3)
     const captureHandler = (e) => {
         const file = e.target.files[0];
 
         const reader = new FileReader();
         reader.onloadend = () => {
-            console.log(reader.result);
+            // console.log(reader.result);
             switch (e.target.name) {
                 case 'Capture1':
                     return setImage1(reader.result)

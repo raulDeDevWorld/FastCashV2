@@ -124,7 +124,7 @@ export default function AddAccount() {
                 password,
                 email: `No asignado a ${cuenta}`
             };
-            console.log(db);
+            // console.log(db);
 
             const response = await fetch(window?.location?.href?.includes('localhost') ? 'http://localhost:3000/api/auth/register' : 'http://18.220.249.246/api/auth/register', {
                 method: 'POST',
@@ -141,7 +141,7 @@ export default function AddAccount() {
             }
 
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
 
             const counterName = value2 === 'Asesor de Cobranza' ? nameDocument[value3.split(' ')[0]] : nameDocument[value3]
 
@@ -151,7 +151,7 @@ export default function AddAccount() {
             // Verificar si la respuesta fue exitosa (status 200)
             if (res.ok) {
                 const data = await res.json();
-                console.log(`El valor del contador ${counterName} es:`, data.count);
+                // console.log(`El valor del contador ${counterName} es:`, data.count);
 
                 // Hacer la solicitud PUT al servidor para actualizar el contador
                 const response = await fetch(window?.location?.href?.includes('localhost') ? `http://localhost:3000/api/counter/${counterName}/increment`: `http://18.220.249.246/api/counter/${counterName}/increment`, {
@@ -165,7 +165,7 @@ export default function AddAccount() {
                 // Verificar si la respuesta fue exitosa (status 200)
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(`El contador ${counterName} se actualizó a:`, data.count);
+                    // console.log(`El contador ${counterName} se actualizó a:`, data.count);
 
                     index === newAccounts.length - 1 && setAlerta('Operación exitosa!')
                     index === newAccounts.length - 1 && setModal('')
@@ -278,7 +278,7 @@ export default function AddAccount() {
             // Si la respuesta es exitosa (status 200)
             if (response.ok) {
                 const db = await response.json();
-                console.log(`El contador ${counterName} tiene el valor:`, db.count)
+                // console.log(`El contador ${counterName} tiene el valor:`, db.count)
                 const count = db.count;
                 const code = value2 === 'Asesor de Cobranza' ? codeAccount[value3.split(' ')[0]] : codeAccount[value3]
                 const generator = infiniteSequence(count);
@@ -288,7 +288,7 @@ export default function AddAccount() {
                 if (data?.cantidad && value1 !== 'Por favor elige' && value2 !== 'Por favor elige' && value3 !== 'Por favor elige') {
                     for (let i = 0; i < data.cantidad; i++) {
                         arr.push(`${code}${generator.next().value}`)
-                        // console.log(`${code}${generator.next().value}`);
+                        // // console.log(`${code}${generator.next().value}`);
                     }
                 }
                 setNewAccounts(arr)

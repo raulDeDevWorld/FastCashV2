@@ -11,9 +11,9 @@ const AppContext = createContext();
 
 export function AppProvider({ children }) {
 
-	const [user, setUser] = useState({ rol: 'Super Admin' })
-	const [users, setUsers] = useState(undefined)
-	const [userDB, setUserDB] = useState(undefined)
+	const [user, setUser] = useState(undefined)
+	const [users, setUsers] = useState(null)
+	const [userDB, setUserDB] = useState({cuenta: 'tester'})
 	const [subItemNav, setSubItemNav] = useState('Casos de Cobranza')
 	const [alerta, setAlerta] = useState('')
 	const [theme, setTheme] = useState('light');
@@ -23,6 +23,7 @@ export function AppProvider({ children }) {
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [isOpen2, setIsOpen2] = useState(false);
+    const [checkedArr, setCheckedArr] = useState([]);
 
 
 
@@ -104,7 +105,7 @@ export function AppProvider({ children }) {
 			setSuccess(data)
 			const timer = setTimeout(() => {
 				setSuccess(null)
-				console.log('timer')
+				// console.log('timer')
 				return clearTimeout(timer)
 			}, 6000)
 
@@ -164,7 +165,7 @@ export function AppProvider({ children }) {
 			enviosDB, setEnviosDB,
 			cambiosDB, setCambiosDB,
 			setQRurl,
-
+			checkedArr, setCheckedArr,
 			setDestinatario,
 			setUsers,
 			setSelect,
@@ -191,6 +192,7 @@ export function AppProvider({ children }) {
 		fecha, qr, QRurl, divisas, envios,
 		webScann,
 		filter,
+		checkedArr,
 		filterQR, exchange, countries, isOpen, isOpen2, destinatarios, transactionDB, navItem, comision,
 		enviosDB,
 		loader,

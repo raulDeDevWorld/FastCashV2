@@ -111,7 +111,7 @@ function StopWatch() {
     try {
       const responseData = await fetch('/api/getUsdtP2P')
       const jsonData = await responseData.json();
-      console.log(jsonData)
+      // console.log(jsonData)
       setCount(0)
     } catch (error) {
       console.error(error);

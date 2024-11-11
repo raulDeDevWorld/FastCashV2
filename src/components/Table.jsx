@@ -48,11 +48,11 @@ const Table = ({
         setModal(mod)
         setItemSelected(i)
     }
-    console.log(itemSelected)
+    // console.log(userDB)
     async function handlerFetch() {
         const res = await fetch(window?.location?.href?.includes('localhost') ? local : server)
         const data = await res.json()
-        console.log(data)
+        // console.log(data)
         setData(data)
     }
 
@@ -91,8 +91,9 @@ const Table = ({
                         <tr key={index} className="text-[12px] border-b">
                             {headArray().map((it, index) => {
                                 return (
-                                    <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} `} >
 
+                                    <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} `} >
+                                        {it === "Seleccionar" && <input type="checkbox" /> }
                                         {it.toLowerCase() === 'contactos' &&
                                             <div className="flex justify-around items-center">
                                                 <a

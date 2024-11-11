@@ -13,7 +13,7 @@ export default function Modal({ children, theme, button, funcion, alert }) {
 
 
     function handlerTextEditorOnChange(content, delta, source, editor) {
-        console.log(editor.getHTML())
+        // console.log(editor.getHTML())
         setTextEditor(editor.getHTML())
 
     }
@@ -99,7 +99,7 @@ export default function Modal({ children, theme, button, funcion, alert }) {
 
 
 //     function handlerTextEditorOnChange(content, delta, source, editor) {
-//         console.log(editor.getHTML())
+//         // console.log(editor.getHTML())
 //         setTextEditor(editor.getHTML())
 //     }
 

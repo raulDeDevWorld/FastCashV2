@@ -61,14 +61,12 @@ export default function BottomNavigation({ rol }) {
             <h3 className={` text-center text-[12px]  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>{rol}</h3>
         </li>
     }
-console.log(item)
 
     return <ul className="space-y-3 text-[16px] flex flex-col  items-center text-gray-600 font-medium ">
         <Header />
         {
             menuArray[rol].map((element, index) => {
                 const Icon = element.icon
-                console.log(Icon)
                 return <>
                   { Object.values(menuArray[rol]).length !== 1 && <button
                         type="button"

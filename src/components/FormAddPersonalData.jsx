@@ -32,10 +32,9 @@ export default function AddAccount() {
     const item = searchParams.get('item')
 
     function onChangeHandler(e) {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setData({ ...data, [e.target.name]: e.target.value })
     }
-
 
     const saveAccount = async (e) => {
         e.preventDefault();
@@ -44,10 +43,10 @@ export default function AddAccount() {
             const db = {
                 ...data,
             };
-            console.log(db);
-
-            const response = await fetch(window?.location?.href?.includes('localhost') ? 'http://localhost:3000/api/auth/registerPersonal' : 'http://18.220.249.246/api/auth/registerPersonal', {
-                method: 'POST',
+            const id = userDB.id
+            // console.log(userDB)
+            const response = await fetch(window?.location?.href?.includes('localhost') ? `http://localhost:3000/api/auth/registerPersonal/${id}` : `http://18.220.249.246/api/auth/registerPersonal/${id}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -61,7 +60,7 @@ export default function AddAccount() {
             }
 
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
 
 
             setAlerta('Operación exitosa!')
@@ -75,35 +74,77 @@ export default function AddAccount() {
         }
     };
 
-console.log(data)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Función para manejar la subida de la imagen
     const handleImageUpload = (event) => {
-      const file = event.target.files[0]; // obtiene el archivo seleccionado
-  
-      if (file) {
-        const reader = new FileReader(); // crea un lector de archivos
-  
-        reader.onloadend = () => {
-          setBase64(reader.result); // establece la imagen en formato base64
-        };
-  
-        reader.readAsDataURL(file); // lee el archivo como una URL de datos
-      }
+        const file = event.target.files[0]; // obtiene el archivo seleccionado
+
+        if (file) {
+            const reader = new FileReader(); // crea un lector de archivos
+
+            reader.onloadend = () => {
+                setBase64(reader.result); // establece la imagen en formato base64
+            };
+
+            reader.readAsDataURL(file); // lee el archivo como una URL de datos
+        }
     };
 
     return <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-40' onClick={() => setModal('')}>
         <div className='relative flex flex-col items-start justify-center bg-gray-200 w-[450px] h-[450px] p-5 px-12 space-y-3 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
-       
+
             <h4 className='w-full text-center text-gray-950'>Completa tus datos personales</h4>
 
-                <div className="w-full flex justify-center">
-                    <label htmlFor="file" className="flex justify-center items-center w-[150px] min-h-[150px] rounded-full bg-gray-200 border border-gray-400  text-center text-gray-900 text-[14px] focus:ring-blue-500 focus:border-blue-500 " >
-                        {base64 !== "" ? <img className="flex justify-center items-center w-[150px] min-h-[150px] bg-gray-200 border border-gray-400 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 rounded-full" style={{ objectPosition: 'center' }} src={base64} alt="" />
-                            : 'Subir perfil'}
-                    </label>
-                    <input className="hidden" id='file' name='name' onChange={handleImageUpload} accept=".jpg, .jpeg, .png, .mp4, webm" type="file" required />
-                </div>
+            <div className="w-full flex justify-center">
+                <label htmlFor="file" className="flex justify-center items-center w-[150px] min-h-[150px] rounded-full bg-gray-200 border border-gray-400  text-center text-gray-900 text-[14px] focus:ring-blue-500 focus:border-blue-500 " >
+                    {base64 !== "" ? <img className="flex justify-center items-center w-[150px] min-h-[150px] bg-gray-200 border border-gray-400 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 rounded-full" style={{ objectPosition: 'center' }} src={base64} alt="" />
+                        : 'Subir perfil'}
+                </label>
+                <input className="hidden" id='file' name='name' onChange={handleImageUpload} accept=".jpg, .jpeg, .png, .mp4, webm" type="file" required />
+            </div>
 
 
             <div className='flex justify-between'>
