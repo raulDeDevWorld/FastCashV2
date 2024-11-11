@@ -34,7 +34,10 @@ export default function Home() {
     try {
       let cuenta = e.target[0].value
       let password = e.target[1].value
-      const response = await axios.post(window?.location?.href.includes('localhost') ? 'http://localhost:3000/api/auth/login' : 'http://18.220.249.246/api/auth/login', {
+      const response = await axios.post(
+        window?.location?.href.includes('localhost')
+          ? 'http://localhost:3000/api/auth/login'
+          : 'http://18.220.249.246/api/auth/login', {
         cuenta,
         password,
       });

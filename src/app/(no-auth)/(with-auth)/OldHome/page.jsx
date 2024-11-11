@@ -2703,7 +2703,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/data'}
+                            server={'http://18.220.249.246/api/verification'}
                         />
                     }
 
@@ -2715,7 +2715,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/data'}
+                            server={'http://18.220.249.246/api/verification'}
                         />
                     }
 
@@ -2727,7 +2727,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/data'}
+                            server={'http://18.220.249.246/api/verification'}
                         />
                     }
 
@@ -2739,7 +2739,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/data'}
+                            server={'http://18.220.249.246/api/verification'}
                         />
                     }
 
@@ -2750,7 +2750,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/data'}
+                            server={'http://18.220.249.246/api/verification'}
                         />
                     }
 
@@ -3618,7 +3618,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/data'}
+                            server={'http://18.220.249.246/api/verification'}
                         />
                     }
 
@@ -3628,7 +3628,7 @@ export default function Home() {
                             headArray={encabezadoCasosDeVerificacion}
                             dataFilter={(i) => i.estadoDeCredito.toLowerCase() === 'aprobado' || i.estadoDeCredito.toLowerCase() === 'reprobado'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/data'}
+                            server={'http://18.220.249.246/api/verification'}
 
                         />
                     }

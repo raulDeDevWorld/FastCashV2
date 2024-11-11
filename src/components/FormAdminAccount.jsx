@@ -89,7 +89,10 @@ export default function AddAccount() {
             };
             // console.log(db);
             const id = itemSelected._id
-            const response = await fetch(window?.location?.href?.includes('localhost') ? `http://localhost:3000/api/auth/register/${id}` : 'http://18.220.249.246/api/auth/register/${id}', {
+            const response = await fetch(
+                window?.location?.href?.includes('localhost') 
+                ? `http://localhost:3000/api/auth/register/${id}` 
+                : `http://18.220.249.246/api/auth/register/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -110,7 +113,9 @@ export default function AddAccount() {
 
 
 
-            const res = await fetch('http://localhost:3000/api/email/send', {
+            const res = await fetch(window?.location?.href?.includes('localhost') 
+            ? 'http://localhost:3000/api/email/send'
+            : `http://18.220.249.246/api/email/send/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

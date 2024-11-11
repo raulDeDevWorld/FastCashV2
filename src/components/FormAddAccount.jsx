@@ -77,7 +77,7 @@ export default function AddAccount() {
         setData({ ...data, password: contrasenaGenerada })
 
     };
-  
+
     const saveAccount = async (e) => {
         e.preventDefault();
         try {
@@ -91,7 +91,10 @@ export default function AddAccount() {
             };
             // console.log(db);
 
-            const response = await fetch(window?.location?.href?.includes('localhost') ? 'http://localhost:3000/api/auth/register': 'http://18.220.249.246/api/auth/register', {
+            const response = await fetch(
+                window?.location?.href?.includes('localhost')
+                    ? 'http://localhost:3000/api/auth/register'
+                    : 'http://18.220.249.246/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -110,7 +113,9 @@ export default function AddAccount() {
 
 
 
-            const res = await fetch('http://localhost:3000/api/email/send', {
+            const res = await fetch(window?.location?.href.includes('localhost')
+                ? 'http://localhost:3000/api/email/send'
+                : 'http://18.220.249.246/api/email/send', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

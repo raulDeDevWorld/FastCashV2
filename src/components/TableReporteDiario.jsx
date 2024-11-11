@@ -417,28 +417,31 @@ export default function Home() {
 
 
     function handlerSelectCheck(e, i) {
-            if (e.target.checked) {
-                // Si está marcado, agrega el índice al array
-                setCheckedArr([...checkedArr, i]);
-            } else {
-                // Si no está marcado, quita el índice del array
-                setCheckedArr(checkedArr.filter(item => item.usuario !== i.usuario));
-            }
-      
+        if (e.target.checked) {
+            // Si está marcado, agrega el índice al array
+            setCheckedArr([...checkedArr, i]);
+        } else {
+            // Si no está marcado, quita el índice del array
+            setCheckedArr(checkedArr.filter(item => item.usuario !== i.usuario));
+        }
+
     }
     async function handlerFetch() {
-        const res = await fetch(window?.location?.href?.includes('localhost') ? 'http://localhost:3000/api/auth/users' : 'http://18.220.249.246/api/auth/users')
+        const res = await fetch(
+            window?.location?.href?.includes('localhost')
+                ? 'http://localhost:3000/api/auth/users'
+                : 'http://18.220.249.246/api/auth/users')
         const data = await res.json()
         // console.log(data)
         setData(data)
     }
 
-// console.log(data)
+    // console.log(data)
 
 
-useEffect(() => {
-    handlerFetch()
-}, [])
+    useEffect(() => {
+        handlerFetch()
+    }, [])
 
 
     return (

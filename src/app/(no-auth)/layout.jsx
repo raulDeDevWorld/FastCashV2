@@ -38,7 +38,9 @@ function Home({ children }) {
             // // console.log(token)
 
             try {
-                const response = await fetch('http://localhost:3000/api/auth/validate', {
+                const response = await fetch(window?.location?.href.includes('localhost')
+                    ? 'http://localhost:3000/api/auth/validate'
+                    : 'http://18.220.249.246/api/auth/validate', {
                     method: 'GET',
                     headers: {
                         'Authorization': token,  // Enviar el JWT en el encabezado de autorización
@@ -66,7 +68,7 @@ function Home({ children }) {
     useEffect(() => {
         user?.rol && user?.rol !== undefined
             ? router.replace('/Home')
-            : pathname !== '/PersonalAccount' &&router.replace('/')
+            : pathname !== '/PersonalAccount' && router.replace('/')
     }, [user])
 
     return (

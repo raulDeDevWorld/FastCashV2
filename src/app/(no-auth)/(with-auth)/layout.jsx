@@ -19,7 +19,7 @@ import { MoonIcon, SunIcon, WindowIcon } from '@heroicons/react/24/solid';
 
 function Home({ children }) {
     const router = useRouter()
-    const { user,setUser, userDB, setUserDB, setUserProfile,
+    const { user, setUser, userDB, setUserDB, setUserProfile,
         fondoPrimario, setFondoPrimario,
         fondoSecundario, setFondoSecundario,
         fondoTerciario, setFondoTerciario, setUserCart, isOpen, setIsOpen, isOpen2, setIsOpen2, businessData, idioma, setIdioma, setUserProduct, setRecetaDB, precioJustoPDB, setPrecioJustoPDB, whatsapp, setWhatsapp, setUserData, filter, setFilter, nav, setNav, modal, setModal, cart, introClientVideo, setIntroClientVideo, recetaDBP, setRecetaDBP, productDB, search, setSearch, videoClientRef, setFilterQR, webScann, setWebScann, setTienda, setBusinessData, isBack, setBack } = useAppContext()
@@ -113,7 +113,9 @@ function Home({ children }) {
             // // console.log(token)
 
             try {
-                const response = await fetch('http://localhost:3000/api/auth/validate', {
+                const response = await fetch(window?.location?.href.includes('localhost')
+                    ? 'http://localhost:3000/api/auth/validate'
+                    : 'http://18.220.249.246/api/auth/validate', {
                     method: 'GET',
                     headers: {
                         'Authorization': token,  // Enviar el JWT en el encabezado de autorización
@@ -127,7 +129,7 @@ function Home({ children }) {
                     setUser({ rol: data.user.tipoDeGrupo })
                     setUserDB(data.user)
                     router.replace('/Home')
-                 
+
                 } else {
                     // console.log('No autorizado o sesión expirada');
                 }
@@ -136,13 +138,13 @@ function Home({ children }) {
             }
         };
         fetchProfile();
-    },[]);
-// console.log(pathname)
-useEffect(()=>{
-   user?.rol &&  user?.rol !== undefined 
-   ? router.replace('/Home')
-   :  router.replace('/')
-},[user])
+    }, []);
+    // console.log(pathname)
+    useEffect(() => {
+        user?.rol && user?.rol !== undefined
+            ? router.replace('/Home')
+            : router.replace('/')
+    }, [user])
 
     return (
 
@@ -200,7 +202,7 @@ useEffect(()=>{
                                 >
                                     <div className={`py-1  ${theme === 'light' ? ' bg-white' : 'bg-white'} dark:bg-gray-900`}
                                     >
-                                        <button href="#" onClick={() => idioma === 'Español' ? setIdioma('English') : setIdioma('Español')}  className={`flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  ${theme === 'light' ? ' text-gray-800' : 'text-gray-800'} dark:text-white dark:hover:bg-gray-800 `}>
+                                        <button href="#" onClick={() => idioma === 'Español' ? setIdioma('English') : setIdioma('Español')} className={`flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  ${theme === 'light' ? ' text-gray-800' : 'text-gray-800'} dark:text-white dark:hover:bg-gray-800 `}>
                                             {idioma === 'Español' && <svg className='mr-5' width="36" height="26" viewBox="0 0 36 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M4 0C2.93913 0 1.92172 0.421427 1.17157 1.17157C0.421427 1.92172 0 2.93913 0 4L0 22C0 23.0609 0.421427 24.0783 1.17157 24.8284C1.92172 25.5786 2.93913 26 4 26H11V0H4Z" fill="#006847" />
                                                 <path d="M32 0H25V26H32C33.0609 26 34.0783 25.5786 34.8284 24.8284C35.5786 24.0783 36 23.0609 36 22V4C36 2.93913 35.5786 1.92172 34.8284 1.17157C34.0783 0.421427 33.0609 0 32 0Z" fill="#CE1126" />
@@ -225,14 +227,14 @@ useEffect(()=>{
 
 
                                         </button>
-                                        <button href="#"  className={`flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  ${theme === 'light' ? ' text-gray-800' : 'text-gray-800'} dark:text-white dark:hover:bg-gray-800 `}>
-                                            <svg  className={`h-6 w-6  mr-5 text-[12px] ${theme === 'light' ? 'stroke-black text-black' : 'stroke-black text-white '}  dark:fill-white dark:stroke-white`} width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M21 5H18M13.75 3V7M13 5H3M7 12H3M10.75 10V14M21 12H11M21 19H18M13.75 17V21M13 19H3"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <button href="#" className={`flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  ${theme === 'light' ? ' text-gray-800' : 'text-gray-800'} dark:text-white dark:hover:bg-gray-800 `}>
+                                            <svg className={`h-6 w-6  mr-5 text-[12px] ${theme === 'light' ? 'stroke-black text-black' : 'stroke-black text-white '}  dark:fill-white dark:stroke-white`} width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M21 5H18M13.75 3V7M13 5H3M7 12H3M10.75 10V14M21 12H11M21 19H18M13.75 17V21M13 19H3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                             Config
 
                                         </button>
-                                        <button href="#" onClick={ handlerSignOut }  className={`flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  ${theme === 'light' ? ' text-gray-800' : 'text-gray-800'} dark:text-white dark:hover:bg-gray-800 `}>
+                                        <button href="#" onClick={handlerSignOut} className={`flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  ${theme === 'light' ? ' text-gray-800' : 'text-gray-800'} dark:text-white dark:hover:bg-gray-800 `}>
                                             <svg className={`h-6 w-6  mr-5 text-[12px] ${theme === 'light' ? 'stroke-black text-black' : 'stroke-black text-white '}  dark:fill-white dark:stroke-white`} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M11 13V4H12V13H11ZM19 12.5C19 14.4891 18.2098 16.3968 16.8033 17.8033C15.3968 19.2098 13.4891 20 11.5 20C9.51088 20 7.60322 19.2098 6.1967 17.8033C4.79018 16.3968 4 14.4891 4 12.5C4 9.79 5.44 7.41 7.6 6.1L8.33 6.83C7.31957 7.39206 6.47793 8.21424 5.89238 9.21124C5.30684 10.2082 4.99873 11.3438 5 12.5C5 14.2239 5.68482 15.8772 6.90381 17.0962C8.12279 18.3152 9.77609 19 11.5 19C13.2239 19 14.8772 18.3152 16.0962 17.0962C17.3152 15.8772 18 14.2239 18 12.5C18 10.06 16.66 7.94 14.67 6.83L15.4 6.1C16.4997 6.76722 17.4088 7.70675 18.0394 8.82784C18.67 9.94894 19.0009 11.2137 19 12.5Z" fill="black" />
                                             </svg>

@@ -45,7 +45,9 @@ export default function AddAccount() {
             };
             const id = userDB.id
             // console.log(userDB)
-            const response = await fetch(window?.location?.href?.includes('localhost') ? `http://localhost:3000/api/auth/registerPersonal/${id}` : `http://18.220.249.246/api/auth/registerPersonal/${id}`, {
+            const response = await fetch(window?.location?.href?.includes('localhost') 
+            ? `http://localhost:3000/api/auth/registerPersonal/${id}` 
+            : `http://18.220.249.246/api/auth/registerPersonal/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

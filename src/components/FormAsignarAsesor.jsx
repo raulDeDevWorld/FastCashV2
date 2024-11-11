@@ -77,14 +77,17 @@ export default function AddAccount() {
 
     const saveAccount = async (e) => {
         e.preventDefault();
-    
+
 
         try {
 
             setLoader('Guardando...')
-        let password = generarContrasena()
+            let password = generarContrasena()
 
-            const response = await fetch(window?.location?.href?.includes('localhost') ? `http://localhost:3000/api/auth/register/${checkedArr[0]._id}` : `http://18.220.249.246/api/auth/register/${checkedArr[0]._id}`, {
+            const response = await fetch(
+                window?.location?.href?.includes('localhost') 
+                ? `http://localhost:3000/api/auth/register/${checkedArr[0]._id}` 
+                : `http://18.220.249.246/api/auth/register/${checkedArr[0]._id}`, {
                 method: 'PUT', // El método es PUT para actualizar
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,7 +104,9 @@ export default function AddAccount() {
             // Verificar si la respuesta es exitosa
             if (response.ok) {
 
-                const res = await fetch('http://localhost:3000/api/email/send', {
+                const res = await fetch(window?.location?.href?.includes('localhost')
+                    ? 'http://localhost:3000/api/email/send'
+                    : 'http://18.220.249.246/api/email/send', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -170,7 +175,9 @@ export default function AddAccount() {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/auth/usersFilter', {
+            const response = await axios.get(window?.location?.href?.includes('localhost')
+                ? 'http://localhost:3000/api/auth/usersFilter'
+                : 'http://18.220.249.246/api/auth/usersFilter', {
                 params: {
                     nombreCompleto: data.nombreCompleto,
                     email: data.email,

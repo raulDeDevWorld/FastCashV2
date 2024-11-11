@@ -126,7 +126,10 @@ export default function AddAccount() {
             };
             // console.log(db);
 
-            const response = await fetch(window?.location?.href?.includes('localhost') ? 'http://localhost:3000/api/auth/register' : 'http://18.220.249.246/api/auth/register', {
+            const response = await fetch(
+                window?.location?.href?.includes('localhost')
+                    ? 'http://localhost:3000/api/auth/register'
+                    : 'http://18.220.249.246/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -146,7 +149,10 @@ export default function AddAccount() {
             const counterName = value2 === 'Asesor de Cobranza' ? nameDocument[value3.split(' ')[0]] : nameDocument[value3]
 
             // Hacer la solicitud GET al servidor para obtener el contador
-            const res = await fetch(window?.location?.href?.includes('localhost') ? `http://localhost:3000/api/counter/${counterName}`: `http://18.220.249.246/api/counter/${counterName}`);
+            const res = await fetch(
+                window?.location?.href?.includes('localhost')
+                    ? `http://localhost:3000/api/counter/${counterName}`
+                    : `http://18.220.249.246/api/counter/${counterName}`);
 
             // Verificar si la respuesta fue exitosa (status 200)
             if (res.ok) {
@@ -154,12 +160,15 @@ export default function AddAccount() {
                 // console.log(`El valor del contador ${counterName} es:`, data.count);
 
                 // Hacer la solicitud PUT al servidor para actualizar el contador
-                const response = await fetch(window?.location?.href?.includes('localhost') ? `http://localhost:3000/api/counter/${counterName}/increment`: `http://18.220.249.246/api/counter/${counterName}/increment`, {
+                const response = await fetch(
+                    window?.location?.href?.includes('localhost')
+                        ? `http://localhost:3000/api/counter/${counterName}/increment`
+                        : `http://18.220.249.246/api/counter/${counterName}/increment`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ count: data.count + 1 *1 }), // Enviar el nuevo valor
+                    body: JSON.stringify({ count: data.count + 1 * 1 }), // Enviar el nuevo valor
                 });
 
                 // Verificar si la respuesta fue exitosa (status 200)
@@ -273,7 +282,10 @@ export default function AddAccount() {
         try {
             const counterName = value2 === 'Asesor de Cobranza' ? nameDocument[value3.split(' ')[0]] : nameDocument[value3]
             // Realiza la solicitud GET al servidor para obtener el contador
-            const response = await fetch(window?.location?.href?.includes('localhost') ? `http://localhost:3000/api/counter/${counterName}` : `http://localhost:3000/api/counter/${counterName}`);
+            const response = await fetch(
+                window?.location?.href?.includes('localhost')
+                    ? `http://localhost:3000/api/counter/${counterName}`
+                    : `http://18.220.249.246/api/counter/${counterName}`);
 
             // Si la respuesta es exitosa (status 200)
             if (response.ok) {

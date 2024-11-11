@@ -40,7 +40,9 @@ export default function AddAccount() {
             setLoader('Guardando...')
 
 
-            const response = await fetch(`http://localhost:3000/api/verification/${itemSelected._id}`, {
+            const response = await fetch(window?.location?.href.includes('localhost')
+            ?`http://localhost:3000/api/verification/${itemSelected._id}`
+            :`http://18.220.249.246/api/verification/${itemSelected._id}`, {
                 method: 'PUT', // El método es PUT para actualizar
                 headers: {
                     'Content-Type': 'application/json',
