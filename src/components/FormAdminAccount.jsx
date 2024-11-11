@@ -92,7 +92,7 @@ export default function AddAccount() {
             const response = await fetch(
                 window?.location?.href?.includes('localhost') 
                 ? `http://localhost:3000/api/auth/register/${id}` 
-                : `http://18.220.249.246/api/auth/register/${id}`, {
+                : `https://fastcash-mx.com/api/auth/register/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export default function AddAccount() {
 
             const res = await fetch(window?.location?.href?.includes('localhost') 
             ? 'http://localhost:3000/api/email/send'
-            : `http://18.220.249.246/api/email/send/${id}`, {
+            : `https://fastcash-mx.com/api/email/send/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

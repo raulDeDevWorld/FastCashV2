@@ -37,7 +37,7 @@ export default function Home() {
       const response = await axios.post(
         window?.location?.href.includes('localhost')
           ? 'http://localhost:3000/api/auth/login'
-          : 'http://18.220.249.246/api/auth/login', {
+          : 'https://fastcash-mx.com/api/auth/login', {
         cuenta,
         password,
       });

@@ -40,7 +40,7 @@ function Home({ children }) {
             try {
                 const response = await fetch(window?.location?.href.includes('localhost')
                     ? 'http://localhost:3000/api/auth/validate'
-                    : 'http://18.220.249.246/api/auth/validate', {
+                    : 'https://fastcash-mx.com/api/auth/validate', {
                     method: 'GET',
                     headers: {
                         'Authorization': token,  // Enviar el JWT en el encabezado de autorización

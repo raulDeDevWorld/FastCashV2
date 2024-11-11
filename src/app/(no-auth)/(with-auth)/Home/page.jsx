@@ -2136,7 +2136,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'Aprobado' || i?.estadoDeCredito === 'Reprobado'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2146,7 +2146,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2156,7 +2156,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2166,7 +2166,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2176,7 +2176,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2186,7 +2186,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito?.toLowerCase() === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2196,7 +2196,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2206,7 +2206,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2216,7 +2216,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2226,7 +2226,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i?.estadoDeCredito?.toLowerCase() === 'pendiente'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2235,7 +2235,7 @@ export default function Home() {
                             headArray={encabezadoCasosDeVerificacion}
                             dataFilter={(i) => i?.estadoDeCredito.toLowerCase() === 'aprobado' || i.estadoDeCredito.toLowerCase() === 'reprobado'}
                             local={'http://localhost:3000/api/verification'}
-                            server={'http://18.220.249.246/api/verification'}
+                            server={'https://fastcash-mx.com/api/verification'}
                         />
                     }
                     {
@@ -2244,7 +2244,7 @@ export default function Home() {
                             headArray={encabezadoGestionDeAccesos}
                             dataFilter={(i) => i.tipoDeGrupo === 'Admin'}
                             local={'http://localhost:3000/api/auth/users'}
-                            server={'http://18.220.249.246/api/auth/users'}
+                            server={'https://fastcash-mx.com/api/auth/users'}
                         />
                     }
                     {
@@ -2253,7 +2253,7 @@ export default function Home() {
                             headArray={encabezadoGestionDeAccesos}
                             dataFilter={(i) => i?.tipoDeGrupo?.toLowerCase().includes('recursos humanos')}
                             local={'http://localhost:3000/api/auth/users'}
-                            server={'http://18.220.249.246/api/auth/users'}
+                            server={'https://fastcash-mx.com/api/auth/users'}
                         />
                     }
                     {
@@ -2262,7 +2262,7 @@ export default function Home() {
                             headArray={encabezadoGestionDeAccesos}
                             dataFilter={(i) => i?.tipoDeGrupo?.toLowerCase().includes('manager')}
                             local={'http://localhost:3000/api/auth/users'}
-                            server={'http://18.220.249.246/api/auth/users'}
+                            server={'https://fastcash-mx.com/api/auth/users'}
                         />
                     }
                     {
@@ -2271,7 +2271,7 @@ export default function Home() {
                             headArray={encabezadoGestionDeAccesos}
                             dataFilter={(i) => i?.tipoDeGrupo?.toLowerCase().includes('asesor')}
                             local={'http://localhost:3000/api/auth/users'}
-                            server={'http://18.220.249.246/api/auth/users'}
+                            server={'https://fastcash-mx.com/api/auth/users'}
                         />
                     }
                     {
@@ -2280,7 +2280,7 @@ export default function Home() {
                             headArray={encabezadoGestionDeAccesos}
                             dataFilter={(i) => true}
                             local={'http://localhost:3000/api/auth/personalAccounts'}
-                            server={'http://18.220.249.246/api/auth/personalAccounts'}
+                            server={'https://fastcash-mx.com/api/auth/personalAccounts'}
                         />
                     }
 
