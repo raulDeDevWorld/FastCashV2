@@ -129,7 +129,7 @@ export default function AddAccount() {
             const response = await fetch(
                 window?.location?.href?.includes('localhost')
                     ? 'http://localhost:3000/api/auth/register'
-                    : 'https://fastcash-mx.com/api/auth/register', {
+                    : 'https://api.fastcash-mx.com/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ export default function AddAccount() {
             const res = await fetch(
                 window?.location?.href?.includes('localhost')
                     ? `http://localhost:3000/api/counter/${counterName}`
-                    : `https://fastcash-mx.com/api/counter/${counterName}`);
+                    : `https://api.fastcash-mx.com/api/counter/${counterName}`);
 
             // Verificar si la respuesta fue exitosa (status 200)
             if (res.ok) {
@@ -163,7 +163,7 @@ export default function AddAccount() {
                 const response = await fetch(
                     window?.location?.href?.includes('localhost')
                         ? `http://localhost:3000/api/counter/${counterName}/increment`
-                        : `https://fastcash-mx.com/api/counter/${counterName}/increment`, {
+                        : `https://api.fastcash-mx.com/api/counter/${counterName}/increment`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -285,7 +285,7 @@ export default function AddAccount() {
             const response = await fetch(
                 window?.location?.href?.includes('localhost')
                     ? `http://localhost:3000/api/counter/${counterName}`
-                    : `https://fastcash-mx.com/api/counter/${counterName}`);
+                    : `https://api.fastcash-mx.com/api/counter/${counterName}`);
 
             // Si la respuesta es exitosa (status 200)
             if (response.ok) {

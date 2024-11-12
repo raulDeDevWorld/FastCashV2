@@ -430,7 +430,7 @@ export default function Home() {
         const res = await fetch(
             window?.location?.href?.includes('localhost')
                 ? 'http://localhost:3000/api/auth/users'
-                : 'https://fastcash-mx.com/api/auth/users')
+                : 'https://api.fastcash-mx.com/api/auth/users')
         const data = await res.json()
         // console.log(data)
         setData(data)
