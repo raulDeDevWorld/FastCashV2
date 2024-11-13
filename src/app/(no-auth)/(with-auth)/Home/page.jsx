@@ -23,7 +23,7 @@ import FormAddPersonalData from '@/components/FormAddPersonalData'
 import FormAddVerification from '@/components/FormAddVerification'
 import FormAdminAccount from '@/components/FormAdminAccount'
 import FormAsignarAsesor from '@/components/FormAsignarAsesor'
-
+import {rolesMenuResult_set} from '@/constants/appleCash'
 import TableTools from '@/components/TableTools'
 
 import Alert from '@/components/Alert'
@@ -592,11 +592,45 @@ export default function Home() {
     //     setData({ ...data, password: contrasenaGenerada })
 
     // };
-    function saveAccount() {
-
+    function handlerDistribution() {
+        Object.values(rolesMenuResult_set).map((i)=>{return <a href={`https://m1.prestamomaximo.mx/M1_system/view/main/index.html?time=1731468668303&auditor=M1-fydi01/?v=1731468668303#${i.url}?v=1731468668303`}></a>})
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // console.log(modal)
     useEffect(() => {
         setIsMounted(true);
@@ -640,7 +674,7 @@ export default function Home() {
 
                 </div>
             }
-
+{        Object.values(rolesMenuResult_set).map((i)=>{return <a className='text-[green] block' target={'_blank'} href={`https://m1.prestamomaximo.mx/M1_system/view/main/index.html?time=1731468668303&auditor=M1-fydi01/?v=1731468668303#/${i.url}?v=1731468668303`}>{i.url.split('/')[i.url.split('/').length -1].replaceAll('.html', '')}</a>})}
 
             {
                 modal === 'Registrar Usuario' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
@@ -672,6 +706,28 @@ export default function Home() {
                     </div>
                 </div>
             }
+            {
+                modal === 'Distribuir Casos De Verificacion' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
+                    <div className='relative flex flex-col items-center justify-center bg-gray-200 w-[400px] h-[200px] p-5 space-y-5 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
+                        <button
+                            className="absolute top-5 right-5 flex items-center justify-center w-12 h-6 bg-red-500 text-white rounded-[5px] hover:bg-red-600 focus:outline-none"
+                            onClick={() => setModal('')}
+                        >
+                            X
+                        </button>
+
+                        <h4>Distrinuir Casos Masivos</h4>
+                        <div className='relative flex justify-center text-[12px] w-[300px]'>
+                            Confirma la distribucion de casos masivos
+                        </div>
+                        <button type="button"
+                            class="w-[300px] text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2"
+                            onClick={() => handlerDistribution('Registrar')}>Registrar</button>
+
+                    </div>
+                </div>
+            }
+
             {
                 modal === 'Registrar Multa' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
                     <div className='relative flex flex-col items-center justify-center bg-gray-200 w-[400px] h-[300px] p-5 space-y-5 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
@@ -2032,9 +2088,9 @@ export default function Home() {
             {/* ---------------------------------'VERIFICACION DE CREDITOS' --------------------------------- */}
 
             {item === 'Recolección y Validación de Datos' &&
-                            <TableTools></TableTools>
+                <TableTools></TableTools>
 
-           
+
             }
 
             {/* ---------------------------------'COLECCION DE CASOS' --------------------------------- */}
@@ -2510,7 +2566,7 @@ export default function Home() {
 
                         <div className={`relative w-[450px] h-auto rounded-[20px]  items-center flex flex-col justify-center space-y-3  ${theme === 'light' ? 'relative bg-white shadow-2xl shadow-gray-500' : ' relative bg-white shadow-2xl shadow-gray-500 '} p-5 dark:shadow-none dark:bg-gray-900`}>
 
-                            
+
                             <div><img src='/perfil.png' className='h-[150px] rounded-full' /></div>
 
 

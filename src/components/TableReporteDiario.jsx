@@ -451,7 +451,7 @@ export default function Home() {
 
                 <tr className=' bg-gray-800'>
                     <th className='px-3 py-2'>
-                        <input type="checkbox" />
+                        {/* <input type="checkbox" /> */}
                     </th>
                     <th className="px-4 py-2 text-white">SEGMENTO</th>
                     <th className="px-4 py-2 text-white">Nombres</th>
@@ -491,7 +491,7 @@ export default function Home() {
                     <tr key={index} className={`bg-gray-200 border-b text-[12px] ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'}`}>
 
                         <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
-                            <input type="checkbox" onClick={(e) => handlerSelectCheck(e, i)} />
+                            <input type="checkbox"  onClick={(e) => handlerSelectCheck(e, i)} />
                         </td>
                         <td className="px-4 py-2">{i.id}</td>
                         <td className="px-4 py-2">{i.cuentaPersonal}</td>

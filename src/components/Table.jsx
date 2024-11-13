@@ -14,7 +14,7 @@ const Table = ({
     local,
     server
 }) => {
-    const { user, userDB, loader, setUserProfile, users, setUsers, setModal, itemSelected, setItemSelected, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario } = useAppContext()
+    const { user, userDB, loader, setUserProfile, users, setUsers, checkedArr, setCheckedArr, setModal, itemSelected, setItemSelected, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario } = useAppContext()
     const searchParams = useSearchParams()
     const seccion = searchParams.get('seccion')
     const item = searchParams.get('item')
@@ -56,11 +56,38 @@ const Table = ({
         setData(data)
     }
 
+
+    function handlerSelectCheck(e, i) {
+        if (e.target.checked) {
+            // Si está marcado, agrega el índice al array
+            setCheckedArr([...checkedArr, i]);
+        } else {
+            // Si no está marcado, quita el índice del array
+            setCheckedArr(checkedArr.filter(item => item.usuario !== i.usuario));
+        }
+
+    }
+    function handlerSelectAllCheck(e, i) {
+        if (e.target.checked) {
+            // Si está marcado, agrega el índice al array
+            const db = data.filter((i, index) => dataFilter(i))
+            console.log(db)
+            setCheckedArr(db);
+        } else {
+            // Si no está marcado, quita el índice del array
+            setCheckedArr([]);
+        }
+
+    }
+
+    console.log(checkedArr)
     useEffect(() => {
         handlerFetch()
     }, [loader])
 
-
+    useEffect(() => {
+        setCheckedArr([])
+    }, [])
     return (
         access && <table className="min-w-full shadow">
             <thead className="bg-gray-900 text-[10px] uppercase sticky top-[0px] z-20">
@@ -79,7 +106,7 @@ const Table = ({
                         //         `}
                         // onClick={() => handlerSelected(index < 10 ? 'LEFT' : 'RIGHT', index)}
                         >
-                            {i === "Seleccionar" ? <input type="checkbox" /> : i}
+                            {i === "Seleccionar" ? <input type="checkbox" onClick={(e) => handlerSelectAllCheck(e, i)} /> : i}
                         </th>
                     ))}
                 </tr>
@@ -93,9 +120,13 @@ const Table = ({
                                 return (
 
                                     <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} `} >
-                                        {it === "Seleccionar" && <input type="checkbox" /> }
+                                        {it === "Seleccionar" &&
+                                            <input type="checkbox"
+                                            checked={checkedArr.some(value => value._id === i._id)}
+                                            onClick={(e) => handlerSelectCheck(e, i)} />}
                                         {it.toLowerCase() === 'contactos' &&
                                             <div className="flex justify-around items-center">
+                                                {/* {console.log( checkedArr.some(value => value._id === i._id))} */}
                                                 <a
                                                     href={`https://wa.me/${it.whatsapp}`}
                                                     target="_blank"

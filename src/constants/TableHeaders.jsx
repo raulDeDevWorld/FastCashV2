@@ -74,7 +74,7 @@ export const encabezadoAuditoriaPeriodica = () => [
 
 export const encabezadoCasosDeVerificacion = () => {
     const { user } = useAppContext();
-    return !user?.rol?.includes('Usuario')
+    return !user?.rol?.includes('asesor')
         ? [
             "Seleccionar", "Contactos", "Número de préstamo", "ID de sub-factura",
             "Estado de credito", "Nombre del cliente", "Número de teléfono móvil",
