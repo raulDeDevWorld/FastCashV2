@@ -23,7 +23,6 @@ import FormAddPersonalData from '@/components/FormAddPersonalData'
 import FormAddVerification from '@/components/FormAddVerification'
 import FormAdminAccount from '@/components/FormAdminAccount'
 import FormAsignarAsesor from '@/components/FormAsignarAsesor'
-import {rolesMenuResult_set} from '@/constants/appleCash'
 import TableTools from '@/components/TableTools'
 
 import Alert from '@/components/Alert'
@@ -674,7 +673,7 @@ export default function Home() {
 
                 </div>
             }
-{        Object.values(rolesMenuResult_set).map((i, index)=>{return <a className='text-[green] block' target={'_blank'} href={`https://m1.prestamomaximo.mx/M1_system/view/main/index.html?time=1731468668303&auditor=M1-fydi01/?v=1731468668303#/${i.url}?v=1731468668303`}>{index}___{i.url.split('/')[i.url.split('/').length -1].replaceAll('.html', '')}</a>})}
+
 
             {
                 modal === 'Registrar Usuario' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
