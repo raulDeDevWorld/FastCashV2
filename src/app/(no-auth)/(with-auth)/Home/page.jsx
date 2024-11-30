@@ -2159,7 +2159,7 @@ export default function Home() {
                             dataArray={['']}
                             dataFilter={(i) => i}
                             local={'http://localhost:3000/api/applications/getApplications'}
-                            server={'https://api.fastcash-mx.com/applications/getApplications'}
+                            server={'https://api.fastcash-mx.com/api/applications/getApplications'}
                         />
                     }
                     {
