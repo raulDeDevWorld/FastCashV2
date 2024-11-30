@@ -122,8 +122,8 @@ const Table = ({
                                     <td className={`px-3 py-2 text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'} `} >
                                         {it === "Seleccionar" &&
                                             <input type="checkbox"
-                                            checked={checkedArr.some(value => value._id === i._id)}
-                                            onClick={(e) => handlerSelectCheck(e, i)} />}
+                                                checked={checkedArr.some(value => value._id === i._id)}
+                                                onClick={(e) => handlerSelectCheck(e, i)} />}
                                         {it.toLowerCase() === 'contactos' &&
                                             <div className="flex justify-around items-center">
                                                 {/* {console.log( checkedArr.some(value => value._id === i._id))} */}
@@ -164,7 +164,9 @@ const Table = ({
 
                                         </div>}
 
-
+                                        {it.toLowerCase() === 'icon' && item?.toLowerCase().includes('aplicacion') && <div className='flex justify-between flex space-x-3'>
+                                            <img src={i[toCamelCase(it)]} className='w-[100px] h-[100px]' alt="" />
+                                        </div>}
                                         {item?.toLowerCase().includes('gestión de') && !item?.toLowerCase().includes('colección') && it.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
                                             <UserCircleIcon
                                                 className='h-6 w-6 fill-[#ebbb40]'
@@ -181,9 +183,13 @@ const Table = ({
                                         </div>}
 
 
+                                        {item?.toLowerCase().includes('aplicacion') && it.toLowerCase() === 'operar' && <div className='relative flex max-w-[150px] justify-between space-x-3'>
 
+                                                <button type="button" class="w-full max-w-[70px] text-white bg-gradient-to-br from-red-600 to-red-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Eliminar</button>
+                                                <button type="button" class="w-full max-w-[70px] text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Editar</button>
+                                        </div>}
 
-                                        {(it.toLowerCase() !== 'operar' || it.toLowerCase() !== 'contactos') && i[toCamelCase(it)]}
+                                        {(it.toLowerCase() !== 'operar' || it.toLowerCase() !== 'contactos') && it.toLowerCase() !== 'icon' && i[toCamelCase(it)]}
 
                                     </td>
                                 )

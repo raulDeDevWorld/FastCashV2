@@ -104,7 +104,8 @@ export const encabezadoGestionDeAccesos = () => [
 ];
 
 
-
+export const encabezadoDeAplicaciones = () => ["icon","Nombre", "Prestamo Maximo", "Interes Diario", "calificacion",  "Operar"
+];
 
 
 // {/* ---------------------------------COLECCION DE CASOS--------------------------------- */ }
