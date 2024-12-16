@@ -37,9 +37,9 @@ export default function TextEditor({ value, setValue, edit }) {
             // text direction
 
             // {'size': {'Small': '14px', 'Normal': false, 'Large': '16px', 'Huge': '18px'}}
-            // ["link", 'image', "video"],
+            ["link", 'image', "video"],
             [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-            // [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+            [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
 
 
 

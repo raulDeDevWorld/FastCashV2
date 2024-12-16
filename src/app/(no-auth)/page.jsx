@@ -20,12 +20,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 export default function Home() {
   // const { user, userDB, setUserProfile, setUserSuccess, success, setUser, postsIMG, setUserPostsIMG, sound1, sound2, setSound1, setSound2, } = useAppContext()
   const { user, setUser, userDB, setUserDB, theme, setTheme } = useAppContext()
-
   const [isDisable, setIsDisable] = useState(false)
   const [captcha, setCaptcha] = useState('')
   const router = useRouter()
-
-
 
   const recaptchaRef = React.useRef();
 

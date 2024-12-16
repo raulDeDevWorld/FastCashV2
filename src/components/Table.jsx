@@ -12,7 +12,8 @@ const Table = ({
     dataFilter,
     access,
     local,
-    server
+    server,
+    query
 }) => {
     const { user, userDB, loader, setUserProfile, users, setUsers, checkedArr, setCheckedArr, setModal, itemSelected, setItemSelected, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario } = useAppContext()
     const searchParams = useSearchParams()
@@ -46,13 +47,16 @@ const Table = ({
     }
     function handlerAcount(mod, i) {
         setModal(mod)
-        setItemSelected(i)
+        setCheckedArr([i])
     }
     // console.log(userDB)
     async function handlerFetch() {
-        const res = await fetch(window?.location?.href?.includes('localhost') ? local : server)
+        const res = await fetch(
+            window?.location?.href?.includes('localhost') ? local : server
+        )
+        console.log(res.body)
         const data = await res.json()
-        // console.log(data)
+        console.log(data)
         setData(data)
     }
 
@@ -80,7 +84,7 @@ const Table = ({
 
     }
 
-    console.log(checkedArr)
+    // console.log(checkedArr)
     useEffect(() => {
         handlerFetch()
     }, [loader])
@@ -165,12 +169,12 @@ const Table = ({
                                         </div>}
 
                                         {it.toLowerCase() === 'icon' && item?.toLowerCase().includes('aplicacion') && <div className='flex justify-between flex space-x-3'>
-                                            <img src={i[toCamelCase(it)]} className='w-[100px] h-[100px]' alt="" />
+                                            <img src={i[toCamelCase(it)]} className='w-[80px] h-[80px]' alt="" />
                                         </div>}
                                         {item?.toLowerCase().includes('gestión de') && !item?.toLowerCase().includes('colección') && it.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
                                             <UserCircleIcon
                                                 className='h-6 w-6 fill-[#ebbb40]'
-                                                onClick={() => handlerAcount('Administrar cuenta', i)} />
+                                                onClick={() => handlerAcount('Asignar Asesor', i)} />
 
                                             {/* <DocumentTextIcon className='h-6 w-6 fill-[#5c78d3] cursor-pointer' onClick={() => setModal('Registrar')} /> */}
                                             <ChatBubbleLeftEllipsisIcon
@@ -181,16 +185,12 @@ const Table = ({
                                             {/* <FolderPlusIcon className='h-6 w-6 fill-[#eba140]' /> */}
 
                                         </div>}
-
-
                                         {item?.toLowerCase().includes('aplicacion') && it.toLowerCase() === 'operar' && <div className='relative flex max-w-[150px] justify-between space-x-3'>
 
-                                                <button type="button" class="w-full max-w-[70px] text-white bg-gradient-to-br from-red-600 to-red-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Eliminar</button>
-                                                <button type="button" class="w-full max-w-[70px] text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Editar</button>
+                                            <button type="button" class="w-full max-w-[70px] text-white bg-gradient-to-br from-red-600 to-red-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Eliminar</button>
+                                            <button type="button" class="w-full max-w-[70px] text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Editar</button>
                                         </div>}
-
                                         {(it.toLowerCase() !== 'operar' || it.toLowerCase() !== 'contactos') && it.toLowerCase() !== 'icon' && i[toCamelCase(it)]}
-
                                     </td>
                                 )
                             })}
@@ -198,63 +198,7 @@ const Table = ({
                         </tr>
                     )
                 })}
-                {/* <tr className=''>
-                    <div className='absolute right-0 left-0 mx-auto bottom-[15px] flex justify-center'>
 
-                        <nav aria-label="mr-5 ">
-                            <ul class="flex items-center -space-x-px h-8 text-sm">
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-100 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-100 dark:border-gray-700 dark:text-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                                        <span class="sr-only">Previous</span>
-                                        <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-current="page" class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-100 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-100 dark:border-gray-700 dark:text-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                                        <span class="sr-only">Next</span>
-                                        <svg class="w-2.5 h-2.5 rtl:rotate-180 dark:stroke-slate-100 dark:-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 10">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </nav>
-
-                        <form class="ml-2">
-
-                            <div class="relative w-full">
-                                <input type="search" id="search-dropdown" class="block p-[5px] w-[80px] z-20 rounded-l-[5px] text-left text-[12px] text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-100 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:border-blue-500 outline-none" placeholder="3" required />
-                                <button type="submit" class="absolute top-0 end-0 p-2 text-sm font-medium h-full text-white bg-gray-900 rounded-e-lg border border-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-gray-900 dark:focus:ring-blue-800">
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                        <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                    </svg>
-                                    <span class="sr-only">Search</span>
-                                </button>
-                            </div>
-
-                        </form>
-
-                    </div>
-
-                </tr> */}
             </tbody>
         </table>
     );

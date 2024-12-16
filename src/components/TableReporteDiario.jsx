@@ -496,7 +496,7 @@ export default function Home() {
                         <td className="px-4 py-2">{i.id}</td>
                         <td className="px-4 py-2">{i.cuentaPersonal}</td>
                         <td className="px-4 py-2">{i.cuenta}</td>
-
+                        
                         <td className="px-4 py-2">{i.casos}</td>
                         <td className="px-4 py-2">{i.llamadasRealizadas}</td>
                         <td className="px-4 py-2  bg-yellow-400">{i.clientesSinResponder}</td>

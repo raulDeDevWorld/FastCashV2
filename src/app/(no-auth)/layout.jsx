@@ -53,7 +53,7 @@ function Home({ children }) {
                     // // console.log(data)
                     setUser({ rol: data.user.tipoDeGrupo })
                     setUserDB(data.user)
-                    router.replace('/Home')
+                    pathname !== '/Newslater' && router.replace('/Home')
 
                 } else {
                     // // console.log('No autorizado o sesión expirada');
@@ -65,11 +65,11 @@ function Home({ children }) {
         fetchProfile();
     }, []);
 
-    useEffect(() => {
-        user?.rol && user?.rol !== undefined
-            ? router.replace('/Home')
-            : pathname !== '/PersonalAccount' && router.replace('/')
-    }, [user])
+    // useEffect(() => {
+    //     user?.rol && user?.rol !== undefined
+    //         ? pathname !== '/Newslater' && router.replace('/Home')
+    //         : pathname !== '/PersonalAccount' && router.replace('/')
+    // }, [user])
 
     return (
         <div>

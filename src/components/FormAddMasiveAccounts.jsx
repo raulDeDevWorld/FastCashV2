@@ -122,7 +122,7 @@ export default function AddAccount() {
                 'codificacionDeRoles': value3,
                 cuenta,
                 password,
-                email: `No asignado a ${cuenta}`
+                emailPersonal: `No asignado a ${cuenta}`
             };
             // console.log(db);
 

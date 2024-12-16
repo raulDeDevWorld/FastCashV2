@@ -31,7 +31,7 @@ export default function Select({ arr, name, click, defaultValue, uuid, label, po
                     <ul
                         className={` ${position ? position : 'relative'} ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-gray-950  bg-gray-200 '} dark:text-white mt-0  transition-all rounded-[5px]  w-full  ${select === name ? ` ${arr.length > 2 && 'h-[75px] border-t z-10 border border-gray-400   overflow-auto '} ${arr.length == 2 && 'h-[48px] border-t overflow-hidden border border-gray-400   z-10'} ${arr.length == 1 && 'h-[25px] border-t overflow-hidden border border-gray-400   z-10'}  ` : 'h-[0] overflow-hidden'}`}  >
                         {
-                            arr.map((i, index) => <li key={index} className='flex items-center hover:bg-gray-100 text-black border-b cursor-pointer px-2 py-1' onClick={() => handlerUserState(name, i)}> {i} </li>)
+                            arr?.map((i, index) => <li key={index} className='flex items-center hover:bg-gray-100 text-black border-b cursor-pointer px-2 py-1' onClick={() => handlerUserState(name, i)}> {i} </li>)
                         }
                     </ul>
                 </div>

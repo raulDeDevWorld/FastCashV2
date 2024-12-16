@@ -61,7 +61,7 @@ export default function BottomNavigation({ rol }) {
             <h3 className={` text-center text-[12px]  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>{rol}</h3>
         </li>
     }
-
+console.log(userDB)
     return <ul className="space-y-3 text-[16px] flex flex-col  items-center text-gray-600 font-medium ">
         <Header />
         {

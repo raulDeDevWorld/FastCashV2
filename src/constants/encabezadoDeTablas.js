@@ -157,10 +157,10 @@ const encabezadoUsuarios = [
 
 const encabezadoAccesos = [
     "Seleccionar",
-    "Nombre completo",
-    "DNI",
-    "Telefono",
-    "Email",
+    "Nombre Personal",
+    "Email Personal",
+    // "DNI",
+    // "Telefono",
     "Usuario Asignado",
     "Rol",
     "Estado de cuenta",

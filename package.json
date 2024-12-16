@@ -25,6 +25,7 @@
     "react-dom": "^18",
     "react-google-recaptcha": "^3.1.0",
     "react-hot-toast": "^2.4.1",
+    "react-quill": "^2.0.0",
     "react-speedometer": "^0.1.2"
   },
   "devDependencies": {

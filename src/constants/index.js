@@ -162,9 +162,10 @@ const menuArray = {
       title: "Verificación de Créditos",
       options: [
         { subtitle: "Recolección y Validación de Datos", icon: <OutlineDocumentTextIcon className="h-5 w-5" /> },
+        { subtitle: "Reporte diario", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> },
         { subtitle: "Lista final", icon: <OutlineDocumentCheckIcon className="h-5 w-5" /> }
       ],
-      length: 'h-[100px]'
+      length: 'h-[140px]'
     },
     {
       icon: <IdentificationIcon className="h-6 w-6" />,
@@ -179,6 +180,7 @@ const menuArray = {
       ],
       length: 'h-[0px]'
     },
+    
   ],
   ['Recursos Humanos']: [
     {

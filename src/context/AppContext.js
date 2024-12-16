@@ -26,14 +26,6 @@ export function AppProvider({ children }) {
     const [checkedArr, setCheckedArr] = useState([]);
 
 
-
-
-
-
-
-
-
-
 	const [fondoPrimario, setFondoPrimario] = useState('#000000')
 	const [fondoSecundario, setFondoSecundario] = useState('#292929')
 	const [fondoTerciario, setFondoTerciario] = useState('')

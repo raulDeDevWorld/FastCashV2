@@ -74,32 +74,33 @@ export default function AddAccount() {
     function handlerSelectAccount(i) {
         setSelectAccount(i)
     }
-
+    console.log(selectAccount)
     const saveAccount = async (e) => {
         e.preventDefault();
-
-
         try {
-
             setLoader('Guardando...')
+            //GENERACION DE NUEVA CONTRASEÑA
             let password = generarContrasena()
 
             const response = await fetch(
-                window?.location?.href?.includes('localhost') 
-                ? `http://localhost:3000/api/auth/register/${checkedArr[0]._id}` 
-                : `https://api.fastcash-mx.com/api/auth/register/${checkedArr[0]._id}`, {
+                window?.location?.href?.includes('localhost')
+                    ? `http://localhost:3000/api/auth/register/${checkedArr[0]._id}`
+                    : `https://api.fastcash-mx.com/api/auth/register/${checkedArr[0]._id}`, {
                 method: 'PUT', // El método es PUT para actualizar
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`, // Si estás usando JWT
                 },
-                body: JSON.stringify({ cuentaPersonal: selectAccount.nombreCompleto, email: selectAccount.email, password }), // Los datos que queremos actualizar
+                body: JSON.stringify({ nombrePersonal: selectAccount.nombreCompleto, emailPersonal: selectAccount.email, password }), // Los datos que queremos actualizar
             });
             if (!response.ok) {
                 setLoader('')
                 setAlerta('Error de datos!')
                 throw new Error('Registration failed');
             }
+
+        
+
 
             // Verificar si la respuesta es exitosa
             if (response.ok) {
@@ -152,8 +153,6 @@ export default function AddAccount() {
                 setModal('')
                 setLoader('')
                 // navigate('/dashboard');
-
-
             } else {
                 setLoader('')
                 setAlerta('Error de datos!')
@@ -162,16 +161,10 @@ export default function AddAccount() {
         } catch (error) {
             setLoader('')
             setAlerta('Error de datos!')
-            // console.log(error)
+            console.log(error)
             throw new Error(error);
         }
-
-
-        return
-
     };
-
-
 
     const fetchUsers = async () => {
         try {
@@ -189,15 +182,9 @@ export default function AddAccount() {
         }
     };
 
-
     useEffect(() => {
         if (data?.email?.length > 0 || data?.nombreCompleto?.length > 0) { fetchUsers() };
     }, [data]);
-
-
-
-
-
     return <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-40' onClick={() => setModal('')}>
         <div className='relative flex flex-col items-center justify-center bg-gray-200 w-[450px] h-[450px] p-5 px-12 space-y-3 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
             <button

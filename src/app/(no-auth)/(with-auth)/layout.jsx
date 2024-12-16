@@ -128,7 +128,7 @@ function Home({ children }) {
                     // // console.log(data)
                     setUser({ rol: data.user.tipoDeGrupo })
                     setUserDB(data.user)
-                    router.replace('/Home')
+                    pathname !== '/Newslater' && router.replace('/Home')
 
                 } else {
                     // console.log('No autorizado o sesión expirada');
@@ -139,10 +139,10 @@ function Home({ children }) {
         };
         fetchProfile();
     }, []);
-    // console.log(pathname)
+    console.log(pathname)
     useEffect(() => {
         user?.rol && user?.rol !== undefined
-            ? router.replace('/Home')
+            ? pathname !== '/Newslater' && router.replace('/Home')
             : router.replace('/')
     }, [user])
 
@@ -280,7 +280,7 @@ function Home({ children }) {
                     </nav>
 
 
-                    <div className="lg:px-[20px] pt-[85px] pb-[65px] md:pt-[85px] md:pb-5 h-screen w-full overflow-y-auto">
+                    <div className="lg:px-[20px] pt-[85px] pb-[65px] md:pt-[85px] md:pb-0 h-screen w-full overflow-y-auto">
                         {children}
                     </div>
                     {/* {user && user !== undefined && <div className="fixed bottom-0  z-30 w-full h-[65px] bg-[#2A52BE] rounded-t-[40px] border-t-[1px] border-gray-50 border- lg:hidden">

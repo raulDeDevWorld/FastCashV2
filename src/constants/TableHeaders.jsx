@@ -50,7 +50,7 @@ export const encabezadoCobroYValance = () => [
 ];
 
 export const encabezadoRegistroHistorico = () => [
-   "Seleccionar",  "Descripción de la excepción", "Apodo del usuario", "Código del producto",
+    "Seleccionar", "Descripción de la excepción", "Apodo del usuario", "Código del producto",
     "Código de operación", "Contenido de la operación", "Resultados de la operación",
     "Tiempo de operación"
 ];
@@ -62,7 +62,7 @@ export const encabezadoMonitoreoDeTransacciones = () => [
 ];
 
 export const encabezadoControlDeCumplimiento = () => [
-    "Seleccionar","Nombres y apellidos", "Apodo de Usuario Cobrador", 
+    "Seleccionar", "Nombres y apellidos", "Apodo de Usuario Cobrador",
     "DNI del Cobrador", "Casos Asignados al Cobrador", "Reporte", "Telefono", "Operaciones"
 ];
 
@@ -71,7 +71,7 @@ export const encabezadoAuditoriaPeriodica = () => [
     "Nombre del operador", "Observación", "Amonestacion", "Valor de multa",
     "Estado de multa", "Fecha de creacion", "Operar"
 ];
-
+{/* --------------------------------- VERIFICACION DE CREDITOS --------------------------------- */ }
 export const encabezadoCasosDeVerificacion = () => {
     const { user } = useAppContext();
     return !user?.rol?.includes('asesor')
@@ -80,7 +80,7 @@ export const encabezadoCasosDeVerificacion = () => {
             "Estado de credito", "Nombre del cliente", "Número de teléfono móvil",
             "Clientes nuevos", "Valor solicitado (VS)", "Valor enviado (VE)", "Registro de notas",
             "Nombre del producto", "Fecha de reembolso", "Fecha de creación de la tarea",
-            "Fecha de tramitación del caso", "Nombre de la empresa", "Apodo de usuario de cobro",
+            "Fecha de tramitación del caso","Nombre de la empresa", "Cuenta Verificador (Asesor)",
             "Operar"
         ]
         : [
@@ -91,7 +91,6 @@ export const encabezadoCasosDeVerificacion = () => {
             "Fecha de tramitación del caso", "Nombre de la empresa", "Operar"
         ];
 };
-
 export const encabezadoListaFinal = () => [
     "Seleccionar", "Numero de Whatsapp *", "Numero de Prestamos", "Estado de Solicitud",
     "Nombre del Cliente", "Numero de Telefono *", "Producto", "Usuario Verificador",
@@ -99,17 +98,17 @@ export const encabezadoListaFinal = () => [
 ];
 
 export const encabezadoGestionDeAccesos = () => [
-    "Seleccionar", "Nombre completo", "DNI", "Telefono", "Email", "(Usuario asignado) cuenta", "Origen de la cuenta", "Tipo de grupo",
+    "Seleccionar", "Nombre Personal", "Email Personal", "(Usuario asignado) cuenta", "Origen de la cuenta", "Tipo de grupo",
     "Codificación de roles", "Situación laboral", "Operar"
 ];
 
 
-export const encabezadoDeAplicaciones = () => ["icon","Nombre", "Prestamo Maximo", "Interes Diario", "calificacion",  "Operar"
+export const encabezadoDeAplicaciones = () => ["icon", "Nombre", "Prestamo Maximo", "Interes Diario", "calificacion", "Operar"
 ];
 
 
 // {/* ---------------------------------COLECCION DE CASOS--------------------------------- */ }
-
+//"Nombre de la empresa", "Apodo de usuario de cobro"
 // const encabezadoCasosDeCobranza = !user?.rol?.includes('Usuario')
 //     ? [
 //         "Contactos",
