@@ -25,6 +25,8 @@ export default function Home() {
 
         <Alerts/>
             {/*--------------------- MODAL FORMS --------------------- */}
+
+
             <Modals />
             {/*--------------------- MINI BARRA DE NAVEGACION --------------------- */}
             <MiniNavbar />

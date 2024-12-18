@@ -67,9 +67,8 @@ const Table = ({
             setCheckedArr([...checkedArr, i]);
         } else {
             // Si no está marcado, quita el índice del array
-            setCheckedArr(checkedArr.filter(item => item.usuario !== i.usuario));
+            setCheckedArr(checkedArr.filter(item => item._id !== i._id));
         }
-
     }
     function handlerSelectAllCheck(e, i) {
         if (e.target.checked) {
@@ -81,10 +80,9 @@ const Table = ({
             // Si no está marcado, quita el índice del array
             setCheckedArr([]);
         }
-
     }
 
-    // console.log(checkedArr)
+    console.log(checkedArr)
     useEffect(() => {
         handlerFetch()
     }, [loader])

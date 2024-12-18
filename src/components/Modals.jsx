@@ -58,6 +58,7 @@ import {
     encabezadoGestionDeAccesos,
     encabezadoDeAplicaciones
 } from '@/constants/TableHeaders.jsx'
+import FormEditAccount from '@/components/FormEditAccount'
 
 
 
@@ -528,7 +529,7 @@ export default function Home() {
                         {/* ---------------------------------'GESTION DE ACCESOS' --------------------------------- */}
 
             {modal === 'Administrar cuenta' && <FormAdminAccount />}
-            {modal === 'Editar Cuentta' && <FormEditAccount />}
+            {modal === 'Editar cuenta' && <FormEditAccount />}
 
         </div>
     )
