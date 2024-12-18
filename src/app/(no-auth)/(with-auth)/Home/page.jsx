@@ -33,7 +33,7 @@ export default function Home() {
             {/* --------------------------------- TABLE TOOLS --------------------------------- */}
             <TableTools />
             {/* ---------------------------------TABLAS--------------------------------- */}
-            <TablesAdminAccounts />
+            {/* <TablesAdminAccounts /> */}
             {/* <TablesPersonalAccounts/> */}
         </>
     )
