@@ -61,7 +61,7 @@ export default function Modal() {
             <div className="text-center">
                 {mode === 'editor'
                     ? <div className={style.editor}>
-                        <TextEditor setValue={handlerTextEditorOnChange2} value={textEditor2 ? textEditor2 : 'nada'} edit={true} />
+                        {/* <TextEditor setValue={handlerTextEditorOnChange2} value={textEditor2 ? textEditor2 : 'nada'} edit={true} /> */}
                     </div>
                     : <div className={style.editor}>
                         <div className='ql-editor' dangerouslySetInnerHTML={{ __html: textEditor2 }}></div>

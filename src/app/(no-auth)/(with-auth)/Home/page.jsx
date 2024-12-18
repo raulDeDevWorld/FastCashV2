@@ -13,8 +13,7 @@ import Alerts from '@/components/Alerts'
 export default function Home() {
     const router = useRouter()
     const { user } = useAppContext()
-    const searchParams = useSearchParams()
-    const { theme, toggleTheme } = useTheme();
+
 
     useEffect(() => {
         user === undefined && router.push('/')
