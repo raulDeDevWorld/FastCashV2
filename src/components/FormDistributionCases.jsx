@@ -8,6 +8,7 @@ import { domainToASCII } from "url";
 import { useSearchParams } from 'next/navigation'
 import { toast } from 'react-hot-toast';
 import FormLayout from '@/components/FormLayout'
+import Button from '@/components/Button'
 
 
 
@@ -46,11 +47,44 @@ export default function AddAccount() {
             objectsCount: count,
         }));
     };
+
+
+    function dividir(a, b) {
+        if (b === 0) {
+            return "Error: No se puede dividir entre 0";
+        }
+
+        const cociente = Math.floor(a / b); // Parte entera de la división
+        const residuo = a % b;
+        if (cociente === 0) {
+            return "Error: toca a 0";
+        }
+
+        // Resto de la división
+
+        return cociente;
+    }
+
+
+    const assignMaximEqualy = async () => {
+        const res = await fetch('https://api.fastcash-mx.com/api/auth/users?tipoDeGrupo=Asesor%20de%20Verificación')
+        const verificadores = await res.json()
+        const updatedUsers = verificadores.map(user => ({ ...user, idCasosAsignados: [] }));
+        const resCases = await fetch('https://api.fastcash-mx.com/api/verification/')
+        const dataVerification = await resCases.json()
+        const casesVerification = dataVerification.filter(i => i.estadoDeCredito === 'Pendiente')
+
+        const resultado = dividir(casesVerification.length *1, verificadores.length*1);
+        setMaximoAsignacion(resultado)
+
+    }
+
+
     const assignCasesEqually = async () => {
         setCalculate(true)
         setType('Equaly')
 
-        const res = await fetch('https://api.fastcash-mx.com/api/auth/users')
+        const res = await fetch('https://api.fastcash-mx.com/api/auth/users?tipoDeGrupo=Asesor%20de%20Verificación')
         const data = await res.json()
         const verificadores = data.filter(i => i.tipoDeGrupo === 'Asesor de Verificación')
         const updatedUsers = verificadores.map(user => ({ ...user, idCasosAsignados: [] }));
@@ -84,7 +118,7 @@ export default function AddAccount() {
         setCalculate(true)
         setType('Totaly')
 
-        const res = await fetch('https://api.fastcash-mx.com/api/auth/users')
+        const res = await fetch('https://api.fastcash-mx.com/api/auth/users?tipoDeGrupo=Asesor%20de%20Verificación')
         const data = await res.json()
         const verificadores = data.filter(i => i.tipoDeGrupo === 'Asesor de Verificación')
         const usuarios = verificadores.map(user => ({ ...user, idCasosAsignados: [] }));
@@ -183,9 +217,9 @@ export default function AddAccount() {
                         }), // Datos a enviar en el cuerpo de la petición
                     });
                     if (response.ok) {
-                        checkedArr.length && setAlerta('Operación exitosa!')
-                        checkedArr.length && setModal('')
-                        checkedArr.length && setLoader('')
+                        setAlerta('Operación exitosa!')
+                        setModal('')
+                        setLoader('')
                         // navigate('/dashboard');
                     } else {
                         setLoader('')
@@ -221,7 +255,12 @@ export default function AddAccount() {
                     <label htmlFor="" className={`mr-5 text-[11px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
                         Asignacion Igualitaria Cantidad:
                     </label>
-                    <input name='cantidadAsignacionIgualitaria' className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} onChange={onChangeHandler} placeholder='2' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
+
+
+                        <input name='cantidadAsignacionIgualitaria' className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} onChange={onChangeHandler} placeholder='2' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
+                        <Button theme="Primary" click={assignMaximEqualy}> NumMaxEq</Button>
+
+
                 </div>
             }
             <div className="mt-4 space-x-2">

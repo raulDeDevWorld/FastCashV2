@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react';
-import * as Highcharts from 'highcharts';
-import HighchartsMore from 'highcharts/highcharts-more';
-import HighchartsReact from 'highcharts-react-official';
+// import * as Highcharts from 'highcharts';
+// import HighchartsMore from 'highcharts/highcharts-more';
+// import HighchartsReact from 'highcharts-react-official';
 import { useTheme } from '@/context/ThemeContext';
 
 
@@ -188,7 +188,7 @@ const ColoredSpeedometer = () => {
 
   return (
     <div style={{ width: 210, height: 210, margin: '0 auto' }}> {/* Reducido en un 30% */}
-      <HighchartsReact
+      {/* <HighchartsReact
         highcharts={Highcharts}
         options={options}
         ref={chartRef}
@@ -200,7 +200,7 @@ const ColoredSpeedometer = () => {
             
           }
         }}
-      />
+      /> */}
     </div>
   );
 };
