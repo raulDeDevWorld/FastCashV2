@@ -31,6 +31,7 @@ export function AppProvider({ children }) {
 	const [fondoTerciario, setFondoTerciario] = useState('')
 
 	const [idioma, setIdioma] = useState('Español')
+	const [local, setSever] = useState('')
 
 
 
@@ -157,6 +158,7 @@ export function AppProvider({ children }) {
 			enviosDB, setEnviosDB,
 			cambiosDB, setCambiosDB,
 			setQRurl,
+			local, setSever,
 			checkedArr, setCheckedArr,
 			setDestinatario,
 			setUsers,
@@ -185,6 +187,7 @@ export function AppProvider({ children }) {
 		webScann,
 		filter,
 		checkedArr,
+		local,
 		filterQR, exchange, countries, isOpen, isOpen2, destinatarios, transactionDB, navItem, comision,
 		enviosDB,
 		loader,

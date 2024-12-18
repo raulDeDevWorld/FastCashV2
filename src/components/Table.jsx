@@ -15,7 +15,7 @@ const Table = ({
     server,
     query
 }) => {
-    const { user, userDB, loader, setUserProfile, users, setUsers, checkedArr, setCheckedArr, setModal, itemSelected, setItemSelected, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario } = useAppContext()
+    const { user, userDB, loader, setUserProfile, users, setLoader, setUsers, checkedArr, setCheckedArr, setModal, itemSelected, setItemSelected, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario } = useAppContext()
     const searchParams = useSearchParams()
     const seccion = searchParams.get('seccion')
     const item = searchParams.get('item')
@@ -23,19 +23,10 @@ const Table = ({
 
 
     const toCamelCase = (str) => {
-        // Convertimos toda la cadena a minúsculas para asegurarnos de que todas las palabras comiencen en minúscula
         let cleanedStr = str.toLowerCase();
-
-        // Eliminamos el contenido entre paréntesis, incluyendo los propios paréntesis
         cleanedStr = cleanedStr.replace(/\([^)]*\)/g, '');
-
-        // Eliminamos acentos
         cleanedStr = cleanedStr.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-        // Reemplazamos guiones por espacios
         cleanedStr = cleanedStr.replace(/-/g, ' ');
-
-        // Convertimos a camelCase
         return cleanedStr
             .replace(/[_\s]+(.)?/g, (_, char) => char ? char.toUpperCase() : '')
             .replace(/^[A-Z]/, firstChar => firstChar.toLowerCase());
@@ -50,14 +41,15 @@ const Table = ({
         setCheckedArr([i])
     }
     // console.log(userDB)
-    async function handlerFetch() {
+    async function handlerFetch(queryURL) {
+
+console.log(window?.location?.href?.includes('localhost') ? `${local}${queryURL}` : `${server}${queryURL}`)
         const res = await fetch(
-            window?.location?.href?.includes('localhost') ? local : server
+            window?.location?.href?.includes('localhost') ? `${local}${queryURL}` : `${server}${queryURL}`
         )
-        console.log(res.body)
         const data = await res.json()
-        console.log(data)
         setData(data)
+        setLoader(false)
     }
 
 
@@ -82,9 +74,9 @@ const Table = ({
         }
     }
 
-    console.log(checkedArr)
     useEffect(() => {
-        handlerFetch()
+        var queryURL = `${window.location.search}${query ?`&${query}`: ''}`;
+        handlerFetch(queryURL)
     }, [loader])
 
     useEffect(() => {
@@ -114,7 +106,7 @@ const Table = ({
                 </tr>
             </thead>
             <tbody>
-                {data.map((i, index) => {
+                {data?.map((i, index) => {
 
                     return dataFilter(i) && (
                         <tr key={index} className="text-[12px] border-b">

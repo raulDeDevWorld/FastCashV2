@@ -406,7 +406,7 @@ export default function Home() {
                                 access={true}
                                 headArray={encabezadoCasosDeVerificacion}
                                 dataArray={['']}
-                                dataFilter={(i) => i?.estadoDeCredito?.toLowerCase() === 'pendiente'}
+                                dataFilter={(i) => true}
                                 local={'http://localhost:3000/api/verification'}
                                 server={'https://api.fastcash-mx.com/api/verification'}
                             />
@@ -456,7 +456,9 @@ export default function Home() {
                                 access={true}
                                 headArray={encabezadoGestionDeAccesos}
                                 dataFilter={(i) => true}
-                                local={'http://localhost:3000/api/auth/users?tipoDeGrupo=Asesor'}
+                                // local={'http://localhost:3000/api/auth/users?tipoDeGrupo=Asesor'}
+                                query={'tipoDeGrupo=Asesor'}
+                                local={'http://localhost:3000/api/auth/users'}
                                 server={'https://api.fastcash-mx.com/api/auth/users?tipoDeGrupo=Asesor'}
                             />
                         }

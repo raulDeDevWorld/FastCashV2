@@ -77,7 +77,7 @@ export default function AddAccount() {
     console.log(selectAccount)
     const saveAccount = async (e) => {
         e.preventDefault();
-        try {n
+        try {
             setLoader('Guardando...')
             //GENERACION DE NUEVA CONTRASEÑA
             let password = generarContrasena()
@@ -99,7 +99,7 @@ export default function AddAccount() {
                 throw new Error('Registration failed');
             }
 
-        
+
 
 
             // Verificar si la respuesta es exitosa

@@ -78,7 +78,7 @@ export const encabezadoCasosDeVerificacion = () => {
         ? [
             "Seleccionar", "Contactos", "Número de préstamo", "ID de sub-factura",
             "Estado de credito", "Nombre del cliente", "Número de teléfono móvil",
-            "Clientes nuevos", "Valor solicitado (VS)", "Valor enviado (VE)", "Registro de notas",
+            "Cliente nuevo", "Valor solicitado (VS)", "Valor enviado (VE)", "Registro de notas",
             "Nombre del producto", "Fecha de reembolso", "Fecha de creación de la tarea",
             "Fecha de tramitación del caso","Nombre de la empresa", "Cuenta Verificador (Asesor)",
             "Operar"
@@ -86,7 +86,7 @@ export const encabezadoCasosDeVerificacion = () => {
         : [
             "Seleccionar", "Contactos", "Número de préstamo", "ID de sub-factura",
             "Estado de credito", "Nombre del cliente", "Número de teléfono móvil",
-            "Clientes nuevos", "Valor solicitado (VS)", "Valor enviado (VE)", "Registro de notas",
+            "Cliente nuevo", "Valor solicitado (VS)", "Valor enviado (VE)", "Registro de notas",
             "Nombre del producto", "Fecha de reembolso", "Fecha de creación de la tarea",
             "Fecha de tramitación del caso", "Nombre de la empresa", "Operar"
         ];

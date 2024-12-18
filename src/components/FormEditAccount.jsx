@@ -12,7 +12,7 @@ import FormLayout from '@/components/FormLayout'
 
 
 export default function AddAccount() {
-    const { user, userDB, setUserProfile, setAlerta, users, modal, setModal, setUsers, loader, setLoader, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario, itemSelected, setItemSelected } = useAppContext()
+    const { user, userDB, setUserProfile, setAlerta, checkedArr, users, modal, setModal, setUsers, loader, setLoader, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario, itemSelected, setItemSelected } = useAppContext()
     const { theme, toggleTheme } = useTheme();
     const [data, setData] = useState({})
     const [value1, setValue1] = useState('Por favor elige')
@@ -65,7 +65,7 @@ export default function AddAccount() {
             setValue3(i)
         }
     }
-    const generarContrasena = () => {
+    const generarContrasena = (clave) => {
         const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?';
         let contrasenaGenerada = '';
         const longitud = 16; // Longitud de la contraseña
@@ -74,99 +74,124 @@ export default function AddAccount() {
             const indice = Math.floor(Math.random() * caracteres.length);
             contrasenaGenerada += caracteres[indice];
         }
-        setData({ ...data, password: contrasenaGenerada })
+        if (clave === 'return') {
+            return contrasenaGenerada
+        } else {
+            setData({ ...data, password: contrasenaGenerada })
+        }
 
     };
 
     const saveAccount = async (e) => {
         e.preventDefault();
-        try {
-            setLoader('Guardando...')
-            const db = {
-                'situacionLaboral': selectedCheckbox,
-                'origenDeLaCuenta': value1,
-                'tipoDeGrupo': value2,
-                'codificacionDeRoles': value3,
-                ...data,
-            };
-            // console.log(db);
+        setLoader('Guardando...')
+        checkedArr.map((db, index) => {
+            saveAllAccounts(db)
+        })
+        console.log(checkedArr)
+    };
 
+    const saveAllAccounts = async (db) => {
+        try {
+            //GENERACION DE NUEVA CONTRASEÑA
+            let password = generarContrasena('return')
+            console.log(password)
+            console.log({
+                situacionLaboral: selectedCheckbox,
+                password,
+                ...data,
+            })
             const response = await fetch(
                 window?.location?.href?.includes('localhost')
-                    ? 'http://localhost:3000/api/auth/register'
-                    : 'https://api.fastcash-mx.com/api/auth/register', {
-                method: 'POST',
+                    ? `http://localhost:3000/api/auth/register/${db._id}`
+                    : `https://api.fastcash-mx.com/api/auth/register/${db._id}`, {
+                method: 'PUT', // El método es PUT para actualizar
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`, // Si estás usando JWT
                 },
-                body: JSON.stringify(db),
+                body: JSON.stringify(
+                    {
+                        situacionLaboral: selectedCheckbox,
+                        password,
+                        ...data,
+                    }
+                ), // Los datos que queremos actualizar
             });
-
             if (!response.ok) {
                 setLoader('')
                 setAlerta('Error de datos!')
                 throw new Error('Registration failed');
             }
 
-            const result = await response.json();
-            // console.log(result);
 
 
 
-            const res = await fetch(window?.location?.href.includes('localhost')
-                ? 'http://localhost:3000/api/email/send'
-                : 'https://api.fastcash-mx.com/api/email/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: db.email,
-                    subject: 'Credenciales FastCash',
-                    html: `<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-        <tr>
-            <td style="background-color: #4CAF50; color: #ffffff; text-align: center; padding: 20px; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                <h1 style="margin: 0;">¡Bienvenido a FastCash-MX!</h1>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 20px; color: #333333;">
-                <p>Hola ${db.email},</p>
-                <p>Nos complace darte la bienvenida a FastCash-MX. A continuación, encontrarás tus credenciales de acceso:</p>
-                <p style="font-size: 16px;">
-                    <strong>Asesor:</strong> <span style="color: #4CAF50;">${db.cuenta}</span><br>
-                    <strong>Contraseña:</strong> <span style="color: #4CAF50;">${db.password}</span>
-                </p>
-                <p>Para iniciar sesión, haz clic en el siguiente enlace:</p>
-                <p style="text-align: center;">
-                    <a href="https://fastcash-mx.com" style="display: inline-block; background-color: #4CAF50; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Iniciar sesión</a>
-                </p>
-                <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
-                <p>Saludos,<br> de parte de Fast Cash LLC</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="background-color: #eeeeee; text-align: center; padding: 10px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; color: #666666; font-size: 12px;">
-                © 2024 Fast Cash LLC. Todos los derechos reservados.
-            </td>
-        </tr>
-    </table>
-</body>
-`
-                }),
-            });
+            // Verificar si la respuesta es exitosa
+            if (response.ok) {
 
-            setAlerta('Operación exitosa!')
-            setModal('')
-            setLoader('')
-            // navigate('/dashboard');
+                const res = await fetch(window?.location?.href?.includes('localhost')
+                    ? 'http://localhost:3000/api/email/send'
+                    : 'https://api.fastcash-mx.com/api/email/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: db.emailPersonal,
+                        subject: 'Credenciales FastCash',
+                        html: `<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <tr>
+                    <td style="background-color: #4CAF50; color: #ffffff; text-align: center; padding: 20px; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                        <h1 style="margin: 0;">¡Bienvenido a FastCash-MX!</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 20px; color: #333333;">
+                        <p>Hola ${db.emailPersonal},</p>
+                        <p>Nos complace darte la bienvenida a FastCash-MX. A continuación, encontrarás tus credenciales de acceso para empezar a operar:</p>
+                        <p style="font-size: 16px;">
+                            <strong>User:</strong> <span style="color: #4CAF50;">${db.cuenta}</span><br>
+                            <strong>Contraseña:</strong> <span style="color: #4CAF50;">${data?.password ? data.password : password}</span>
+                        </p>
+                        <p>Para iniciar sesión, haz clic en el siguiente enlace:</p>
+                        <p style="text-align: center;">
+                            <a href="https://fastcash-mx.com/" style="display: inline-block; background-color: #4CAF50; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Iniciar sesión</a>
+                        </p>
+                        <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
+                        <p>Saludos,<br> de parte de Fast Cash LLC</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color: #eeeeee; text-align: center; padding: 10px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; color: #666666; font-size: 12px;">
+                        © 2024 Fast Cash LLC. Todos los derechos reservados.
+                    </td>
+                </tr>
+            </table>
+        </body>
+        `
+                    }),
+                });
+
+                setAlerta('Operación exitosa!')
+                setModal('')
+                setLoader('')
+                // navigate('/dashboard');
+            } else {
+                setLoader('')
+                setAlerta('Error de datos!')
+                throw new Error('Registration failed');
+            }
         } catch (error) {
             setLoader('')
             setAlerta('Error de datos!')
-
+            console.log(error)
+            throw new Error(error);
         }
     };
+
+
     const arrTipoDeGrupo = {
 
         ['Gestión de administradores']: [
