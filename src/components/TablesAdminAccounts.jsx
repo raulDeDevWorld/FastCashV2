@@ -198,7 +198,345 @@ export default function Home() {
 
     return (
         <div className="overflow-x-auto">
-    
+            <main className={` h-full pt-[20px] `}>
+                <button className='fixed text-[20px] text-gray-500 h-[50px] w-[50px] rounded-full inline-block left-[0px] top-0 bottom-0 my-auto bg-[#00000010] z-30 lg:left-[8px]' onClick={prev}>{'<'}</button>
+                <button className='fixed text-[20px] text-gray-500 h-[50px] w-[50px] rounded-full inline-block right-[0px] top-0 bottom-0 my-auto bg-[#00000010] z-30 lg:right-[8px]' onClick={next}>{'>'}</button>
+                {/* --------------------------------- TABLAS FASTCASH--------------------------------- */}
+
+                <div className="overflow-x-auto">
+                    {user?.rol && <div className="max-h-[calc(100vh-90px)] pb-[70px] overflow-y-auto relative scroll-smooth" ref={refFirst}>
+
+                        {/* ---------------------------------COLECCION DE CASOS--------------------------------- */}
+                        {
+                            item === 'Casos de Cobranza' && <Table
+                                access={true}
+                                headArray={encabezadoCasosDeCobranza}
+                                dataArray={['']}
+                                dataFilter={(i) => i?.estadoDeCredito === 'Aprobado' || i?.estadoDeCredito === 'Reprobado'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {item === 'Flujo de Clientes' &&
+                            <table className="w-full min-w-[1000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400 shadow">
+                                <thead className="text-[10px] text-white uppercase bg-gray-900  sticky top-[0px] z-20">
+                                    <tr className=''>
+                                        <th scope="col" className="w-[50px] px-3 py-1 text-white">
+                                            Solicitud
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((-6)).val}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((-5)).val}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((-4)).val}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((-3)).val}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((-2)).val}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((-1)).val}
+                                        </th >
+                                    </tr>
+                                    <tr className=''>
+                                        <th scope="col" className="w-[50px] px-3 py-1 text-white">
+                                            Desembolso
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                            {getDay((0)).val}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((1)).val}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((2)).val}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((3)).val}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((4)).val}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((5)).val}
+                                        </th >
+                                    </tr>
+                                    <tr className=''>
+                                        <th scope="col" className="w-[50px] px-3 py-1 text-white">
+                                            Dia
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                            {getDay((0)).day}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((1)).day}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((2)).day}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((3)).day}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((4)).day}
+                                        </th>
+                                        <th scope="col" className=" px-3 py-1 text-white text-center">
+                                            {getDay((5)).day}
+                                        </th >
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {filtro_1.map((item, index) => (
+                                        item !== 'Todo' && <tr key={index} className={`text-[12px] border-b ${index % 2 === 0 ? 'bg-gray-300' : 'bg-gray-200'}`}>
+                                            <td className="px-3 py-2">{item}</td>
+                                            <td className="px-3 py-2 text-center">/</td>
+                                            <td className="px-3 py-2 text-center">/</td>
+                                            <td className="px-3 py-2 text-center">/</td>
+                                            <td className="px-3 py-2 text-center">/</td>
+                                            <td className="px-3 py-2 text-center">/</td>
+                                            <td className="px-3 py-2 text-center">/</td>
+                                        </tr>
+                                    ))}
+
+                                </tbody>
+                            </table>
+                        }
+                        {
+                            item === 'Gestion de aplicaciones' && <Table
+                                access={true}
+                                headArray={encabezadoDeAplicaciones}
+                                dataArray={['']}
+                                dataFilter={(i) => i}
+                                local={'http://localhost:3000/api/applications/getApplications'}
+                                server={'https://api.fastcash-mx.com/api/applications/getApplications'}
+                            />
+                        }
+                        {
+                            item === 'Incurrir en una estación de trabajo' && <Table
+                                access={true}
+                                headArray={encabezadoIncurrirEnUnaEstaciónDeTrabajo}
+                                dataArray={['']}
+                                dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {
+                            item === 'Gestión de cuentas de Colección' && <Table
+                                access={true}
+                                headArray={encabezadoGestionDeCuentasDeColección}
+                                dataArray={['']}
+                                dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {
+                            item === 'Registro de SMS' && <Table
+                                access={true}
+                                headArray={encabezadoRegistroDeSMS}
+                                dataArray={['']}
+                                dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Auditoria' || user.rol === 'Manager de Verificación') && seccion === 'coleccion' && item === 'Reporte diario' &&
+                            <TableReporteDiario />
+                        }
+                        {
+                            item === 'Cobro y valance' && <Table
+                                access={true}
+                                headArray={encabezadoCobroYValance}
+                                dataArray={['']}
+                                dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {/* --------------------------------- AUDITORIA Y CONTROL DE CALIDAD --------------------------------- */}
+                        {
+                            item === 'Registro Histórico' && <Table
+                                access={true}
+                                headArray={encabezadoRegistroHistorico}
+                                dataArray={['']}
+                                dataFilter={(i) => i?.estadoDeCredito?.toLowerCase() === 'pendiente'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {
+                            item === 'Monitoreo de Transacciones' && <Table
+                                access={true}
+                                headArray={encabezadoMonitoreoDeTransacciones}
+                                dataArray={['']}
+                                dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {
+                            item === 'Control de Cumplimiento' && <Table
+                                access={true}
+                                headArray={encabezadoControlDeCumplimiento}
+                                dataArray={['']}
+                                dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {
+                            item === 'Auditoria Periodica' && <Table
+                                access={true}
+                                headArray={encabezadoAuditoriaPeriodica}
+                                dataArray={['']}
+                                dataFilter={(i) => i?.estadoDeCredito === 'pendiente'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {/* --------------------------------- VERIFICACION DE CREDITOS --------------------------------- */}
+                        {
+                            item === 'Recolección y Validación de Datos' && <Table
+                                access={true}
+                                headArray={encabezadoCasosDeVerificacion}
+                                dataArray={['']}
+                                dataFilter={(i) => i?.estadoDeCredito?.toLowerCase() === 'pendiente'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Auditoria' || user.rol === 'Manager de Verificación') && seccion === 'Verificacion' && item === 'Reporte diario' &&
+                            <TableReporteDiarioVerificacion />
+                        }
+                        {
+                            item === 'Lista final' && <Table
+                                access={true}
+                                headArray={encabezadoCasosDeVerificacion}
+                                dataFilter={(i) => i?.estadoDeCredito.toLowerCase() === 'aprobado' || i.estadoDeCredito.toLowerCase() === 'reprobado'}
+                                local={'http://localhost:3000/api/verification'}
+                                server={'https://api.fastcash-mx.com/api/verification'}
+                            />
+                        }
+                        {/* --------------------------------- GESTION DE ACCESOS --------------------------------- */}
+                        {
+                            (item === 'Gestión de administradores') && <Table
+                                access={true}
+                                headArray={encabezadoGestionDeAccesos}
+                                dataFilter={(i) => i.tipoDeGrupo === 'Admin'}
+                                local={'http://localhost:3000/api/auth/users'}
+                                server={'https://api.fastcash-mx.com/api/auth/users'}
+                            />
+                        }
+                        {
+                            (item === 'Gestión de RH') && <Table
+                                access={true}
+                                headArray={encabezadoGestionDeAccesos}
+                                dataFilter={(i) => i?.tipoDeGrupo?.toLowerCase().includes('recursos humanos')}
+                                local={'http://localhost:3000/api/auth/users'}
+                                server={'https://api.fastcash-mx.com/api/auth/users'}
+                            />
+                        }
+                        {
+                            (item === 'Gestión de managers') && <Table
+                                access={true}
+                                headArray={encabezadoGestionDeAccesos}
+                                dataFilter={(i) => i?.tipoDeGrupo?.toLowerCase().includes('manager')}
+                                local={'http://localhost:3000/api/auth/users'}
+                                server={'https://api.fastcash-mx.com/api/auth/users'}
+                            />
+                        }
+                        {
+                            (item === 'Gestión de asesores') && <Table
+                                access={true}
+                                headArray={encabezadoGestionDeAccesos}
+                                dataFilter={(i) => true}
+                                local={'http://localhost:3000/api/auth/users?tipoDeGrupo=Asesor'}
+                                server={'https://api.fastcash-mx.com/api/auth/users?tipoDeGrupo=Asesor'}
+                            />
+                        }
+                        {
+                            (item === 'Gestión de cuentas personales') && <Table
+                                access={true}
+                                headArray={encabezadoGestionDeAccesos}
+                                dataFilter={(i) => true}
+                                local={'http://localhost:3000/api/auth/personalAccounts'}
+                                server={'https://api.fastcash-mx.com/api/auth/personalAccounts'}
+                            />
+                        }
+                        {/* --------------------------------- TABLAS EN MAS DE DOS SECCIONES --------------------------------- */}
+
+                        {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Auditoria' || user.rol === 'Manager de Verificación') && item === 'Asistencia' && <table className="w-full min-w-[1000px] bg-white text-[14px] text-left text-gray-500 border-t-4  shadow">
+
+
+                            <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
+                                <tr>
+                                    <th className='px-3 py-2'>
+                                    </th>
+                                    <th colSpan="1" className="px-4 py-2 text-white text-center"></th>
+                                    <th colSpan="1" className="px-4 py-2 text-white text-center">LUNES</th>
+                                    <th colSpan="1" className="px-4 py-2 text-white text-center">MARTES</th>
+                                    <th colSpan="1" className="px-4 py-2 text-white text-center">MIÉRCOLES</th>
+                                    <th colSpan="1" className="px-4 py-2 text-white text-center">JUEVES</th>
+                                    <th colSpan="1" className="px-4 py-2 text-white text-center">VIERNES</th>
+                                    <th colSpan="1" className="px-4 py-2 text-white text-center">SÁBADO</th>
+                                    <th colSpan="1" className="px-4 py-2 text-white text-center">DOMINGO</th>
+                                </tr>
+                                <tr>
+                                    <th className='px-3 py-2'>
+                                        <input type="checkbox" />
+                                    </th>
+                                    <th colSpan="1" className="px-4 py-2 text-white text-center">USUARIOS</th>
+                                    <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                        {getDay((-2)).val}
+                                    </th>
+                                    <th scope="col" className=" px-3 py-1 text-white text-center">
+                                        {getDay((11)).val}
+                                    </th>
+                                    <th scope="col" className=" px-3 py-1 text-white text-center text-blue-500">
+                                        {getDay((0)).val}
+                                    </th>
+                                    <th scope="col" className=" px-3 py-1 text-white text-center">
+                                        {getDay((1)).val}
+                                    </th>
+                                    <th scope="col" className=" px-3 py-1 text-white text-center">
+                                        {getDay((2)).val}
+                                    </th>
+                                    <th scope="col" className=" px-3 py-1 text-white text-center">
+                                        {getDay((3)).val}
+                                    </th>
+                                    <th scope="col" className=" px-3 py-1 text-white text-center">
+                                        {getDay((4)).val}
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {trabajo.map((cobrador, index) => (
+                                    <tr key={index} className='text-[12px]'>
+                                        <td className={`px-3 py-2 text-[12px] border-b bg-gray-300 ${selectedLeft === 1 ? 'sticky left-0 z-10' : ''}`} >
+                                            <input type="checkbox" />
+                                        </td>
+                                        <td className="px-4 py-2 border border-gray-200 bg-gray-300">{cobrador.nombre}</td>
+                                        <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.lunes)}`}>{cobrador.lunes}</td>
+                                        <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.martes)}`}>{cobrador.martes}</td>
+                                        <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.miercoles)}`}>{cobrador.miercoles}</td>
+                                        <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.jueves)}`}>{cobrador.jueves}</td>
+                                        <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.viernes)}`}>{cobrador.viernes}</td>
+                                        <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.sabado)}`}>{cobrador.sabado}</td>
+                                        <td className={`px-4 py-2 border border-gray-200 ${getBackgroundClass(cobrador.domingo)}`}>{cobrador.domingo}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>}
+                    </div>}
+                </div>
+            </main>
         </div>
 
     )
