@@ -429,8 +429,8 @@ export default function Home() {
     async function handlerFetch() {
         const res = await fetch(
             window?.location?.href?.includes('localhost')
-                ? 'http://localhost:3000/api/auth/users'
-                : 'https://api.fastcash-mx.com/api/auth/users')
+                ? 'http://localhost:3000/api/auth/users?tipoDeGrupo=Asesor%20de%20Cobranza'
+                : 'https://api.fastcash-mx.com/api/auth/users?tipoDeGrupo=Asesor%20de%20Cobranza')
         const data = await res.json()
         // console.log(data)
         setData(data)
@@ -441,7 +441,7 @@ export default function Home() {
 
     useEffect(() => {
         handlerFetch()
-    }, [])
+    }, [loader])
 
 
     return (
@@ -494,7 +494,7 @@ export default function Home() {
                             <input type="checkbox"  onClick={(e) => handlerSelectCheck(e, i)} />
                         </td>
                         <td className="px-4 py-2">{i.id}</td>
-                        <td className="px-4 py-2">{i.cuentaPersonal}</td>
+                        <td className="px-4 py-2">{i.nombrePersonal}</td>
                         <td className="px-4 py-2">{i.cuenta}</td>
                         
                         <td className="px-4 py-2">{i.casos}</td>
