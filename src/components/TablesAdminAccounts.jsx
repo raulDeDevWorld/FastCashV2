@@ -459,7 +459,7 @@ export default function Home() {
                                 // local={'http://localhost:3000/api/auth/users?tipoDeGrupo=Asesor'}
                                 query={'tipoDeGrupo=Asesor'}
                                 local={'http://localhost:3000/api/auth/users'}
-                                server={'https://api.fastcash-mx.com/api/auth/users?tipoDeGrupo=Asesor'}
+                                server={'https://api.fastcash-mx.com/api/auth/users'}
                             />
                         }
                         {
