@@ -139,7 +139,7 @@ export default function AddAccount() {
                     Acceso a usuarios:
                 </label>
                 <SelectSimple
-                    arr={['a', 'b', 'c', 'd', 'e', 'f']}
+                    arr={['a-hhfghg', 'b-hgghfg', 'c-gfdgfd', 'd-gfdgd', 'e-gfdgfd', 'f-fdfdh']}
                     name='categoria'
                     click={handlerSelectClick2}
                     defaultValue={data?.categoria ? data?.categoria : 'Seleccionar'}

@@ -21,11 +21,8 @@ export default function Home() {
     return (
         user?.rol &&
         <>
-
-        <Alerts/>
+            <Alerts />
             {/*--------------------- MODAL FORMS --------------------- */}
-
-
             <Modals />
             {/*--------------------- MINI BARRA DE NAVEGACION --------------------- */}
             <MiniNavbar />
