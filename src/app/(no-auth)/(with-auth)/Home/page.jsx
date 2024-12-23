@@ -15,9 +15,9 @@ export default function Home() {
     const { user } = useAppContext()
 
 
-    useEffect(() => {
-        user === undefined && router.push('/')
-    }, [])
+    // useEffect(() => {
+    //     user === undefined && router.push('/')
+    // }, [])
     return (
         user?.rol &&
         <>

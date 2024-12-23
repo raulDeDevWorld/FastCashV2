@@ -11,7 +11,7 @@ const AppContext = createContext();
 
 export function AppProvider({ children }) {
 
-	const [user, setUser] = useState(undefined)
+	const [user, setUser] = useState(null)
 	const [users, setUsers] = useState(null)
 	const [userDB, setUserDB] = useState({cuenta: 'tester'})
 	const [subItemNav, setSubItemNav] = useState('Casos de Cobranza')

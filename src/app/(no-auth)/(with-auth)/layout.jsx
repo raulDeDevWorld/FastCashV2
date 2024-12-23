@@ -107,43 +107,43 @@ function Home({ children }) {
     }
 
 
-    useEffect(() => {
-        const fetchProfile = async () => {
-            const token = sessionStorage.getItem('token'); // Obtener el JWT desde sessionStorage
-            // // console.log(token)
+    // useEffect(() => {
+    //     const fetchProfile = async () => {
+    //         const token = sessionStorage.getItem('token'); // Obtener el JWT desde sessionStorage
+    //         // // console.log(token)
 
-            try {
-                const response = await fetch(window?.location?.href.includes('localhost')
-                    ? 'http://localhost:3000/api/auth/validate'
-                    : 'https://api.fastcash-mx.com/api/auth/validate', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': token,  // Enviar el JWT en el encabezado de autorización
-                    },
-                });
+    //         try {
+    //             const response = await fetch(window?.location?.href.includes('localhost')
+    //                 ? 'http://localhost:3000/api/auth/validate'
+    //                 : 'https://api.fastcash-mx.com/api/auth/validate', {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'Authorization': token,  // Enviar el JWT en el encabezado de autorización
+    //                 },
+    //             });
 
-                if (response.ok) {
+    //             if (response.ok) {
 
-                    const data = await response.json();
-                    // // console.log(data)
-                    setUser({ rol: data.user.tipoDeGrupo })
-                    setUserDB(data.user)
-                    pathname !== '/Newslater' && router.replace('/Home')
+    //                 const data = await response.json();
+    //                 // // console.log(data)
+    //                 setUser({ rol: data.user.tipoDeGrupo })
+    //                 setUserDB(data.user)
+    //                 pathname !== '/' && router.replace('/Home')
 
-                } else {
-                    // console.log('No autorizado o sesión expirada');
-                }
-            } catch (error) {
-                // console.log('Error al cargar el perfil');
-            }
-        };
-        fetchProfile();
-    }, []);
+    //             } else {
+    //                 // console.log('No autorizado o sesión expirada');
+    //             }
+    //         } catch (error) {
+    //             // console.log('Error al cargar el perfil');
+    //         }
+    //     };
+    //     fetchProfile();
+    // }, []);
     console.log(pathname)
     useEffect(() => {
-        user?.rol && user?.rol !== undefined
-            ? pathname !== '/Newslater' && router.replace('/Home')
-            : router.replace('/')
+        user?.rol 
+            ? pathname === '/' && router.replace('/Home')
+            : user?.rol !== undefined && pathname !== '/' && router.replace('/')
     }, [user])
 
     return (

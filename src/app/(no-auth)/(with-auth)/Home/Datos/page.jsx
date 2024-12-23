@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageCard from '@/components/ImageCard'
 import Link from 'next/link';
 import { PhoneIcon, XIcon, DocumentTextIcon, DevicePhoneMobileIcon, StatusOnlineIcon, DevicePhoneIcon, DocumentDuplicateIcon, KeyIcon, ClipboardListIcon, GlobeAltIcon, CheckCircleIcon, XCircleIcon, CalendarIcon } from '@heroicons/react/24/outline';
@@ -14,6 +14,10 @@ const PaymentInfoCard = () => {
     const [modal, setModal] = useState()
     const searchParams = useSearchParams()
     const seccion = searchParams.get('seccion')
+    const caso = searchParams.get('caso')
+    const [caseData, setcaseData] = useState(null)
+    const [clientData, setClientData] = useState(null)
+
     const paymentInfo = {
         clientId: 'f5d743b5ed45489798e0c445b030d5a4',
         orderId: '15160932',
@@ -40,7 +44,7 @@ const PaymentInfoCard = () => {
         isBlacklisted: 'Sí',
         systemRemarks: 'overdue day more than 5 day'
     };
-    const personalInfo = {
+    const clientData123 = {
         name: 'MIGUEL ANTONIO',
         idNumber: 'HESM900117HVZRLG04',
         idType: 'CURP',
@@ -241,7 +245,7 @@ const PaymentInfoCard = () => {
         interestRate: '0.44',
         observation: '',
         cardNumber: '012792015738860887',
-      };
+    };
 
 
     const bankData = [
@@ -257,26 +261,63 @@ const PaymentInfoCard = () => {
 
 
 
-    const control =[
-        ''
-    ]
+    function calcularEdad(fechaNacimiento) {
+        // Dividir la fecha en día, mes y año
+        const [dia, mes, año] = fechaNacimiento?.split('/').map(Number);
+    
+        // Crear un objeto de fecha para la fecha de nacimiento
+        const fechaNacimientoDate = new Date(año, mes - 1, dia); // Mes empieza en 0 (enero)
+    
+        // Obtener la fecha actual
+        const fechaActual = new Date();
+    
+        // Calcular la edad
+        let edad = fechaActual.getFullYear() - fechaNacimientoDate.getFullYear();
+    
+        // Ajustar si no ha cumplido años este año
+        const mesActual = fechaActual.getMonth();
+        const diaActual = fechaActual.getDate();
+    
+        if (
+            mesActual < fechaNacimientoDate.getMonth() || 
+            (mesActual === fechaNacimientoDate.getMonth() && diaActual < fechaNacimientoDate.getDate())
+        ) {
+            edad--;
+        }
+    
+        return edad;
+    }
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(window?.location?.href.includes('localhost')
+                ? `http://localhost:3000/api/verification/${caso}`
+                : `https://api.fastcash-mx.com/api/verification/${caso}`)
+            const res = await response.json();
+            setcaseData(res);
+
+            const phone = res?.numeroDeTelefonoMovil?.replaceAll('+', '');
+            // console.log('phone', phone)
+            const response2 = await fetch(window?.location?.href.includes('localhost')
+                ? `http://localhost:3000/api/authApk/usersApkFromWeb?phoneNumber=${phone}`
+                : `https://api.fastcash-mx.com/api/authApk/usersApkFromWeb?phoneNumber=${phone}`)
+            const res2 = await response2.json();
+            setClientData(res2);
+        };
+        fetchData()
+    }, [])
+    console.log(caseData)
+    console.log(clientData)
     return (
         <div className="relative mx-auto bg-gray-100 ">
-
-
-
             {
                 modal && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal(false)}>
                     <div className='relative flex flex-col items-center justify-center bg-gray-100 w-[400px] h-[300px] p-5 space-y-5 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
-
-
                         <button
                             className="absolute top-5 right-5 flex items-center justify-center w-12 h-6 bg-red-500 text-white rounded-[5px] hover:bg-red-600 focus:outline-none"
                             onClick={() => setModal(false)}
                         >
                             X
                         </button>
-
                         <h4>Registro de cobro</h4>
                         <div className='relative flex justify-between w-[300px]'>
 
@@ -291,25 +332,24 @@ const PaymentInfoCard = () => {
                                 Registro por:
                             </label>
                             <textarea name="" className='text-[10px] p-2 w-[200px] focus:outline-none bg-gray-100 border-[1px] border-gray-300 rounded-[5px]' id=""></textarea>                        </div>
-
-
                         <button type="button" class="w-[300px] text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal(true)}>Registro de cobro</button>
-
                     </div>
-
                 </div>
             }
 
 
             <ul class="flex ">
                 <li class="-mb-px mr-1">
-                    <Link class={` inline-block border-l border-t border-r py-2 px-4 transition-all rounded-t-[5px] ${seccion === 'info' ? 'text-blue-700 font-semibold bg-white' : 'text-gray-700 font-semibold'}`} href={`?seccion=info`}>Información basica</Link>
+                    <Link class={` inline-block border-l border-t border-r py-2 px-4 transition-all rounded-t-[5px] ${seccion === 'info' ? 'text-blue-700 font-semibold bg-white' : 'text-gray-700 font-semibold'}`} href={`?caso=${caso}&seccion=info`}>Información basica</Link>
                 </li>
                 <li class="mr-1">
-                    <Link class={` inline-block border-l border-t border-r py-2 px-4 transition-all rounded-t-[5px]   ${seccion === 'otros' ? 'text-blue-700 font-semibold bg-white' : 'text-gray-700 font-semibold'}`} href={`?seccion=otros`}>Otros datos</Link>
+                    <Link class={` inline-block border-l border-t border-r py-2 px-4 transition-all rounded-t-[5px]   ${seccion === 'otros' ? 'text-blue-700 font-semibold bg-white' : 'text-gray-700 font-semibold'}`} href={`?caso=${caso}&seccion=otros`}>Otros datos</Link>
                 </li>
                 <li class="mr-1">
-                    <Link class={` inline-block border-l border-t border-r py-2 px-4  transition-all  rounded-t-[5px] ${seccion === 'contactos' ? 'text-blue-700 font-semibold bg-white' : 'text-gray-700 font-semibold'}`} href={`?seccion=contactos`}>Contactos</Link>
+                    <Link class={` inline-block border-l border-t border-r py-2 px-4  transition-all  rounded-t-[5px] ${seccion === 'contactos' ? 'text-blue-700 font-semibold bg-white' : 'text-gray-700 font-semibold'}`} href={`?caso=${caso}&seccion=contactos`}>Contactos</Link>
+                </li>
+                <li class="mr-1">
+                    <Link class={` inline-block border-l border-t border-r py-2 px-4  transition-all  rounded-t-[5px] ${seccion === 'contactos' ? 'text-blue-700 font-semibold bg-white' : 'text-gray-700 font-semibold'}`} href={`?caso=${caso}&seccion=sms`}>SMS</Link>
                 </li>
                 <li class="mr-1">
                     <button type="button" class="w-full mt-2 text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => setModal(true)}>Registro de cobro</button>
@@ -324,7 +364,7 @@ const PaymentInfoCard = () => {
                     <h3 className="text-xl font-semibold mb-4 text-white bg-gray-900 px-5 py-3">Información basica</h3>
 
                     <div className="space-y-2 grid grid-cols-3">
-                        <p><strong>ID de Cliente:</strong> {paymentInfo.clientId}</p>
+                        <p><strong>ID de Cliente:</strong> {caseData?._id}</p>
                         <p><strong>ID de Pedido:</strong> {paymentInfo.orderId}</p>
                         <p><strong>Teléfono:</strong> {paymentInfo.phone}</p>
                         <p><strong>Rootear o no:</strong> {paymentInfo.rootStatus !== null ? paymentInfo.rootStatus : 'No disponible'}</p>
@@ -394,21 +434,21 @@ const PaymentInfoCard = () => {
                 <div className="p-6">
                     <h3 className="text-xl font-semibold mb-4 text-white bg-gray-900 px-5 py-3">Datos personales</h3>
                     <div className="space-y-2  grid grid-cols-3">
-                        <p><strong>Nombre:</strong> {personalInfo.name}</p>
-                        <p><strong>Número de Documento de Identidad:</strong> {personalInfo.idNumber}</p>
-                        <p><strong>Tipo de Documento de Identidad:</strong> {personalInfo.idType}</p>
-                        <p><strong>Género:</strong> {personalInfo.gender}</p>
-                        <p><strong>Nivel Educativo:</strong> {personalInfo.educationLevel}</p>
-                        <p><strong>Estado Civil:</strong> {personalInfo.maritalStatus}</p>
-                        <p><strong>Situación de los Hijos:</strong> {personalInfo.childrenStatus}</p>
-                        <p><strong>Edad:</strong> {personalInfo.age}</p>
-                        <p><strong>Fecha de Nacimiento:</strong> {personalInfo.birthDate}</p>
-                        <p><strong>Creencia Religiosa:</strong> {personalInfo.religiousBelief || 'No disponible'}</p>
-                        <p><strong>Cuenta WhatsApp:</strong> {personalInfo.whatsappAccount !== null ? personalInfo.whatsappAccount : 'No disponible'}</p>
-                        <p><strong>Tiempo de Residencia:</strong> {personalInfo.residenceTime || 'No disponible'}</p>
-                        <p><strong>Dirección Residencial:</strong> {personalInfo.residentialAddress}</p>
-                        <p><strong>Dirección de la Empresa:</strong> {personalInfo.companyAddress}</p>
-                        <p><strong>Ubicación de la Aplicación Móvil:</strong> {personalInfo.appLocation || 'No disponible'}</p>
+                        <p><strong>Nombre:</strong> {caseData?.nombreDelCliente}</p>
+                        <p><strong>Número de Documento de Identidad:</strong> {clientData?.numeroDocumento}</p>
+                        {/* <p><strong>Tipo de Documento de Identidad:</strong></p> */}
+                        <p><strong>Género:</strong> {clientData?.sexo}</p>
+                        {/* <p><strong>Nivel Educativo:</strong> {clientData?.educationLevel}</p>
+                        <p><strong>Estado Civil:</strong> {clientData?.maritalStatus}</p> */}
+                        {/* <p><strong>Situación de los Hijos:</strong> {clientData?.childrenStatus}</p> */}
+                        <p><strong>Edad:</strong> {clientData?.fechaNacimiento && calcularEdad(clientData?.fechaNacimiento)} años</p>
+                        <p><strong>Fecha de Nacimiento:</strong> {clientData?.fechaNacimiento}</p>
+                        {/* <p><strong>Creencia Religiosa:</strong> {clientData?.religiousBelief || 'No disponible'}</p> */}
+                        <p><strong>WhatsApp:</strong> {clientData?.phoneNumber}</p>
+                        <p><strong>Tiempo de Residencia:</strong> {clientData?.residenceTime || 'No disponible'}</p>
+                        <p><strong>Dirección Residencial:</strong> {clientData?.residentialAddress}</p>
+                        <p><strong>Dirección de la Empresa:</strong> {clientData?.companyAddress}</p>
+                        <p><strong>Ubicación de la Aplicación Móvil:</strong> {clientData?.appLocation || 'No disponible'}</p>
                     </div>
                 </div>
                 <div className="p-6">
@@ -446,19 +486,19 @@ const PaymentInfoCard = () => {
 
                     <div className="p-6">
                         <ImageCard
-                            imageUrl="/ci.jpg"
+                            imageUrl={clientData?.photoURLs?.[0]}
                             altText="Descripción de la imagen"
                         />
                     </div>
                     <div className="p-6">
                         <ImageCard
-                            imageUrl="/ci.jpg"
+                            imageUrl={clientData?.photoURLs?.[1]}
                             altText="Descripción de la imagen"
                         />
                     </div>
                     <div className="p-6">
                         <ImageCard
-                            imageUrl="/ci.jpg"
+                            imageUrl={clientData?.photoURLs?.[2]}
                             altText="Descripción de la imagen"
                         />
                     </div>
@@ -466,12 +506,11 @@ const PaymentInfoCard = () => {
                 </div>
 
             </div>}
-            {seccion === 'otros' &&
 
+
+            {seccion === 'otros' &&
                 <>
                     <h3 className="text-xl font-semibold mb-4 text-white bg-gray-900 px-5 py-3">Registro histórico de revisión de aplicaciones</h3>
-
-
                     <div className="relative w-[100%] overflow-auto ">
 
                         <table className="relative divide-y divide-gray-200  ">
@@ -690,9 +729,6 @@ const PaymentInfoCard = () => {
 
 
             {seccion === 'contactos' && <div className={`mx-auto bg-white shadow-lg rounded-b-lg overflow-hidden`}>
-
-
-
                 <div className="p-6">
                     {/* <h3 className="text-xl font-semibold mb-4 ">Información de Pago</h3> */}
                     <div className="p-4">
@@ -705,13 +741,13 @@ const PaymentInfoCard = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {contacts.map((contact) => (
+                                {caseData?.contactos.map((contact) => (
                                     <tr key={contact.id} className="hover:bg-gray-100">
                                         <td className="py-2 px-4 border-b">{contact.name}</td>
-                                        <td className="py-2 px-4 border-b">{contact.phone}</td>
+                                        <td className="py-2 px-4 border-b">{contact.phoneNumber}</td>
                                         <td className="py-2 px-4 border-b flex items-center space-x-2">
                                             <button
-                                                onClick={() => handleWhatsAppMessage(contact.phone)}
+                                                onClick={() => handleWhatsAppMessage(contact.phoneNumber)}
                                                 className=" text-white px-3 py-1 rounded "
                                                 title="Enviar mensaje por WhatsApp"
                                             >
@@ -720,7 +756,7 @@ const PaymentInfoCard = () => {
                                                 </svg>
                                             </button>
                                             <button
-                                                onClick={() => handleCall(contact.phone)}
+                                                onClick={() => handleCall(contact.phoneNumber)}
                                                 className="bg-blue-500 text-white px-3 py-3 inline rounded hover:bg-blue-600"
                                                 title="Llamar"
                                             >
@@ -733,9 +769,49 @@ const PaymentInfoCard = () => {
                         </table>
                     </div>
                 </div>
+            </div>}
 
-
-
+            {seccion === 'sms' && <div className={`mx-auto bg-white shadow-lg rounded-b-lg overflow-hidden`}>
+                <div className="p-6">
+                    {/* <h3 className="text-xl font-semibold mb-4 ">Información de Pago</h3> */}
+                    <div className="p-4">
+                        <table className="w-full  overflow-x-auto border">
+                            <thead>
+                                <tr className='text-white bg-gray-900 '>
+                                    <th className="py-2 px-4 text-white text-left border-b">Nombre</th>
+                                    <th className="py-2 px-4 text-white text-left border-b">Teléfono</th>
+                                    {/* <th className="py-2 px-4 text-white text-left border-b">Acciones</th> */}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {caseData?.sms.map((contact) => (
+                                    <tr key={contact.id} className="hover:bg-gray-100">
+                                        <td className="py-2 px-4 border-b">{contact.sender}</td>
+                                        <td className="py-2 px-4 border-b">{contact.body}</td>
+                                        {/* <td className="py-2 px-4 border-b flex items-center space-x-2">
+                                            <button
+                                                onClick={() => handleWhatsAppMessage(contact.phoneNumber)}
+                                                className=" text-white px-3 py-1 rounded "
+                                                title="Enviar mensaje por WhatsApp"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
+                                                    <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"></path><path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"></path><path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"></path><path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"></path><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </button>
+                                            <button
+                                                onClick={() => handleCall(contact.phoneNumber)}
+                                                className="bg-blue-500 text-white px-3 py-3 inline rounded hover:bg-blue-600"
+                                                title="Llamar"
+                                            >
+                                                <PhoneIcon className="w-5 h-5 stroke-white" />
+                                            </button>
+                                        </td> */}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>}
         </div>
     );

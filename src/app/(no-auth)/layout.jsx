@@ -30,13 +30,11 @@ function Home({ children }) {
     const pathname = usePathname()
 
 
-
+console.log('pathname', pathname)
 
     useEffect(() => {
         const fetchProfile = async () => {
             const token = sessionStorage.getItem('token'); // Obtener el JWT desde sessionStorage
-            // // console.log(token)
-
             try {
                 const response = await fetch(window?.location?.href.includes('localhost')
                     ? 'http://localhost:3000/api/auth/validate'
@@ -46,16 +44,16 @@ function Home({ children }) {
                         'Authorization': token,  // Enviar el JWT en el encabezado de autorización
                     },
                 });
-
                 if (response.ok) {
-
                     const data = await response.json();
                     // // console.log(data)
                     setUser({ rol: data.user.tipoDeGrupo })
                     setUserDB(data.user)
-                    pathname !== '/Newslater' && router.replace('/Home')
+                    pathname === '/' && router.replace('/Home')
 
                 } else {
+                    const data = await response.json();
+                    setUser({ rol: undefined})
                     // // console.log('No autorizado o sesión expirada');
                 }
             } catch (error) {

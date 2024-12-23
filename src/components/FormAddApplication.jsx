@@ -14,9 +14,10 @@ import FormLayout from '@/components/FormLayout'
 export default function AddAccount() {
     const { user, userDB, setUserProfile, setAlerta, users, modal, setModal, setUsers, loader, setLoader, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario, itemSelected, setItemSelected } = useAppContext()
     const { theme, toggleTheme } = useTheme();
-    const [data, setData] = useState({})
+    const [data, setData] = useState({categoria:'libre'})
     const [value1, setValue1] = useState('Por favor elige')
     const [value2, setValue2] = useState('Por favor elige')
+    const [selectedFile, setSelectedFile] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const searchParams = useSearchParams()
 
@@ -26,16 +27,14 @@ export default function AddAccount() {
     console.log(data)
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
+        setSelectedFile(file); // Mostrar vista previa
         if (file) {
             const reader = new FileReader();
-
             // Convertir la imagen a Base64
             reader.onload = () => {
                 const base64String = reader.result.split(",")[1]; // Eliminar el encabezado de Base64
                 setSelectedImage(reader.result); // Mostrar vista previa
-                // onImageUpload(base64String); // Enviar Base64 al padre
             };
-
             reader.readAsDataURL(file); // Leer la imagen como una URL Base64
         }
     };
@@ -48,36 +47,45 @@ export default function AddAccount() {
     }
 
 
-    const saveAccount = async (imgIcon) => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setLoader('Guardando...')
+
+        if (!selectedFile) {
+            alert('Por favor selecciona un archivo');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', selectedFile); // Archivo
+        formData.append('nombre', data.nombre); // Datos adicionales
+        formData.append('prestamoMaximo', data.prestamoMaximo);
+        formData.append('interesDiario', data.interesDiario);
+        formData.append('calificacion', data.calificacion);
+        formData.append('categoria', data.categoria);
+
         try {
-            setLoader('Guardando...')
-            const response = await fetch(
-                window?.location?.href?.includes('localhost')
-                    ? 'http://localhost:3000/api/applications/register'
-                    : 'https://api.fastcash-mx.com/api/authApk/register', {
+            const response = await fetch(window?.location?.href?.includes('localhost')
+                ? 'http://localhost:3000/api/applications/register'
+                : 'https://api.fastcash-mx.com/api/authApk/register', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ ...data, icon: selectedImage }),
+                body: formData,
             });
+
             if (!response.ok) {
-                setLoader('')
-                setAlerta('Error de datos!')
-                throw new Error('Registration failed');
+                throw new Error(`Error en la carga: ${response.statusText}`);
             }
+
             const result = await response.json();
-            setAlerta('Operación exitosa!')
             setModal('')
             setLoader('')
-            // navigate('/dashboard');
+            setAlerta('Operación exitosa!')
+            console.log('Respuesta del servidor:', result);
         } catch (error) {
-            setLoader('')
-            setAlerta('Error de datos!')
+            console.error('Error al subir archivo:', error);
         }
     };
-
-
+ 
     return (
         <FormLayout>
             <h4 className='w-full text-center text-gray-950'>Añadir cuenta</h4>
@@ -109,7 +117,6 @@ export default function AddAccount() {
                     />
                 </label>
             </div>
-
             <div className='flex justify-between w-[100%]'>
                 <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
                     Nombre:
@@ -139,7 +146,7 @@ export default function AddAccount() {
                     Acceso a usuarios:
                 </label>
                 <SelectSimple
-                    arr={['a-hhfghg', 'b-hgghfg', 'c-gfdgfd', 'd-gfdgd', 'e-gfdgfd', 'f-fdfdh']}
+                    arr={['libre', 'estandar', 'premium']}
                     name='categoria'
                     click={handlerSelectClick2}
                     defaultValue={data?.categoria ? data?.categoria : 'Seleccionar'}
@@ -151,8 +158,7 @@ export default function AddAccount() {
             </div>
             <button type="button"
                 class="w-[300px] relative left-0 right-0 mx-auto text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center  mb-2"
-                onClick={saveAccount}>Registrar cuenta
+                onClick={handleSubmit}>Registrar Aplicacion
             </button>
         </FormLayout>)
-
 }

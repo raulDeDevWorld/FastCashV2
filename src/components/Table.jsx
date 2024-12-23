@@ -73,7 +73,7 @@ console.log(window?.location?.href?.includes('localhost') ? `${local}${queryURL}
             setCheckedArr([]);
         }
     }
-
+console.log(data)
     useEffect(() => {
         var queryURL = `${window.location.search}${query ?`&${query}`: ''}`;
         handlerFetch(queryURL)
@@ -118,11 +118,11 @@ console.log(window?.location?.href?.includes('localhost') ? `${local}${queryURL}
                                             <input type="checkbox"
                                                 checked={checkedArr.some(value => value._id === i._id)}
                                                 onClick={(e) => handlerSelectCheck(e, i)} />}
-                                        {it.toLowerCase() === 'contactos' &&
+                                        { it.toLowerCase() === 'contactos' &&
                                             <div className="flex justify-around items-center">
                                                 {/* {console.log( checkedArr.some(value => value._id === i._id))} */}
                                                 <a
-                                                    href={`https://wa.me/${it.whatsapp}`}
+                                                    href={`https://wa.me/${i.numeroDeTelefonoMovil}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex items-center text-green-500 hover:text-green-600"
@@ -132,7 +132,7 @@ console.log(window?.location?.href?.includes('localhost') ? `${local}${queryURL}
                                                     </svg>
                                                 </a>
                                                 <a
-                                                    href={`https://https://t.me/${it.whatsapp}`}
+                                                    href={`https://https://t.me/${i.numeroDeTelefonoMovil}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex items-center text-green-500 hover:text-green-600"
@@ -150,14 +150,11 @@ console.log(window?.location?.href?.includes('localhost') ? `${local}${queryURL}
                                                 </a>
                                             </div>}
                                         {it.toLowerCase() === 'operar' && item?.toLowerCase().includes('colección') && <div className='flex justify-between flex space-x-3'>
-                                            <Link href={`/Home/Datos?seccion=info`} className=''>
+                                            <Link href={`/Home/Datos?caso=${i._id}&seccion=info`} className=''>
                                                 <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Visitar</button>
-
                                             </Link>
                                             <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => handlerVerification(i)}>Registrar</button>
-
                                         </div>}
-
                                         {it.toLowerCase() === 'icon' && item?.toLowerCase().includes('aplicacion') && <div className='flex justify-between flex space-x-3'>
                                             <img src={i[toCamelCase(it)]} className='w-[80px] h-[80px]' alt="" />
                                         </div>}
@@ -173,18 +170,15 @@ console.log(window?.location?.href?.includes('localhost') ? `${local}${queryURL}
                                             <CurrencyDollarIcon
                                                 className='h-6 w-6 fill-[#1ab418] cursor-pointer' />
                                             {/* <FolderPlusIcon className='h-6 w-6 fill-[#eba140]' /> */}
-
                                         </div>}
                                         {item?.toLowerCase().includes('aplicacion') && it.toLowerCase() === 'operar' && <div className='relative flex max-w-[150px] justify-between space-x-3'>
-
                                             <button type="button" class="w-full max-w-[70px] text-white bg-gradient-to-br from-red-600 to-red-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Eliminar</button>
                                             <button type="button" class="w-full max-w-[70px] text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Editar</button>
                                         </div>}
-                                        {(it.toLowerCase() !== 'operar' || it.toLowerCase() !== 'contactos') && it.toLowerCase() !== 'icon' && i[toCamelCase(it)]}
+                                        {it.toLowerCase() !== 'operar' && it !==  'Contactos' && it.toLowerCase() !== 'icon' && i[toCamelCase(it)]}
                                     </td>
                                 )
                             })}
-
                         </tr>
                     )
                 })}
