@@ -41,12 +41,12 @@ export default function Home() {
         email,
         password,
       });
-      // console.log(response)
+      console.log(response)
       if (response.status === 200) {
         setUser({ rol: response.data.user.codificacionDeRoles })
         setUserDB(response.data.user)
-
-        router.push('/Home')
+        sessionStorage.setItem('token', response.data.token);
+        router.push('/Account')
       }
     } catch (error) {
       toast.error(error.response?.data?.message || 'Login failed');

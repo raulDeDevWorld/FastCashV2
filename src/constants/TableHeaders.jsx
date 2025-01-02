@@ -48,11 +48,12 @@ export const encabezadoCobroYValance = () => [
     "Cantidad recibida", "Código del proyecto", "número de tarjeta", "Nombre del banco",
     "Titular de la tarjeta", "Estado final"
 ];
+{/* --------------------------------- AUDITORIA DE CREDITOS --------------------------------- */ }
 
 export const encabezadoRegistroHistorico = () => [
-    "Seleccionar", "Descripción de la excepción", "Apodo del usuario", "Código del producto",
-    "Código de operación", "Contenido de la operación", "Resultados de la operación",
-    "Tiempo de operación"
+ "Caso (Descripción de la excepción)", "Asesor (Apodo del usuario)", "Cuenta (Código del producto)",
+    "Código de operación", "Operacion (Contenido de la operación)", "Modificacion (Resultados de la operación)",
+    "Fecha (Tiempo de operación)", "operar"
 ];
 
 export const encabezadoMonitoreoDeTransacciones = () => [
@@ -101,7 +102,10 @@ export const encabezadoGestionDeAccesos = () => [
     "Seleccionar", "Nombre Personal", "Email Personal", "(Usuario asignado) cuenta", "Origen de la cuenta", "Tipo de grupo",
     "Codificación de roles", "Situación laboral", "Operar"
 ];
-
+export const encabezadoGestionDeAccesosPersonales = () => [
+    "Seleccionar", "Nombre Completo", "Email", "(Usuario asignado) cuenta", "Origen de la cuenta", "Tipo de grupo",
+    "Codificación de roles", "Situación laboral", "Operar"
+];
 
 export const encabezadoDeAplicaciones = () => ["icon", "Nombre", "Prestamo Maximo", "Interes Diario", "calificacion", "Operar"
 ];

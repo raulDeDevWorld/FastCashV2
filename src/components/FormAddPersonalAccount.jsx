@@ -88,9 +88,9 @@ export default function AddAccount() {
             };
             // console.log(db);
 
-            const response = await fetch(window?.location?.href?.includes('localhost') 
-            ? 'http://localhost:3000/api/auth/registerPersonal'
-            : 'https://api.fastcash-mx.com/api/auth/registerPersonal', {
+            const response = await fetch(window?.location?.href?.includes('localhost')
+                ? 'http://localhost:3000/api/auth/registerPersonal'
+                : 'https://api.fastcash-mx.com/api/auth/registerPersonal', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -109,9 +109,9 @@ export default function AddAccount() {
 
 
 
-            const res = await fetch(    window?.location?.href?.includes('localhost') 
-            ?'http://localhost:3000/api/email/send'
-            :`https://api.fastcash-mx.com/api/auth/register/${id}`, {
+            const res = await fetch(window?.location?.href?.includes('localhost')
+                ? 'http://localhost:3000/api/email/send'
+                : `https://api.fastcash-mx.com/api/auth/register/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

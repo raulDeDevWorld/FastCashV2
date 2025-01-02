@@ -24,7 +24,7 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
 
 
     function onChangeHandler(e) {
-       const db ={ ...filter, [e.target.name]: e.target.value }
+        const db = { ...filter, [e.target.name]: e.target.value }
         setFilter(db)
         setQuery(objectToQueryString(db))
     }
@@ -34,24 +34,47 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
         setQuery(objectToQueryString(db))
     }
 
-   
+
     function objectToQueryString(obj) {
         if (!obj || typeof obj !== "object") {
-          throw new Error("La entrada debe ser un objeto.");
+            throw new Error("La entrada debe ser un objeto.");
         }
-      
         return Object.keys(obj)
-          .filter(key => obj[key] !== undefined && obj[key] !== null) // Filtrar valores nulos o indefinidos
-          .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`) // Codificar clave=valor
-          .join("&"); // Unir con &
-      }
-      function handlerFetch () {
+            .filter(key => obj[key] !== undefined && obj[key] !== null) // Filtrar valores nulos o indefinidos
+            .map(key => `filter[${encodeURIComponent(key)}]=${encodeURIComponent(obj[key])}`) // Codificar clave=valor
+            .join("&"); // Unir con &
+    }
+
+    // function objectToQueryString(obj) {
+    //     if (!obj || typeof obj !== "object") {
+    //         throw new Error("La entrada debe ser un objeto.");
+    //     }
+    //     return Object.keys(obj)
+    //         .filter(key => obj[key] !== undefined && obj[key] !== null) // Filtrar valores nulos o indefinidos
+    //         .map(key => {
+    //             const createQueryString = useCallback(
+    //                 (name, value) => {
+    //                     const params = new URLSearchParams(searchParams.toString())
+    //                     params.set(name, value)
+
+    //                     return params.toString()
+    //                 },
+    //                 [searchParams]
+    //             )
+    //         }) // Codificar clave=valor
+    // }
+
+    // Get a new searchParams string by merging the current
+    // searchParams with a provided key/value pair
+
+
+    function handlerFetch() {
         setLoader(true)
-      }
+    }
     return (
         <div>
             {/* ---------------------------------'VERIFICACION DE CREDITOS' --------------------------------- */}
-            {item === 'Recolección y Validación de Datos' && <div>
+           <div>
                 <div className="w-full   relative  overflow-auto  scroll-smooth mb-2 lg:overflow-hidden">
                     <div className='grid grid-cols-3 gap-x-5 gap-y-2 w-[1050px]'>
                         <div className='w-[330px] space-y-2'>
@@ -73,13 +96,13 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
                                 <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
                                     Estado de reembolso:
                                 </label>
-                                <SelectSimple arr={['Elije por favor', 'Pendiente', 'En verificacion', 'Aprobado', 'Reprobado']} name='estadoDeCredito' click={handlerSelectClick} defaultValue={filter['estadoDeCredito']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
+                                <SelectSimple arr={['Elije por favor', 'Pendiente', 'Aprobado', 'Reprobado', 'Dispersado']} name='estadoDeCredito' click={handlerSelectClick} defaultValue={filter['estadoDeCredito']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
                             </div>
                             <div className='flex justify-between'>
                                 <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
                                     Numero de páginas:
                                 </label>
-                                <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Numero de páginas' onChange={onChangeHandler} defaultValue={filter['Numero de páginas']} uuid='123' label='Numero de páginas' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
+                                <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Numero de páginas' onChange={onChangeHandler} defaultValue={filter['numeroDePaginas']} uuid='123' label='Numero de páginas' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
                             </div>
                         </div>
                         <div className='w-[300px] space-y-2'>
@@ -95,7 +118,7 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
                             </div>
                             <div className='flex justify-between flex space-x-3'>
                                 <Link href={`?seccion=${seccion}&item=${item}&${query}`}>
-                                    <Button type="button" theme={'Success'} click={handlerFetch}>Consultar</Button>
+                                    <Button type="button" theme={'Success'} >Consultar</Button>
                                 </Link>
                                 <Button type="button" theme={'MiniPrimary'} >Restablecer</Button>
                             </div>
@@ -119,7 +142,7 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
                         </div>
                     </div>
                 </div>
-            </div>}
+            </div>
         </div>
     );
 };

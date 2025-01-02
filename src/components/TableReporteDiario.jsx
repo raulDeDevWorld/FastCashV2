@@ -111,36 +111,7 @@ export default function Home() {
             selectedLeft === index ? setSelectedRight(-1) : setSelectedRight(index)
         }
     }
-    const prev = () => {
-        requestAnimationFrame(() => {
-            if (refFirst.current) {
-                const scrollLeft = refFirst.current.scrollLeft;
-                // console.log(scrollLeft);
-                const itemWidth = screen.width - 50;
-                refFirst.current.scrollLeft = scrollLeft - itemWidth;
-            }
-        });
-    };
-    const next = () => {
-        requestAnimationFrame(() => {
-            if (refFirst.current) {
-                const scrollLeft = refFirst.current.scrollLeft;
-                // console.log(scrollLeft);
-                const itemWidth = screen.width - 50;
-                // console.log(itemWidth);
-                refFirst.current.scrollLeft = scrollLeft + itemWidth;
-            }
-        });
-    };
-
-
-
-
-
-
-
  
-
 
     function handlerSelectCheck(e, i) {
         if (e.target.checked) {

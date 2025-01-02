@@ -70,11 +70,10 @@ export default function AddAccount() {
         }
     }
 
-
     function handlerSelectAccount(i) {
         setSelectAccount(i)
     }
-    console.log(selectAccount)
+
     const saveAccount = async (e) => {
         e.preventDefault();
         try {
@@ -98,9 +97,6 @@ export default function AddAccount() {
                 setAlerta('Error de datos!')
                 throw new Error('Registration failed');
             }
-
-
-
 
             // Verificar si la respuesta es exitosa
             if (response.ok) {
@@ -193,7 +189,7 @@ export default function AddAccount() {
             >
                 X
             </button>
-            <h4 className='w-full text-center text-gray-950'>Asignar Usuario</h4>
+            <h4 className='w-full text-center text-gray-950'>Asignar Asesor</h4>
 
             <div className='flex justify-between w-full max-w-[300px]'>
                 <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`}>
@@ -225,7 +221,7 @@ export default function AddAccount() {
 
             <button type="button"
                 class="w-[300px] relative left-0 right-0 mx-auto text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center  mb-2"
-                onClick={saveAccount}>Asignar Usuario</button>
+                onClick={saveAccount}>Asignar Asesor</button>
         </div>
 
     </div>

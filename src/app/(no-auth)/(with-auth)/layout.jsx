@@ -171,10 +171,6 @@ function Home({ children }) {
                         </div>
                         }
 
-
-
-
-
                         <div className='flex items-center mr-5 z-30 '>
 
                             <Wifi />

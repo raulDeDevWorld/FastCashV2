@@ -38,7 +38,10 @@ export default function Home() {
         cuenta,
         password,
       });
-      // // console.log(response)
+
+
+      console.log(response)
+      // console.log(response)
       if (response.status === 200) {
         setUser({ rol: response.data.user.tipoDeGrupo })
         setUserDB(response.data.user)

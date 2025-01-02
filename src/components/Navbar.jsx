@@ -29,7 +29,7 @@ import {
 import { menuArray } from '@/constants'
 import { useSearchParams } from 'next/navigation'
 import { useTheme } from '@/context/ThemeContext';
-
+import Button from '@/components/Button';
 export default function BottomNavigation({ rol }) {
     const { user, userDB, modal, setModal, subItemNav, setSubItemNav, setUserProfile, businessData, setUserData, setUserProduct, setRecetaDB, setUserCart, setUserDistributorPDB, filter, setFilter, nav, setNav } = useAppContext()
     const { theme, toggleTheme } = useTheme();
@@ -43,8 +43,8 @@ export default function BottomNavigation({ rol }) {
         router.push(ref)
     }
 
-    const signOutHandler = () => {
-        setModal('SignOut')
+    const handlerAsistencia = async () => {
+       
     }
 
     const redirectHandlerWindow = () => {
@@ -52,22 +52,25 @@ export default function BottomNavigation({ rol }) {
         setNav(false)
         // setWhatsapp(!whatsapp)
     }
-
+    console.log(userDB)
     const Header = () => {
         return <li className="flex flex-col justify-center items-center px-[10px] py-5 border-b border-gray-[1px]  w-full">
-            <img src="/perfil.png" className='h-[150px] border-white border-[1px] rounded-full' alt="" />
+            <img src={user.fotoURL} className='h-[150px] w-[150px] rounded-full' alt="" />
             <h1 className='16px font-medium text-center text-white py-[10px]'></h1>
-            <h3 className={` text-center  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>Kiara Palacios</h3>
+            <h3 className={` text-center  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>{user.nombreCompleto}</h3>
             <h3 className={` text-center text-[12px]  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>{rol}</h3>
+            <div className='mt-3'>
+                <Button theme="Success" click={handlerAsistencia}>Marcar asitencia</Button>
+            </div>
         </li>
     }
     return <ul className="space-y-3 text-[16px] flex flex-col  items-center text-gray-600 font-medium ">
         <Header />
         {
-            menuArray[rol].map((element, index) => {
+            menuArray?.[rol]?.map((element, index) => {
                 const Icon = element.icon
                 return <>
-                  { Object.values(menuArray[rol]).length !== 1 && <button
+                    {Object.values(menuArray[rol]).length !== 1 && <button
                         type="button"
                         className="relative inline-flex justify-between w-[90%] rounded-md border border-gray-300 shadow-sm px-2 py-2 bg-gray-100 text-[12px]  font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         onClick={() => focus === element.title ? setFocus('') : setFocus(element.title)}
@@ -82,13 +85,13 @@ export default function BottomNavigation({ rol }) {
                     </button>}
 
                     <div
-                        className={`relative block w-[90%] right-0 mt-2  rounded-md transition-all shadow-lg ${Object.values(menuArray[rol]).length === 1 ?'':  'bg-gray-100'} ring-1 ring-black ring-opacity-5 focus:outline-none  overflow-hidden ${Object.values(menuArray[rol]).length === 1 ? 'h-auto' :focus === element.title ? element.length :   'h-0 overflow-hidden'}`}>
+                        className={`relative block w-[90%] right-0 mt-2  rounded-md transition-all shadow-lg ${Object.values(menuArray[rol]).length === 1 ? '' : 'bg-gray-100'} ring-1 ring-black ring-opacity-5 focus:outline-none  overflow-hidden ${Object.values(menuArray[rol]).length === 1 ? 'h-auto' : focus === element.title ? element.length : 'h-0 overflow-hidden'}`}>
                         <div
                             className={`py-1 ${Object.values(menuArray[rol]).length === 1 && 'space-y-5 rounded-md'}`}>
                             {element.options.map((i, index) => {
                                 return <span
                                     onClick={() => router.replace(`/Home?seccion=${element.hash}&item=${i.subtitle}`)}
-                                    className={`block px-4 py-2 cursor-pointer text-[12px]  text-gray-700 hover:bg-gray-200 space-y-5 rounded-md ${item === i.subtitle && Object.values(menuArray[rol]).length !== 1  ? ' bg-gray-200': 'bg-gray-50'} `}
+                                    className={`block px-4 py-2 cursor-pointer text-[12px]  text-gray-700 hover:bg-gray-200 space-y-5 rounded-md ${item === i.subtitle && Object.values(menuArray[rol]).length !== 1 ? ' bg-gray-200' : 'bg-gray-50'} `}
                                 >
                                     <span className={`flex items-center w-full space-x-1.5 ${item === i.subtitle && ' [&>*:nth-child(n)]:stroke-blue-600  '}`}>
                                         {i.icon}

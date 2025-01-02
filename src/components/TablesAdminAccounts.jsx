@@ -28,6 +28,7 @@ import FormAsignarAsesor from '@/components/FormAsignarAsesor'
 import TableTools from '@/components/TableTools'
 import TableReporteDiarioVerificacion from '@/components/TableReporteDiarioVerificacion'
 import Alert from '@/components/Alert'
+import TableTracking from '@/components/TableTracking'
 
 import {
     refunds, historial,
@@ -56,6 +57,7 @@ import {
     encabezadoCasosDeVerificacion,
     encabezadoListaFinal,
     encabezadoGestionDeAccesos,
+    encabezadoGestionDeAccesosPersonales,
     encabezadoDeAplicaciones
 } from '@/constants/TableHeaders.jsx'
 
@@ -199,8 +201,9 @@ export default function Home() {
     return (
         <div className="overflow-x-auto">
             <main className={` h-full pt-[20px] `}>
-                <button className='fixed text-[20px] text-gray-500 h-[50px] w-[50px] rounded-full inline-block left-[0px] top-0 bottom-0 my-auto bg-[#00000010] z-30 lg:left-[8px]' onClick={prev}>{'<'}</button>
+                {/* <button className='fixed text-[20px] text-gray-500 h-[50px] w-[50px] rounded-full inline-block left-[0px] top-0 bottom-0 my-auto bg-[#00000010] z-30 lg:left-[8px]' onClick={prev}>{'<'}</button>
                 <button className='fixed text-[20px] text-gray-500 h-[50px] w-[50px] rounded-full inline-block right-[0px] top-0 bottom-0 my-auto bg-[#00000010] z-30 lg:right-[8px]' onClick={next}>{'>'}</button>
+                */}
                 {/* --------------------------------- TABLAS FASTCASH--------------------------------- */}
 
                 <div className="overflow-x-auto">
@@ -212,9 +215,9 @@ export default function Home() {
                                 access={true}
                                 headArray={encabezadoCasosDeCobranza}
                                 dataArray={['']}
-                                dataFilter={(i) => i?.estadoDeCredito === 'Aprobado' || i?.estadoDeCredito === 'Reprobado'}
-                                local={'http://localhost:3000/api/verification'}
-                                server={'https://api.fastcash-mx.com/api/verification'}
+                                dataFilter={(i) => true}
+                                local={'http://localhost:3000/api/verification?estadoDeCredito=Dispersado'}
+                                server={'https://api.fastcash-mx.com/api/verification?'}
                             />
                         }
                         {item === 'Flujo de Clientes' &&
@@ -361,11 +364,11 @@ export default function Home() {
                         }
                         {/* --------------------------------- AUDITORIA Y CONTROL DE CALIDAD --------------------------------- */}
                         {
-                            item === 'Registro Histórico' && <Table
+                            item === 'Registro Histórico' && <TableTracking
                                 access={true}
                                 headArray={encabezadoRegistroHistorico}
                                 dataArray={['']}
-                                dataFilter={(i) => i?.estadoDeCredito?.toLowerCase() === 'pendiente'}
+                                dataFilter={(i) => true}
                                 local={'http://localhost:3000/api/verification'}
                                 server={'https://api.fastcash-mx.com/api/verification'}
                             />
@@ -407,8 +410,8 @@ export default function Home() {
                                 headArray={encabezadoCasosDeVerificacion}
                                 dataArray={['']}
                                 dataFilter={(i) => true}
-                                local={'http://localhost:3000/api/verification'}
-                                server={'https://api.fastcash-mx.com/api/verification'}
+                                local={'http://localhost:3000/api/verification?estadoDeCredito=Pendiente'}
+                                server={'https://api.fastcash-mx.com/api/verification?estadoDeCredito=Aprobado,Pendiente'}
                             />
                         }
                         {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Auditoria' || user.rol === 'Manager de Verificación') && seccion === 'Verificacion' && item === 'Reporte diario' &&
@@ -418,9 +421,9 @@ export default function Home() {
                             item === 'Lista final' && <Table
                                 access={true}
                                 headArray={encabezadoCasosDeVerificacion}
-                                dataFilter={(i) => i?.estadoDeCredito.toLowerCase() === 'aprobado' || i.estadoDeCredito.toLowerCase() === 'reprobado'}
-                                local={'http://localhost:3000/api/verification'}
-                                server={'https://api.fastcash-mx.com/api/verification'}
+                                dataFilter={(i) => true}
+                                local={'http://localhost:3000/api/verification?estadoDeCredito=Aprobado,Reprobado'}
+                                server={'https://api.fastcash-mx.com/api/verification?estadoDeCredito=Aprobado,Reprobado'}
                             />
                         }
                         {/* --------------------------------- GESTION DE ACCESOS --------------------------------- */}
@@ -465,14 +468,13 @@ export default function Home() {
                         {
                             (item === 'Gestión de cuentas personales') && <Table
                                 access={true}
-                                headArray={encabezadoGestionDeAccesos}
+                                headArray={encabezadoGestionDeAccesosPersonales}
                                 dataFilter={(i) => true}
                                 local={'http://localhost:3000/api/auth/personalAccounts'}
                                 server={'https://api.fastcash-mx.com/api/auth/personalAccounts'}
                             />
                         }
                         {/* --------------------------------- TABLAS EN MAS DE DOS SECCIONES --------------------------------- */}
-
                         {(user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Auditoria' || user.rol === 'Manager de Verificación') && item === 'Asistencia' && <table className="w-full min-w-[1000px] bg-white text-[14px] text-left text-gray-500 border-t-4  shadow">
 
 

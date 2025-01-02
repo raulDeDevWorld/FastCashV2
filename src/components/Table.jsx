@@ -41,17 +41,64 @@ const Table = ({
         setCheckedArr([i])
     }
     // console.log(userDB)
+    //     async function handlerFetch(queryURL) {
+    // console.log(`${local}${queryURL}`)
+    //         console.log(window?.location?.href?.includes('localhost') ? `${local}${queryURL}` : `${server}${queryURL}`)
+    //         const res = await fetch(
+    //             window?.location?.href?.includes('localhost') ? `${local}${queryURL}` : `${server}${queryURL}`
+    //         )
+    //         const data = await res.json()
+    //         setData(data)
+    //         setLoader(false)
+    //     }
+    console.log(userDB)
     async function handlerFetch(queryURL) {
+        // Obtener los parámetros de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        // Filtrar solo las queries que comiencen con "filter["
+        const filterParams = {};
+        urlParams.forEach((value, key) => {
+            if (key.startsWith("filter[") && value !== "Elije por favor" && value !== "Todo") {
+                const fieldName = key.slice(7, -1); // Extraer el nombre de la clave dentro de "filter[]"
+                filterParams[fieldName] = value;
+            }
+        });
 
-console.log(window?.location?.href?.includes('localhost') ? `${local}${queryURL}` : `${server}${queryURL}`)
+        const stg = Object.keys(filterParams)
+            .filter(key => filterParams[key] !== undefined && filterParams[key] !== null) // Filtrar valores nulos o indefinidos
+            .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(filterParams[key])}`) // Codificar clave=valor
+            .join("&"); // Unir con &
+        console.log(stg ? 'existen' : 'no existen')
+
+
+        const roleQueries = {
+            "Asesor de Verificación": `&cuentaVerificador=${userDB.cuenta}`,
+            "Asesor de Cobranza": `&cuentaCobrador=${userDB.cuenta}`,
+            "Asesor de Auditoria": `&cuentaAuditor=${userDB.cuenta}`,
+        };
+
+        const query2 = roleQueries[user?.rol] || '';
+
+        console.log("query2", query2)
+        const urlLocal = stg
+            ? local.includes('?')
+                ? `${local.split('?')[0]}?${stg}${query2}`
+                : `${local}?${stg}${query2}`
+            : `${local}${query2}`
+
+        const urlServer = stg
+            ? server.includes('?')
+                ? `${server.split('?')[0]}?${stg}${query2}`
+                : `${server}?${stg}${query2}`
+            : `${server}${query2}`
+
         const res = await fetch(
-            window?.location?.href?.includes('localhost') ? `${local}${queryURL}` : `${server}${queryURL}`
+            window?.location?.href?.includes('localhost') ? `${urlLocal}` : `${urlServer}`
         )
         const data = await res.json()
         setData(data)
         setLoader(false)
     }
-
 
     function handlerSelectCheck(e, i) {
         if (e.target.checked) {
@@ -73,11 +120,10 @@ console.log(window?.location?.href?.includes('localhost') ? `${local}${queryURL}
             setCheckedArr([]);
         }
     }
-console.log(data)
+    console.log(data)
     useEffect(() => {
-        var queryURL = `${window.location.search}${query ?`&${query}`: ''}`;
-        handlerFetch(queryURL)
-    }, [loader])
+        handlerFetch()
+    }, [loader, searchParams])
 
     useEffect(() => {
         setCheckedArr([])
@@ -106,7 +152,7 @@ console.log(data)
                 </tr>
             </thead>
             <tbody>
-                {data?.map((i, index) => {
+                {data && data?.map((i, index) => {
 
                     return dataFilter(i) && (
                         <tr key={index} className="text-[12px] border-b">
@@ -118,7 +164,7 @@ console.log(data)
                                             <input type="checkbox"
                                                 checked={checkedArr.some(value => value._id === i._id)}
                                                 onClick={(e) => handlerSelectCheck(e, i)} />}
-                                        { it.toLowerCase() === 'contactos' &&
+                                        {it.toLowerCase() === 'contactos' &&
                                             <div className="flex justify-around items-center">
                                                 {/* {console.log( checkedArr.some(value => value._id === i._id))} */}
                                                 <a
@@ -149,15 +195,21 @@ console.log(data)
                                                     </svg>
                                                 </a>
                                             </div>}
-                                        {it.toLowerCase() === 'operar' && item?.toLowerCase().includes('colección') && <div className='flex justify-between flex space-x-3'>
+
+                                        {/* Operar Verficador */}
+                                        {it.toLowerCase() === 'operar' && (item?.toLowerCase().includes('recolección')||item?.toLowerCase().includes('lista')) && <div className='flex justify-between flex space-x-3'>
                                             <Link href={`/Home/Datos?caso=${i._id}&seccion=info`} className=''>
                                                 <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Visitar</button>
                                             </Link>
                                             <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => handlerVerification(i)}>Registrar</button>
                                         </div>}
+
+
+
                                         {it.toLowerCase() === 'icon' && item?.toLowerCase().includes('aplicacion') && <div className='flex justify-between flex space-x-3'>
                                             <img src={i[toCamelCase(it)]} className='w-[80px] h-[80px]' alt="" />
                                         </div>}
+
                                         {item?.toLowerCase().includes('gestión de') && !item?.toLowerCase().includes('colección') && it.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
                                             <UserCircleIcon
                                                 className='h-6 w-6 fill-[#ebbb40]'
@@ -175,7 +227,7 @@ console.log(data)
                                             <button type="button" class="w-full max-w-[70px] text-white bg-gradient-to-br from-red-600 to-red-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Eliminar</button>
                                             <button type="button" class="w-full max-w-[70px] text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Editar</button>
                                         </div>}
-                                        {it.toLowerCase() !== 'operar' && it !==  'Contactos' && it.toLowerCase() !== 'icon' && i[toCamelCase(it)]}
+                                        {it.toLowerCase() !== 'operar' && it !== 'Contactos' && it.toLowerCase() !== 'icon' && i[toCamelCase(it)]}
                                     </td>
                                 )
                             })}

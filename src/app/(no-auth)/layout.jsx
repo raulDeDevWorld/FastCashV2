@@ -19,18 +19,9 @@ import { MoonIcon, SunIcon, WindowIcon } from '@heroicons/react/24/solid';
 
 function Home({ children }) {
     const router = useRouter()
-    const { user, setUser, userDB, setUserDB, setUserProfile,
-        fondoPrimario, setFondoPrimario,
-        fondoSecundario, setFondoSecundario,
-        fondoTerciario, setFondoTerciario, setUserCart, isOpen, setIsOpen, isOpen2, setIsOpen2, businessData, idioma, setIdioma, setUserProduct, setRecetaDB, precioJustoPDB, setPrecioJustoPDB, whatsapp, setWhatsapp, setUserData, filter, setFilter, nav, setNav, modal, setModal, cart, introClientVideo, setIntroClientVideo, recetaDBP, setRecetaDBP, productDB, search, setSearch, videoClientRef, setFilterQR, webScann, setWebScann, setTienda, setBusinessData, isBack, setBack } = useAppContext()
-
+    const { user, setUser, userDB, setUserDB, setUserProfile } = useAppContext()
     const { theme, toggleTheme } = useTheme();
-
-
     const pathname = usePathname()
-
-
-console.log('pathname', pathname)
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -46,15 +37,29 @@ console.log('pathname', pathname)
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    // // console.log(data)
-                    setUser({ rol: data.user.tipoDeGrupo })
-                    setUserDB(data.user)
-                    pathname === '/' && router.replace('/Home')
 
+                    if (data.user.codificacionDeRoles === 'Cuenta Personal') {
+                        setUser({ ...data.user, rol: data.user.codificacionDeRoles })
+                            (pathname === '/PersonalAccount' || pathname === '/') && router.replace('/Account')
+                    } else {
+                        setUserDB(data.user)
+
+                        if (data.user?.emailPersonal) {
+
+                            const res = await fetch(window?.location?.href.includes('localhost')
+                                ? `http://localhost:3000/api/auth/personalAccounts?emailPersonal=${data.user?.emailPersonal}`
+                                : `https://api.fastcash-mx.com/api/auth/personalAccounts?emailPersonal=${data.user?.emailPersonal}`)
+                            const resData = await res.json()
+                            setUser({ ...resData[0], rol: data.user.tipoDeGrupo })
+                                (pathname === '/PersonalAccount' || pathname === '/') && router.replace('/Home')
+
+                        } else {
+                            setUser({ rol: data.user.tipoDeGrupo })
+                                (pathname === '/PersonalAccount' || pathname === '/') && router.replace('/Home')
+                        }
+                    }
                 } else {
-                    const data = await response.json();
-                    setUser({ rol: undefined})
-                    // // console.log('No autorizado o sesión expirada');
+                    setUser({ rol: undefined })
                 }
             } catch (error) {
                 // // console.log('Error al cargar el perfil');
@@ -62,7 +67,7 @@ console.log('pathname', pathname)
         };
         fetchProfile();
     }, []);
-
+    console.log(user)
     // useEffect(() => {
     //     user?.rol && user?.rol !== undefined
     //         ? pathname !== '/Newslater' && router.replace('/Home')
@@ -75,11 +80,6 @@ console.log('pathname', pathname)
         </div>
     )
 }
-
-
-
-
-
 
 export default Home
 

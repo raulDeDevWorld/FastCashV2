@@ -59,6 +59,7 @@ import {
     encabezadoDeAplicaciones
 } from '@/constants/TableHeaders.jsx'
 import FormEditAccount from '@/components/FormEditAccount'
+import FormAddAuditor from '@/components/FormAddAuditor'
 
 
 
@@ -508,12 +509,12 @@ export default function Home() {
             }
 
             {modal === 'Añadir aplicacion' && <FormAddApplication />}
-
+            {modal === 'Registrar Auditoria Tracking' && <FormAddAuditor />}
 
             {/* ---------------------------------'VERIFICACION DE CREDITOS' --------------------------------- */}
-       
-          
-            {modal === 'Restablecer Asesor' && <FormRestablecimiento seccion="verificacion individual"  />}
+
+
+            {modal === 'Restablecer Asesor' && <FormRestablecimiento seccion="verificacion individual" />}
             {modal === 'Restablecer Cuenta' && <FormRestablecimientoCuenta seccion="" />}
             {modal === 'Restablecimiento Masivo' && <FormRestablecimiento seccion="verificacion total" />}
             {modal === 'Restablecimiento Masivo Cuenta' && <FormRestablecimientoCuenta seccion="verificacion total" />}
@@ -526,7 +527,7 @@ export default function Home() {
             {modal === 'Añadir cuenta masivas' && <FormAddMasiveAccounts />}
             {modal === 'Añadir cuenta' && <FormAddAccount />}
             {modal === 'Añadir cuenta personal' && <FormAddPersonalAccount />}
-                        {/* ---------------------------------'GESTION DE ACCESOS' --------------------------------- */}
+            {/* ---------------------------------'GESTION DE ACCESOS' --------------------------------- */}
 
             {modal === 'Administrar cuenta' && <FormAdminAccount />}
             {modal === 'Editar cuenta' && <FormEditAccount />}
