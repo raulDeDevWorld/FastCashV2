@@ -59,9 +59,9 @@ export default function BottomNavigation({ rol }) {
             <h1 className='16px font-medium text-center text-white py-[10px]'></h1>
             <h3 className={` text-center  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>{user.nombreCompleto}</h3>
             <h3 className={` text-center text-[12px]  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>{rol}</h3>
-            <div className='mt-3'>
+            {user?.rol !== "Super Admin" && <div className='mt-3'>
                 <Button theme="Success" click={handlerAsistencia}>Marcar asitencia</Button>
-            </div>
+            </div>}
         </li>
     }
     return <ul className="space-y-3 text-[16px] flex flex-col  items-center text-gray-600 font-medium ">
