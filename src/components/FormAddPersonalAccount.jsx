@@ -111,7 +111,7 @@ export default function AddAccount() {
 
             const res = await fetch(window?.location?.href?.includes('localhost')
                 ? 'http://localhost:3000/api/email/send'
-                : `https://api.fastcash-mx.com/api/auth/register/${id}`, {
+                : `https://api.fastcash-mx.com/api/email/send`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

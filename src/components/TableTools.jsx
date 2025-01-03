@@ -299,11 +299,8 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
                             </label>
                             <SelectSimple arr={['Por favor elige', 'En el trabajo', 'Dimitir', 'Reposo']} name='Cobrador 1' click={handlerSelectClick} defaultValue={filter['Cobrador 1']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
                         </div>
-
                     </div>
                     <div className='w-[300px] space-y-2'>
-
-
                         <div className='flex justify-between'>
                             <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
                                 Nombre del cliente:
@@ -315,9 +312,7 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
                                 Tipo de agrupación:
                             </label>
                             <SelectSimple arr={['Agrupación vencida', 'Agrupación de recordatorios']} name='Fecha de cancelación a cuenta 1' click={handlerSelectClick} defaultValue={filter['Fecha de cancelación a cuenta 1']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-
                         </div>
-
                     </div>
                     <div className='w-[300px] space-y-2'>
                         <div className='flex justify-between'>
@@ -411,69 +406,6 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
                     </div>
                 </div>
             }
-
-
-
-            {/* ---------------------------------'GESTION DE ACCESOS' --------------------------------- */}
-            {(item === 'Gestión de RH' || item === 'Gestión de administradores' || item === 'Gestión de managers' || item === 'Gestión de asesores') && <AccessTools/>}
-
-            {(item === 'Gestión de cuentas personales') &&
-                <div>
-                    <div className="w-full   relative  overflow-auto  scroll-smooth mb-2 lg:overflow-hidden">
-                        <div className='grid grid-cols-3 gap-x-5 gap-y-2 w-[1050px]'>
-                            <div className='w-[330px] space-y-2'>
-
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Buscar por Usuario:
-                                    </label>
-                                    <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Buscar por nombre:
-                                    </label>
-                                    <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-                                <Button type="button" theme="MiniPrimary" click={() => setModal('Añadir cuenta personal')} >Crear Asesor</Button>
-                            </div>
-                            <div className='w-[300px] space-y-2'>
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Número de teléfono:
-                                    </label>
-                                    <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Numero de páginas:
-                                    </label>
-                                    <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Numero de páginas' onChange={onChangeHandler} defaultValue={filter['Numero de páginas']} uuid='123' label='Numero de páginas' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-                                <button type="button" onClick={() => generateCuentasMasivas()} class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Crear Usuarios Masivos</button>
-
-                            </div>
-                            <div className='w-[300px] space-y-2'>
-
-                                <div className='flex justify-between'>
-                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                        Estado de Usuario:
-                                    </label>
-                                    <SelectSimple arr={['Activo', 'Inactivo']} name='Estado de reembolso' click={handlerSelectClick} defaultValue={filter['Estado de reembolso']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                                </div>
-                                <div className='flex justify-between flex space-x-3'>
-                                    <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Consultar</button>
-                                    <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Restablecer</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            }
-
-            {/* ---------------------------------'COLECCION DE CASOS' --------------------------------- */}
             {item === 'Reporte diario casos' && <div>
                 <div className="w-full   relative  overflow-auto  scroll-smooth mb-2 lg:overflow-hidden">
                     <div className='grid grid-cols-3 gap-x-5 gap-y-2 w-[1050px]'>
@@ -554,7 +486,34 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
                     </div>
                 </div>
             </div>}
+            {item === 'Gestion de aplicaciones' && <div>
+                <div className='grid grid-cols-3 gap-x-[50px] gap-y-2 w-[950px]'>
+                    <div className='w-[300px] space-y-2'>
+                        <div className='flex justify-between'>
+                            <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
+                                Aplicación:
+                            </label>
+                            <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
+                        </div>
+                    </div>
 
+                </div>
+                <div className='grid grid-cols-3 gap-x-[50px] gap-y-2 w-[950px]'>
+                    <div className='w-[300px] space-y-2'>
+                        <div className='flex justify-between'>
+                            <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
+                                Categoria:
+                            </label>
+                            <SelectSimple arr={['Super Administrador', 'Manager', 'Lider', 'Agente de cobro', 'Auditor', 'Cliente']} name='ID de sub-factura' click={handlerSelectClick} defaultValue={filter['ID de sub-factura']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
+                        </div>
+                    </div>
+                </div>
+                <div className='pt-3 flex space-x-3'>
+                    <Button type="button" theme="Success" click={() => setModal('Añadir aplicacion')}>
+                        Añadir Aplicación
+                    </Button>
+                </div>
+            </div>}
             {/* ---------------------------------'VERIFICACION DE CREDITOS' --------------------------------- */}
             {item === 'Recolección y Validación de Datos' && <VerificationTools />}
 
@@ -679,11 +638,68 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
                     </div>
                 </div>
             </div>}
-            {item === 'Lista final' && <VerificationTools /> }
-              
-              
-              
-               { // <div>
+            {item === 'Lista final' && <VerificationTools />}
+
+            {/* ---------------------------------'GESTION DE ACCESOS' --------------------------------- */}
+            {(item === 'Gestión de RH' || item === 'Gestión de administradores' || item === 'Gestión de managers' || item === 'Gestión de asesores') && <AccessTools />}
+
+            {(item === 'Gestión de cuentas personales') &&
+                <div>
+                    <div className="w-full   relative  overflow-auto  scroll-smooth mb-2 lg:overflow-hidden">
+                        <div className='grid grid-cols-3 gap-x-5 gap-y-2 w-[1050px]'>
+                            <div className='w-[330px] space-y-2'>
+
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
+                                        Buscar por Usuario:
+                                    </label>
+                                    <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
+                                </div>
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
+                                        Buscar por nombre:
+                                    </label>
+                                    <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
+                                </div>
+                                <Button type="button" theme="MiniPrimary" click={() => setModal('Añadir cuenta personal')} >Crear Asesor</Button>
+                            </div>
+                            <div className='w-[300px] space-y-2'>
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
+                                        Número de teléfono:
+                                    </label>
+                                    <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Número de teléfono' onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
+                                </div>
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
+                                        Numero de páginas:
+                                    </label>
+                                    <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} name='Numero de páginas' onChange={onChangeHandler} defaultValue={filter['Numero de páginas']} uuid='123' label='Numero de páginas' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
+                                </div>
+                                {/* <button type="button" onClick={() => generateCuentasMasivas()} class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Crear Usuarios Masivos</button> */}
+
+                            </div>
+                            <div className='w-[300px] space-y-2'>
+
+                                <div className='flex justify-between'>
+                                    <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
+                                        Estado de Usuario:
+                                    </label>
+                                    <SelectSimple arr={['Activo', 'Inactivo']} name='Estado de reembolso' click={handlerSelectClick} defaultValue={filter['Estado de reembolso']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
+                                </div>
+                                <div className='flex justify-between flex space-x-3'>
+                                    <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Consultar</button>
+                                    <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-2 text-center me-2 mb-2">Restablecer</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+            { // <div>
                 //     <div className="w-full   relative  overflow-auto  scroll-smooth mb-2 lg:overflow-hidden">
                 //         <div className='grid grid-cols-3 gap-x-5 gap-y-2 w-[1050px]'>
                 //             <div className='w-[330px] space-y-2'>
@@ -743,41 +759,8 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
 
                 // </div>
             }
-            {/* ---------------------------------'GESTION DE APLICACIONES' --------------------------------- */}
-
-
-            {item === 'Gestion de aplicaciones' && <div>
-                <div className='grid grid-cols-3 gap-x-[50px] gap-y-2 w-[950px]'>
-                    <div className='w-[300px] space-y-2'>
-                        <div className='flex justify-between'>
-                            <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                Aplicación:
-                            </label>
-                            <input className={`h-[25px] max-w-[173px] w-full px-3 border border-gray-400 rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-white  dark:bg-transparent`} arr={['Opción 1', 'Opción 2']} onChange={onChangeHandler} defaultValue={filter['Número de teléfono']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                        </div>
-                    </div>
-
-                </div>
-                <div className='grid grid-cols-3 gap-x-[50px] gap-y-2 w-[950px]'>
-                    <div className='w-[300px] space-y-2'>
-                        <div className='flex justify-between'>
-                            <label htmlFor="" className={`mr-5 text-[10px] ${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`}>
-                                Categoria:
-                            </label>
-                            <SelectSimple arr={['Super Administrador', 'Manager', 'Lider', 'Agente de cobro', 'Auditor', 'Cliente']} name='ID de sub-factura' click={handlerSelectClick} defaultValue={filter['ID de sub-factura']} uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-white`} required />
-                        </div>
-                    </div>
-                </div>
-                <div className='pt-3 flex space-x-3'>
-                    <Button type="button" theme="Success" click={() => setModal('Añadir aplicacion')}>
-                        Añadir Aplicación
-                    </Button>
-                </div>
-            </div>}
-
 
             {/* ----------------------------------------------------------------------- */}
-
             {(item === 'Usuarios de verificación' || item === 'Usuarios de Cobranza' || item === 'Usuarios de Auditoria') &&
                 <div>
 
