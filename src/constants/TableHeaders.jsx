@@ -51,7 +51,7 @@ export const encabezadoCobroYValance = () => [
 {/* --------------------------------- AUDITORIA DE CREDITOS --------------------------------- */ }
 
 export const encabezadoRegistroHistorico = () => [
- "Caso (Descripción de la excepción)", "Asesor (Apodo del usuario)", "Cuenta (Código del producto)",
+    "Caso (Descripción de la excepción)", "Asesor (Apodo del usuario)", "Cuenta (Código del producto)",
     "Código de operación", "Operacion (Contenido de la operación)", "Modificacion (Resultados de la operación)",
     "Fecha (Tiempo de operación)", "operar"
 ];
@@ -81,7 +81,7 @@ export const encabezadoCasosDeVerificacion = () => {
             "Estado de credito", "Nombre del cliente", "Número de teléfono móvil",
             "Cliente nuevo", "Valor solicitado (VS)", "Valor enviado (VE)", "Registro de notas",
             "Nombre del producto", "Fecha de reembolso", "Fecha de creación de la tarea",
-            "Fecha de tramitación del caso","Nombre de la empresa", "Cuenta Verificador (Asesor)",
+            "Fecha de tramitación del caso", "Nombre de la empresa", "Cuenta Verificador (Asesor)",
             "Operar"
         ]
         : [
@@ -97,15 +97,18 @@ export const encabezadoListaFinal = () => [
     "Nombre del Cliente", "Numero de Telefono *", "Producto", "Usuario Verificador",
     "Comentario", "Fecha"
 ];
+{/* --------------------------------- GESTION DE ACCESOS --------------------------------- */ }
 
 export const encabezadoGestionDeAccesos = () => [
     "Seleccionar", "Nombre Personal", "Email Personal", "(Usuario asignado) cuenta", "Origen de la cuenta", "Tipo de grupo",
     "Codificación de roles", "Situación laboral", "Operar"
 ];
 export const encabezadoGestionDeAccesosPersonales = () => [
-    "Seleccionar", "Nombre Completo", "Email", "(Usuario asignado) cuenta", "Origen de la cuenta", "Tipo de grupo",
-    "Codificación de roles", "Situación laboral", "Operar"
+    "Contactos", "Nombre Completo", "Email", "dni", "Numero de Telefono Movil",
+    "Operar"
 ];
+
+
 
 export const encabezadoDeAplicaciones = () => ["icon", "Nombre", "Prestamo Maximo", "Interes Diario", "calificacion", "Operar"
 ];

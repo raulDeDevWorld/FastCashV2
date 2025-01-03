@@ -40,6 +40,7 @@ const Table = ({
         setModal(mod)
         setCheckedArr([i])
     }
+ 
     // console.log(userDB)
     //     async function handlerFetch(queryURL) {
     // console.log(`${local}${queryURL}`)
@@ -194,10 +195,11 @@ const Table = ({
                                                         </defs>
                                                     </svg>
                                                 </a>
-                                            </div>}
+                                            </div>
+                                        }
 
                                         {/* Operar Verficador */}
-                                        {it.toLowerCase() === 'operar' && (item?.toLowerCase().includes('recolección')||item?.toLowerCase().includes('lista')) && <div className='flex justify-between flex space-x-3'>
+                                        {it.toLowerCase() === 'operar' && (item?.toLowerCase().includes('recolección') || item?.toLowerCase().includes('lista')) && <div className='flex justify-between flex space-x-3'>
                                             <Link href={`/Home/Datos?caso=${i._id}&seccion=info`} className=''>
                                                 <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Visitar</button>
                                             </Link>
@@ -210,10 +212,24 @@ const Table = ({
                                             <img src={i[toCamelCase(it)]} className='w-[80px] h-[80px]' alt="" />
                                         </div>}
 
-                                        {item?.toLowerCase().includes('gestión de') && !item?.toLowerCase().includes('colección') && it.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
+                                        {item?.toLowerCase().includes('gestión de') && !item?.toLowerCase().includes('personales') && !item?.toLowerCase().includes('colección') && it.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
                                             <UserCircleIcon
                                                 className='h-6 w-6 fill-[#ebbb40]'
                                                 onClick={() => handlerAcount('Asignar Asesor', i)} />
+
+                                            {/* <DocumentTextIcon className='h-6 w-6 fill-[#5c78d3] cursor-pointer' onClick={() => setModal('Registrar')} /> */}
+                                            <ChatBubbleLeftEllipsisIcon
+                                                className='h-6 w-6 fill-[#5bc0cf] cursor-pointer'
+                                                onClick={() => setModal('SMS')} />
+                                            <CurrencyDollarIcon
+                                                className='h-6 w-6 fill-[#1ab418] cursor-pointer' />
+                                            {/* <FolderPlusIcon className='h-6 w-6 fill-[#eba140]' /> */}
+                                        </div>}
+                                        
+                                        {item?.toLowerCase().includes('gestión de') && item?.toLowerCase().includes('personales') && !item?.toLowerCase().includes('colección') && it.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
+                                            <UserCircleIcon
+                                                className='h-6 w-6 fill-[#ebbb40]'
+                                                onClick={() => handlerAcount('Administrar Asesor', i)} />
 
                                             {/* <DocumentTextIcon className='h-6 w-6 fill-[#5c78d3] cursor-pointer' onClick={() => setModal('Registrar')} /> */}
                                             <ChatBubbleLeftEllipsisIcon

@@ -33,10 +33,8 @@ export default function AddAccount() {
             formData.append('file', selectedFile); // Archivo
             formData.append('nombreCompleto', data.nombreCompleto); // Datos adicionales
             formData.append('dni', data.dni);
-            formData.append('telefono', data.telefono);
-            console.log(formData)
+            formData.append('numeroDeTelefonoMovil', data.numeroDeTelefonoMovil);
             const id = userDB.id
-            console.log(userDB)
             const response = await fetch(window?.location?.href?.includes('localhost')
                 ? `http://localhost:3000/api/auth/registerPersonal/${id}`
                 : `https://api.fastcash-mx.com/api/auth/registerPersonal/${id}`, {
@@ -110,7 +108,7 @@ export default function AddAccount() {
                 <input
                     type='text'
                     className={`h-[25px] max-w-[173px] w-full px-3 border border-[#adadad] rounded-[5px] text-[10px]  ${theme === 'light' ? ' text-gray-950 bg-gray-200' : ' text-white bg-gray-200'} dark:text-gray-950  dark:bg-transparent`}
-                    name='telefono' onChange={onChangeHandler} placeholder='+12313143' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
+                    name='numeroDeTelefonoMovil' onChange={onChangeHandler} placeholder='+12313143' uuid='123' label='Filtro 1' position='absolute left-0 top-[25px]' bg={`${theme === 'light' ? ' text-gray-950' : ' text-gray-950 '} dark:text-gray-950`} required />
             </div>
             <button type="button"
                 class="w-[300px] relative left-0 right-0 mx-auto text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center  mb-2"

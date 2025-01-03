@@ -16,15 +16,13 @@ import TimeDisplay from '@/components/TimeDisplay'
 import { Turret_Road } from 'next/font/google'
 // import Whatsapp from '@/components/Whatsapp'
 import { MoonIcon, SunIcon, WindowIcon } from '@heroicons/react/24/solid';
-
+import Loader from '@/components/Loader'
 function Home({ children }) {
     const router = useRouter()
-    const { user, setUser, userDB, setUserDB, setUserProfile } = useAppContext()
+    const { user, setUser, userDB, setUserDB, setUserProfile, loader, modal} = useAppContext()
     const { theme, toggleTheme } = useTheme();
     const pathname = usePathname()
-
-    useEffect(() => {
-        const fetchProfile = async () => {
+     const fetchProfile = async () => {
             const token = sessionStorage.getItem('token'); // Obtener el JWT desde sessionStorage
             try {
                 const response = await fetch(window?.location?.href.includes('localhost')
@@ -65,8 +63,13 @@ function Home({ children }) {
                 // // console.log('Error al cargar el perfil');
             }
         };
+    useEffect(() => {
+   
         fetchProfile();
-    }, []);
+    }, [loader]);
+
+ 
+
     console.log(user)
     // useEffect(() => {
     //     user?.rol && user?.rol !== undefined
@@ -76,6 +79,8 @@ function Home({ children }) {
 
     return (
         <div>
+            {modal === 'Guardando...' && <Loader> {modal} </Loader>}
+
             {children}
         </div>
     )

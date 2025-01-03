@@ -2072,8 +2072,6 @@ export default function Home() {
 
             {(item === 'Gestión de cuentas personales') &&
                 <div>
-
-
                     <div className="w-full   relative  overflow-auto  scroll-smooth mb-2 lg:overflow-hidden">
                         <div className='grid grid-cols-3 gap-x-5 gap-y-2 w-[1050px]'>
                             <div className='w-[330px] space-y-2'>

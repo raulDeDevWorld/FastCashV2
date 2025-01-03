@@ -27,6 +27,7 @@ import FormDistributionCases from '@/components/FormDistributionCases'
 import FormAsignarAsesor from '@/components/FormAsignarAsesor'
 import TableTools from '@/components/TableTools'
 import FormAsignarCuenta from '@/components/FormAsignarCuenta'
+import FormAdminAsesor from '@/components/FormAdminAsesor'
 import FormRestablecimiento from '@/components/FormRestablecimiento'
 import FormRestablecimientoCuenta from '@/components/FormRestablecimientoCuenta'
 import {
@@ -531,6 +532,7 @@ export default function Home() {
 
             {modal === 'Administrar cuenta' && <FormAdminAccount />}
             {modal === 'Editar cuenta' && <FormEditAccount />}
+            {modal === 'Administrar Asesor' && <FormAdminAsesor />}
 
         </div>
     )

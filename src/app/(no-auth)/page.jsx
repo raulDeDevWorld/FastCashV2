@@ -28,6 +28,7 @@ export default function Home() {
 
   const onSubmitWithReCAPTCHA = async (e) => {
     e.preventDefault();
+    console.log('Login')
     try {
       let cuenta = e.target[0].value
       let password = e.target[1].value

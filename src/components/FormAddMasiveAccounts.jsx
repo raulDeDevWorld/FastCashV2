@@ -345,10 +345,12 @@ export default function AddAccount() {
                     Origen de las cuentas:
                 </label>
                 <SelectSimple
-                    arr={['Por favor elige',
-                        '通达富-UIO',
-                        '通达富-CLI',
-                        '通达富-EUA'
+                    arr={[
+                        'Por favor elige',
+                        '通达富-EC',
+                        '通达富-CO',
+                        '通达富-EU',
+                        '通达富-MX',
                     ]}
                     name='Origen de la cuenta'
                     click={handlerSelectClick2}

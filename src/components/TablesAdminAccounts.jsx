@@ -460,8 +460,7 @@ export default function Home() {
                                 headArray={encabezadoGestionDeAccesos}
                                 dataFilter={(i) => true}
                                 // local={'http://localhost:3000/api/auth/users?tipoDeGrupo=Asesor'}
-                                query={'tipoDeGrupo=Asesor'}
-                                local={'http://localhost:3000/api/auth/users'}
+                                local={'http://localhost:3000/api/auth/users?tipoDeGrupo=Asesor'}
                                 server={'https://api.fastcash-mx.com/api/auth/users'}
                             />
                         }
