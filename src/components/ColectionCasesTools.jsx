@@ -128,7 +128,7 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
                         <div className='w-[330px] space-y-2'>
                             <div className='flex justify-between flex space-x-3'>
                                 <Button type="button" theme={'Success'} click={() => setModal('Distribuir Casos')}>Distribuir</Button>
-                                <Button type="button" theme={checkedArr.length > 0 ? 'Success' : 'Disable'} click={() => checkedArr.length > 0 && setModal('Asignar Cuenta')}>Asignar cuenta</Button>
+                                <Button type="button" theme={checkedArr.length > 0 ? 'Success' : 'Disable'} click={() => checkedArr.length > 0 && setModal('Asignar Cuenta Cobrador')}>Asignar cuenta</Button>
                             </div>
                         </div>
                         <div className='w-[300px] space-y-2'>

@@ -85,7 +85,7 @@ export default function Home() {
     const [editItem, setEditItem] = useState(undefined)
     const [remesasDB, setRemesasDB] = useState(undefined)
     const refFirst = useRef(null);
-    const [profileIMG, setProfileIMG] = useState('')
+    const [cases, setCases] = useState([])
     const searchParams = useSearchParams()
     const [copied, setCopied] = useState(false);
     const { theme, toggleTheme } = useTheme();
@@ -133,14 +133,27 @@ export default function Home() {
         setData(data)
     }
 
-    // console.log(data)
+    async function handlerFetchVerification() {
+        const res = await fetch(
+            window?.location?.href?.includes('localhost')
+                ? 'http://localhost:3000/api/verification?estadoDeCredito=Dispersado'
+                : 'https://api.fastcash-mx.com/api/verification?estadoDeCredito=Dispersado')
+        const data = await res.json()
+        // console.log(data)
+        setCases(data)
 
+    }
+    console.log("DATA2",cases)
 
     useEffect(() => {
         handlerFetch()
+        handlerFetchVerification()
+
     }, [loader])
 
-
+    useEffect(() => {
+        setCheckedArr([])
+    }, [])
     return (
         (user?.rol === 'Admin' || user.rol === 'Super Admin' || user?.rol === 'Recursos Humanos' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Cobranza' || user.rol === 'Manager de Auditoria' || user.rol === 'Manager de Verificación') && item === 'Reporte diario' && <table className="w-full min-w-[2000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
             <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">
@@ -194,7 +207,7 @@ export default function Home() {
                         <td className="px-4 py-2">{i.nombrePersonal}</td>
                         <td className="px-4 py-2">{i.cuenta}</td>
                         
-                        <td className="px-4 py-2">{i.casos}</td>
+                        <td className="px-4 py-2">{cases?.filter(it => it.cuentaCobrador === i.cuenta).length}</td>
                         <td className="px-4 py-2">{i.llamadasRealizadas}</td>
                         <td className="px-4 py-2  bg-yellow-400">{i.clientesSinResponder}</td>
                         <td className="px-4 py-2">{i.pagosHoy}</td>

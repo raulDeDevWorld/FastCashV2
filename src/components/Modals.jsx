@@ -281,10 +281,7 @@ export default function Home() {
                     </div>
                 </div>
             }
-            {
-                modal === 'Distribuir Casos De Verificacion' && <FormDistributionCases />
 
-            }
             {
                 modal === 'Registrar Multa' && <div className='fixed flex justify-center items-center top-0 left-0 bg-[#0000007c] h-screen w-screen z-50' onClick={() => setModal('')}>
                     <div className='relative flex flex-col items-center justify-center bg-gray-200 w-[400px] h-[300px] p-5 space-y-5 rounded-[5px]' onClick={(e) => e.stopPropagation()}>
@@ -508,6 +505,11 @@ export default function Home() {
 
                 </div>
             }
+            {/* ---------------------------------'COLECCION DE CASOS' --------------------------------- */}
+
+            {modal === 'Asignar Cuenta Cobrador' && <FormAsignarCuenta section='verification' query='Asesor de Cobranza' cuenta='cuentaCobrador' />}
+
+
 
             {modal === 'Añadir aplicacion' && <FormAddApplication />}
             {modal === 'Registrar Auditoria Tracking' && <FormAddAuditor />}
@@ -523,7 +525,10 @@ export default function Home() {
             {modal === 'Asignar Asesor' && <FormAsignarAsesor />}
             {modal === 'Asignar Cuenta' && <FormAsignarCuenta />}
 
+            {
+                modal === 'Distribuir Casos' && <FormDistributionCases query='?tipoDeGrupo=Asesor%20de%20Verificación' estadoDeCredito='Dispersado' tipoDeGrupo={user.tipoDeGrupo} />
 
+            }
             {modal === 'Registrar Verificacion' && <FormAddVerification />}
             {modal === 'Añadir cuenta masivas' && <FormAddMasiveAccounts />}
             {modal === 'Añadir cuenta' && <FormAddAccount />}

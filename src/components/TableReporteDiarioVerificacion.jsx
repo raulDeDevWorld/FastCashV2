@@ -141,11 +141,11 @@ export default function Home() {
     async function handlerFetchVerification() {
         const res = await fetch(
             window?.location?.href?.includes('localhost')
-                ? 'http://localhost:3000/api/verification'
-                : 'https://api.fastcash-mx.com/api/verification')
+                ? 'http://localhost:3000/api/verification?estadoDeCredito=Pendiente'
+                : 'https://api.fastcash-mx.com/api/verification?estadoDeCredito=Pendiente')
         const data = await res.json()
         // console.log(data)
-        setCases(data.filter(i => i?.estadoDeCredito?.toLowerCase() === 'pendiente'))
+        setCases(data)
     }
     function handlerSelectAllCheck(e, i) {
         if (e.target.checked) {
@@ -163,8 +163,8 @@ export default function Home() {
     }, [loader])
 
     useEffect(() => {
-
-    }, [checkedArr])
+        setCheckedArr([])
+    }, [])
     return (
         <table className="w-full min-w-[2000px] border-[1px] bg-white text-[14px] text-left text-gray-500 border-t-4 border-t-gray-400">
             <thead className="text-[10px] text-white uppercase bg-gray-900 sticky top-[0px] z-20">

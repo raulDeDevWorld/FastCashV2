@@ -52,7 +52,7 @@ export default function BottomNavigation({ rol }) {
         setNav(false)
         // setWhatsapp(!whatsapp)
     }
-    console.log(userDB)
+    console.log(user)
     const Header = () => {
         return <li className="flex flex-col justify-center items-center px-[10px] py-5 border-b border-gray-[1px]  w-full">
             <img src={user.fotoURL} className='h-[150px] w-[150px] rounded-full' alt="" />

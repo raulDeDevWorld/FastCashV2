@@ -13,7 +13,7 @@ import { toast } from 'react-hot-toast';
 import { ChatIcon, PhoneIcon, ClipboardDocumentCheckIcon, FolderPlusIcon, CurrencyDollarIcon, DocumentTextIcon, UserCircleIcon, ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/solid';
 
 
-export default function AddAccount({section, query, cuenta}) {
+export default function AddAccount() {
     const { user, userDB, setUserProfile, setAlerta, users, modal, setModal, checkedArr, setUsers, loader, setLoader, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, divisas, setDivisas, exchange, setExchange, destinatario, setDestinatario, itemSelected, setItemSelected } = useAppContext()
     const { theme, toggleTheme } = useTheme();
     const [data, setData] = useState({})
@@ -25,17 +25,14 @@ export default function AddAccount({section, query, cuenta}) {
     const [selectedCheckbox, setSelectedCheckbox] = useState(null);
     const [filterArr, setFilterArr] = useState([])
     const [selectAccount, setSelectAccount] = useState(null);
+
+
     const searchParams = useSearchParams()
+
+
     const seccion = searchParams.get('seccion')
+
     const item = searchParams.get('item')
-
-
-
-
-
-
-
-
     const codificacionDeRoles = {
         'Recursos Humanos': ['Recursos Humanos'],
         'Admin': ['Admin'],
@@ -90,14 +87,14 @@ export default function AddAccount({section, query, cuenta}) {
             if (selectAccount?.cuenta !== undefined, selectAccount?.origenDeLaCuenta !== undefined)
                 try {
                     const response = await fetch(window?.location?.href?.includes('localhost')
-                        ? `http://localhost:3000/api/${section}/${i._id}`
-                        : `https://api.fastcash-mx.com/api/${section}/${i._id}`, {
+                        ? `http://localhost:3000/api/verification/${i._id}`
+                        : `https://api.fastcash-mx.com/api/verification/${i._id}`, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            [cuenta]: selectAccount.cuenta,
+                            cuentaVerificador: selectAccount.cuenta,
                             nombreDeLaEmpresa: selectAccount.origenDeLaCuenta
                         }), // Datos a enviar en el cuerpo de la petición
                     });
@@ -130,8 +127,12 @@ export default function AddAccount({section, query, cuenta}) {
     const fetchUsers = async () => {
         try {
             const response = await axios.get(window?.location?.href?.includes('localhost')
-                ? `http://localhost:3000/api/auth/users?tipoDeGrupo=${query}`
-                : `https://api.fastcash-mx.com/api/auth/users?tipoDeGrupo=${query}`, 
+                ? 'http://localhost:3000/api/auth/users'
+                : 'https://api.fastcash-mx.com/api/auth/users', {
+                params: {
+                    tipoDeGrupo: 'Asesor de Verificación'
+                },
+            }
             );
             setFilterArr(response.data); // Actualiza la lista de usuarios
         } catch (error) {

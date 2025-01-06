@@ -8,6 +8,7 @@ import Velocimetro from '@/components/Velocimetro'
 import Button from '@/components/Button'
 import VerificationTools from '@/components/VerificationTools'
 import AccessTools from '@/components/AccessTools'
+import ColectionCasesTools from '@/components/ColectionCasesTools'
 
 import {
     refunds, historial,
@@ -35,8 +36,8 @@ const Alert = ({ children, type = 'success', duration = 5000, onClose }) => {
     return (
         <div>
             {/* ---------------------------------'COLECCION DE CASOS' --------------------------------- */}
-
-            {item === 'Casos de Cobranza' &&
+            {item === 'Casos de Cobranza' && <ColectionCasesTools/> }
+            {item === 'Casos de Cobranza hay q borrar' &&
                 <div>
                     <div className="w-full   relative  overflow-auto  scroll-smooth mb-2 lg:overflow-hidden">
                         <div className='grid grid-cols-3 gap-x-5 gap-y-2 w-[1050px]'>

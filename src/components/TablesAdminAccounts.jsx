@@ -217,7 +217,7 @@ export default function Home() {
                                 dataArray={['']}
                                 dataFilter={(i) => true}
                                 local={'http://localhost:3000/api/verification?estadoDeCredito=Dispersado'}
-                                server={'https://api.fastcash-mx.com/api/verification?'}
+                                server={'https://api.fastcash-mx.com/api/verification?estadoDeCredito=Dispersado'}
                             />
                         }
                         {item === 'Flujo de Clientes' &&
@@ -339,6 +339,7 @@ export default function Home() {
                                 server={'https://api.fastcash-mx.com/api/verification'}
                             />
                         }
+                        {/* numero de prestamo, apodo de usuario, codigo de producto = arl fac, codico de operacion, contenido (descripcion), resultado de la operacion (true , false reporte actual), fecha */}
                         {
                             item === 'Registro de SMS' && <Table
                                 access={true}

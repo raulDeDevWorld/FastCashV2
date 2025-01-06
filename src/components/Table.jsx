@@ -32,15 +32,21 @@ const Table = ({
             .replace(/^[A-Z]/, firstChar => firstChar.toLowerCase());
     };
 
-    function handlerVerification(i) {
-        setModal('Registrar Verificacion')
-        setItemSelected(i)
+    function handlerVerification(i, seccion) {
+        if (seccion === 'Verificacion') {
+            setModal('Registrar Verificacion')
+            setItemSelected(i)
+        }
+        if (seccion === 'Cobranza') {
+            setModal('Registrar Cobranza')
+            setItemSelected(i)
+        }
     }
     function handlerAcount(mod, i) {
         setModal(mod)
         setCheckedArr([i])
     }
- 
+
     // console.log(userDB)
     //     async function handlerFetch(queryURL) {
     // console.log(`${local}${queryURL}`)
@@ -203,9 +209,16 @@ const Table = ({
                                             <Link href={`/Home/Datos?caso=${i._id}&seccion=info`} className=''>
                                                 <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Visitar</button>
                                             </Link>
-                                            <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => handlerVerification(i)}>Registrar</button>
+                                            <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => handlerVerification(i, 'Verificacion')}>Registrar</button>
                                         </div>}
 
+                                        {/* Operar Cobrador */}
+                                        {it.toLowerCase() === 'operar' && (item?.toLowerCase().includes('recolección') || item?.toLowerCase().includes('lista')) && <div className='flex justify-between flex space-x-3'>
+                                            <Link href={`/Home/Datos?caso=${i._id}&seccion=info`} className=''>
+                                                <button type="button" class="w-full text-white bg-gradient-to-br from-blue-600 to-blue-400 hover:bg-gradient-to-bl foco-4 focus:outline-none foco-blue-300 dark:foco-blue-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2">Visitar</button>
+                                            </Link>
+                                            <button type="button" class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br foco-4 focus:outline-none foco-cyan-300 dark:foco-cyan-800 font-medium rounded-lg text-[10px] px-5 py-1.5 text-center me-2 mb-2" onClick={() => handlerVerification(i, 'Cobranza')}>Registrar</button>
+                                        </div>}
 
 
                                         {it.toLowerCase() === 'icon' && item?.toLowerCase().includes('aplicacion') && <div className='flex justify-between flex space-x-3'>
@@ -225,7 +238,7 @@ const Table = ({
                                                 className='h-6 w-6 fill-[#1ab418] cursor-pointer' />
                                             {/* <FolderPlusIcon className='h-6 w-6 fill-[#eba140]' /> */}
                                         </div>}
-                                        
+
                                         {item?.toLowerCase().includes('gestión de') && item?.toLowerCase().includes('personales') && !item?.toLowerCase().includes('colección') && it.toLowerCase() === 'operar' && <div className='flex justify-between flex space-x-3'>
                                             <UserCircleIcon
                                                 className='h-6 w-6 fill-[#ebbb40]'
