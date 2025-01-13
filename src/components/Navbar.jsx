@@ -55,7 +55,7 @@ export default function BottomNavigation({ rol }) {
     console.log(user)
     const Header = () => {
         return <li className="flex flex-col justify-center items-center px-[10px] py-5 border-b border-gray-[1px]  w-full">
-            <img src={user.fotoURL} className='h-[150px] w-[150px] rounded-full' alt="" />
+            <img src={user.fotoURL ?user.fotoURL: 'logo.png'} className='h-[150px] w-[150px] rounded-full' alt="" />
             <h1 className='16px font-medium text-center text-white py-[10px]'></h1>
             <h3 className={` text-center  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>{user.nombreCompleto}</h3>
             <h3 className={` text-center text-[12px]  ${theme === 'light' ? ' text-black' : 'text-white '} dark:text-white`}>{rol}</h3>

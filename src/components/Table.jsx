@@ -137,7 +137,7 @@ const Table = ({
     }, [])
     return (
         access && <table className="min-w-full shadow">
-            <thead className="bg-gray-900 text-[10px] uppercase sticky top-[0px] z-20">
+            <thead className="bg-green-900 text-[10px] uppercase sticky top-[0px] z-20">
                 <tr className="text-white min-w-[2500px]">
                     {headArray().map((i, index) => (
                         <th
